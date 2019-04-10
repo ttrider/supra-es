@@ -1,0 +1,230 @@
+{
+  "dataNodes": [
+    {
+      "id": "T8-bTaZZQOm3w7a8AKyykA",
+      "indecies": [
+        {
+          "id": "plc-elementalmediaconvert-usd-20190320213240",
+          "shards": [
+            {
+              "id": "0",
+              "name": "[T8-bTaZZQOm3w7a8AKyykA][plc-elementalmediaconvert-usd-20190320213240][0]"
+            },
+            {
+              "id": "4",
+              "name": "[T8-bTaZZQOm3w7a8AKyykA][plc-elementalmediaconvert-usd-20190320213240][4]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "V1Lm6aKHQ8mO2J-ujky32A",
+      "indecies": [
+        {
+          "id": "plc-elementalmediaconvert-usd-20190320213240",
+          "shards": [
+            {
+              "id": "1",
+              "name": "[V1Lm6aKHQ8mO2J-ujky32A][plc-elementalmediaconvert-usd-20190320213240][1]"
+            },
+            {
+              "id": "2",
+              "name": "[V1Lm6aKHQ8mO2J-ujky32A][plc-elementalmediaconvert-usd-20190320213240][2]"
+            },
+            {
+              "id": "3",
+              "name": "[V1Lm6aKHQ8mO2J-ujky32A][plc-elementalmediaconvert-usd-20190320213240][3]"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "detailedRootNode": {
+    "type": "RootNode",
+    "nodeId": "detailedRootNode",
+    "children": [
+      {
+        "type": "ShardNode",
+        "nodeId": "[T8-bTaZZQOm3w7a8AKyykA][plc-elementalmediaconvert-usd-20190320213240][0]",
+        "children": [
+          {
+            "type": "AggregationsNode",
+            "nodeId": "[T8-bTaZZQOm3w7a8AKyykA][plc-elementalmediaconvert-usd-20190320213240][0]-Aggrs",
+            "children": [
+              {
+                "nodeId": "[T8-bTaZZQOm3w7a8AKyykA][plc-elementalmediaconvert-usd-20190320213240][0]-Aggrs-MeteredUnitCondition",
+                "type": "CompositeAggregator",
+                "description": "MeteredUnitCondition",
+                "absTime": 3659241,
+                "children": [
+                  {
+                    "nodeId": "[T8-bTaZZQOm3w7a8AKyykA][plc-elementalmediaconvert-usd-20190320213240][0]-Aggrs-MeteredUnitCondition-Location",
+                    "type": "GlobalOrdinalsStringTermsAggregator",
+                    "description": "Location",
+                    "absTime": 493613,
+                    "children": []
+                  },
+                  {
+                    "nodeId": "[T8-bTaZZQOm3w7a8AKyykA][plc-elementalmediaconvert-usd-20190320213240][0]-Aggrs-MeteredUnitCondition-Name",
+                    "type": "StringTermsAggregator",
+                    "description": "Name",
+                    "absTime": 1203634,
+                    "children": []
+                  }
+                ]
+              }
+            ],
+            "absTime": 3659241
+          }
+        ]
+      },
+      {
+        "type": "ShardNode",
+        "nodeId": "[T8-bTaZZQOm3w7a8AKyykA][plc-elementalmediaconvert-usd-20190320213240][4]",
+        "children": [
+          {
+            "type": "AggregationsNode",
+            "nodeId": "[T8-bTaZZQOm3w7a8AKyykA][plc-elementalmediaconvert-usd-20190320213240][4]-Aggrs",
+            "children": [
+              {
+                "nodeId": "[T8-bTaZZQOm3w7a8AKyykA][plc-elementalmediaconvert-usd-20190320213240][4]-Aggrs-MeteredUnitCondition",
+                "type": "CompositeAggregator",
+                "description": "MeteredUnitCondition",
+                "absTime": 3473079,
+                "children": [
+                  {
+                    "nodeId": "[T8-bTaZZQOm3w7a8AKyykA][plc-elementalmediaconvert-usd-20190320213240][4]-Aggrs-MeteredUnitCondition-Location",
+                    "type": "GlobalOrdinalsStringTermsAggregator",
+                    "description": "Location",
+                    "absTime": 485400,
+                    "children": []
+                  },
+                  {
+                    "nodeId": "[T8-bTaZZQOm3w7a8AKyykA][plc-elementalmediaconvert-usd-20190320213240][4]-Aggrs-MeteredUnitCondition-Name",
+                    "type": "StringTermsAggregator",
+                    "description": "Name",
+                    "absTime": 1120842,
+                    "children": []
+                  }
+                ]
+              }
+            ],
+            "absTime": 3473079
+          }
+        ]
+      },
+      {
+        "type": "ShardNode",
+        "nodeId": "[V1Lm6aKHQ8mO2J-ujky32A][plc-elementalmediaconvert-usd-20190320213240][1]",
+        "children": [
+          {
+            "type": "AggregationsNode",
+            "nodeId": "[V1Lm6aKHQ8mO2J-ujky32A][plc-elementalmediaconvert-usd-20190320213240][1]-Aggrs",
+            "children": [
+              {
+                "nodeId": "[V1Lm6aKHQ8mO2J-ujky32A][plc-elementalmediaconvert-usd-20190320213240][1]-Aggrs-MeteredUnitCondition",
+                "type": "CompositeAggregator",
+                "description": "MeteredUnitCondition",
+                "absTime": 3012053,
+                "children": [
+                  {
+                    "nodeId": "[V1Lm6aKHQ8mO2J-ujky32A][plc-elementalmediaconvert-usd-20190320213240][1]-Aggrs-MeteredUnitCondition-Location",
+                    "type": "GlobalOrdinalsStringTermsAggregator",
+                    "description": "Location",
+                    "absTime": 493895,
+                    "children": []
+                  },
+                  {
+                    "nodeId": "[V1Lm6aKHQ8mO2J-ujky32A][plc-elementalmediaconvert-usd-20190320213240][1]-Aggrs-MeteredUnitCondition-Name",
+                    "type": "StringTermsAggregator",
+                    "description": "Name",
+                    "absTime": 883957,
+                    "children": []
+                  }
+                ]
+              }
+            ],
+            "absTime": 3012053
+          }
+        ]
+      },
+      {
+        "type": "ShardNode",
+        "nodeId": "[V1Lm6aKHQ8mO2J-ujky32A][plc-elementalmediaconvert-usd-20190320213240][2]",
+        "children": [
+          {
+            "type": "AggregationsNode",
+            "nodeId": "[V1Lm6aKHQ8mO2J-ujky32A][plc-elementalmediaconvert-usd-20190320213240][2]-Aggrs",
+            "children": [
+              {
+                "nodeId": "[V1Lm6aKHQ8mO2J-ujky32A][plc-elementalmediaconvert-usd-20190320213240][2]-Aggrs-MeteredUnitCondition",
+                "type": "CompositeAggregator",
+                "description": "MeteredUnitCondition",
+                "absTime": 2909727,
+                "children": [
+                  {
+                    "nodeId": "[V1Lm6aKHQ8mO2J-ujky32A][plc-elementalmediaconvert-usd-20190320213240][2]-Aggrs-MeteredUnitCondition-Location",
+                    "type": "GlobalOrdinalsStringTermsAggregator",
+                    "description": "Location",
+                    "absTime": 368377,
+                    "children": []
+                  },
+                  {
+                    "nodeId": "[V1Lm6aKHQ8mO2J-ujky32A][plc-elementalmediaconvert-usd-20190320213240][2]-Aggrs-MeteredUnitCondition-Name",
+                    "type": "StringTermsAggregator",
+                    "description": "Name",
+                    "absTime": 989395,
+                    "children": []
+                  }
+                ]
+              }
+            ],
+            "absTime": 2909727
+          }
+        ]
+      },
+      {
+        "type": "ShardNode",
+        "nodeId": "[V1Lm6aKHQ8mO2J-ujky32A][plc-elementalmediaconvert-usd-20190320213240][3]",
+        "children": [
+          {
+            "type": "AggregationsNode",
+            "nodeId": "[V1Lm6aKHQ8mO2J-ujky32A][plc-elementalmediaconvert-usd-20190320213240][3]-Aggrs",
+            "children": [
+              {
+                "nodeId": "[V1Lm6aKHQ8mO2J-ujky32A][plc-elementalmediaconvert-usd-20190320213240][3]-Aggrs-MeteredUnitCondition",
+                "type": "CompositeAggregator",
+                "description": "MeteredUnitCondition",
+                "absTime": 4078863,
+                "children": [
+                  {
+                    "nodeId": "[V1Lm6aKHQ8mO2J-ujky32A][plc-elementalmediaconvert-usd-20190320213240][3]-Aggrs-MeteredUnitCondition-Location",
+                    "type": "GlobalOrdinalsStringTermsAggregator",
+                    "description": "Location",
+                    "absTime": 561485,
+                    "children": []
+                  },
+                  {
+                    "nodeId": "[V1Lm6aKHQ8mO2J-ujky32A][plc-elementalmediaconvert-usd-20190320213240][3]-Aggrs-MeteredUnitCondition-Name",
+                    "type": "StringTermsAggregator",
+                    "description": "Name",
+                    "absTime": 1257070,
+                    "children": []
+                  }
+                ]
+              }
+            ],
+            "absTime": 4078863
+          }
+        ]
+      }
+    ]
+  },
+  "combinedRootNode": {
+    "type": "RootNode",
+    "nodeId": "combinedRootNode",
+    "children": []
+  }
+}
