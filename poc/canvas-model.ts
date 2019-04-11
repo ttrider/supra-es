@@ -120,7 +120,8 @@ function shardCanvasNodeFactory(parent: ICanvasNode, shard: IProfileShard) {
         properties: [],
         children: [],
         absTime: 0,
-        relTime: 0
+        relTime: 0,
+        cost: 0
     };
     parent.children.push(shardNode);
 
@@ -145,7 +146,8 @@ function collectorCanvasNodeFactory(parent: ICanvasNode, item: IProfileShardColl
         properties: [],
         children: [],
         help: nodeHelp["collector-" + item.reason],
-        relTime: item.time_in_nanos
+        relTime: item.time_in_nanos,
+        cost: 0
     } as ICanvasNode;
 }
 
@@ -158,7 +160,8 @@ function breakdownCanvasNodeFactory(parent: ICanvasNode, item: IProfileItem, pro
         absTime: item.time_in_nanos,
         properties: getBreakdownProperties(item.breakdown, properties),
         children: [],
-        relTime: item.time_in_nanos
+        relTime: item.time_in_nanos,
+        cost: 0
     } as ICanvasNode;
 
     function getBreakdownProperties(breakdown: { [name: string]: number }, properties: string[]) {
@@ -192,7 +195,8 @@ function searchCanvasNodeFactory(parent: ICanvasNode, item: IProfileShardSearch)
         absTime: item.rewrite_time,
         properties: [],
         children: [],
-        relTime: item.rewrite_time
+        relTime: item.rewrite_time,
+        cost: 0
     }
 
     parent.children.push(searchNode);
@@ -230,7 +234,8 @@ function searchesCanvasNodeFactory(parent: ICanvasNode, item: IProfileShard) {
             absTime: 0,
             properties: [],
             children: [],
-            relTime: 0
+            relTime: 0,
+            cost: 0
         }
         parent.children.push(newNode);
 
@@ -256,7 +261,8 @@ function aggregationsCanvasNodeFactory(parent: ICanvasNode, item: IProfileShard)
             absTime: 0,
             properties: [],
             children: [],
-            relTime: 0
+            relTime: 0,
+            cost: 0
         }
         parent.children.push(aggrsNode);
 
