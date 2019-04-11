@@ -12,7 +12,9 @@ export function createCanvas(profile: IProfile) {
         nodeId: "detailedRootNode",
         properties: [],
         children: [],
-        absTime: 0
+        absTime: 0,
+        relTime: 0,
+        cost: 0,
     }
 
     canvas.combinedRootNode = {
@@ -20,7 +22,9 @@ export function createCanvas(profile: IProfile) {
         nodeId: "combinedRootNode",
         properties: [],
         children: [],
-        absTime: 0
+        absTime: 0,
+        relTime: 0,
+        cost: 0
     }
 
     for (const shard of profile.shards) {
@@ -30,8 +34,12 @@ export function createCanvas(profile: IProfile) {
 
         processData(shId);
 
-        shardCanvasNodeFactory(canvas.detailedRootNode, shard);
+        const sn = shardCanvasNodeFactory(canvas.detailedRootNode, shard);
+
+        canvas.detailedRootNode.absTime += sn.absTime;
     }
+
+    applyCost(canvas.detailedRootNode, canvas.detailedRootNode.absTime);
 
 
     return canvas;
@@ -57,6 +65,17 @@ export function createCanvas(profile: IProfile) {
 
         return shId;
     }
+
+    function applyCost(node: ICanvasNode, totalTime: number) {
+
+        node.cost = node.relTime / totalTime;
+
+        for (const childNode of node.children) {
+            applyCost(childNode, totalTime);
+        }
+
+
+    }
 }
 
 function createCanvasNodeTree<T extends { children?: T[] }>(parent: ICanvasNode, items: T[], factory: (parent: ICanvasNode, item: T) => ICanvasNode) {
@@ -67,11 +86,7 @@ function createCanvasNodeTree<T extends { children?: T[] }>(parent: ICanvasNode,
 
             const node = createCanvasNode(parent, item, factory);
 
-            const pan = node.absTime;
-            if (pan !== undefined) {
-
-                parent.absTime = parent.absTime === undefined ? pan : parent.absTime + pan;
-            }
+            parent.absTime += node.absTime;
         }
     }
 
@@ -84,7 +99,8 @@ function createCanvasNode<T extends { children?: T[] }>(parent: ICanvasNode, ite
 
     if (item.children) {
         for (const child of item.children) {
-            createCanvasNode(newNode, child, factory);
+            const childNode = createCanvasNode(newNode, child, factory);
+            newNode.relTime -= childNode.absTime;
         }
     }
 
@@ -103,7 +119,8 @@ function shardCanvasNodeFactory(parent: ICanvasNode, shard: IProfileShard) {
         nodeId: parent.nodeId + "-shard-" + shId.name,
         properties: [],
         children: [],
-        absTime: 0
+        absTime: 0,
+        relTime: 0
     };
     parent.children.push(shardNode);
 
@@ -127,7 +144,8 @@ function collectorCanvasNodeFactory(parent: ICanvasNode, item: IProfileShardColl
         absTime: item.time_in_nanos,
         properties: [],
         children: [],
-        help: nodeHelp["collector-" + item.reason]
+        help: nodeHelp["collector-" + item.reason],
+        relTime: item.time_in_nanos
     } as ICanvasNode;
 }
 
@@ -139,7 +157,8 @@ function breakdownCanvasNodeFactory(parent: ICanvasNode, item: IProfileItem, pro
         description: item.description,
         absTime: item.time_in_nanos,
         properties: getBreakdownProperties(item.breakdown, properties),
-        children: []
+        children: [],
+        relTime: item.time_in_nanos
     } as ICanvasNode;
 
     function getBreakdownProperties(breakdown: { [name: string]: number }, properties: string[]) {
@@ -155,7 +174,7 @@ function breakdownCanvasNodeFactory(parent: ICanvasNode, item: IProfileItem, pro
                 ret.push(
                     {
                         name: property.replace(/_/gi, " "),
-                        time_in_nanos: propValue,
+                        absTime: propValue,
                         count: propCount === undefined ? 0 : propCount,
                         help: propHelp
                     });
@@ -172,7 +191,8 @@ function searchCanvasNodeFactory(parent: ICanvasNode, item: IProfileShardSearch)
         type: "SearchNode",
         absTime: item.rewrite_time,
         properties: [],
-        children: []
+        children: [],
+        relTime: item.rewrite_time
     }
 
     parent.children.push(searchNode);
@@ -209,7 +229,8 @@ function searchesCanvasNodeFactory(parent: ICanvasNode, item: IProfileShard) {
             nodeId: parent.nodeId + "-searches",
             absTime: 0,
             properties: [],
-            children: []
+            children: [],
+            relTime: 0
         }
         parent.children.push(newNode);
 
@@ -234,7 +255,8 @@ function aggregationsCanvasNodeFactory(parent: ICanvasNode, item: IProfileShard)
             nodeId: parent.nodeId + "-aggrs",
             absTime: 0,
             properties: [],
-            children: []
+            children: [],
+            relTime: 0
         }
         parent.children.push(aggrsNode);
 
@@ -353,6 +375,8 @@ export interface ICanvasNode {
     nodeId: string;
     description?: string;
     absTime: number;
+    relTime: number;
+    cost: number;
     properties: ICanvasNodeProperty[];
     children: ICanvasNode[];
     help?: string;
@@ -360,7 +384,7 @@ export interface ICanvasNode {
 
 export interface ICanvasNodeProperty {
     name: string;
-    time_in_nanos: number;
+    absTime: number;
     count: number;
     help?: string;
 }

@@ -71,37 +71,37 @@
                     "properties": [
                       {
                         "name": "create weight",
-                        "time_in_nanos": 45239,
+                        "absTime": 45239,
                         "count": 1,
                         "help": "A Query in Lucene must be capable of reuse across multiple IndexSearchers (think of it as the engine that executes a search against a specific Lucene Index). This puts Lucene in a tricky spot, since many queries need to accumulate temporary state/statistics associated with the index it is being used against, but the Query contract mandates that it must be immutable. To get around this, Lucene asks each query to generate a Weight object which acts as a temporary context object to hold state associated with this particular (IndexSearcher, Query) tuple. The weight metric shows how long this process takes"
                       },
                       {
                         "name": "build scorer",
-                        "time_in_nanos": 159875,
+                        "absTime": 159875,
                         "count": 2,
                         "help": "This parameter shows how long it takes to build a Scorer for the query. A Scorer is the mechanism that iterates over matching documents and generates a score per-document (e.g. how well does \"foo\" match the document?). Note, this records the time required to generate the Scorer object, not actually score the documents. Some queries have faster or slower initialization of the Scorer, depending on optimizations, complexity, etc. This may also show timing associated with caching, if enabled and/or applicable for the query"
                       },
                       {
                         "name": "next doc",
-                        "time_in_nanos": 69507,
+                        "absTime": 69507,
                         "count": 17,
                         "help": "The Lucene method next_doc returns Doc ID of the next document matching the query. This statistic shows the time it takes to determine which document is the next match, a process that varies considerably depending on the nature of the query. Next_doc is a specialized form of advance() which is more convenient for many queries in Lucene. It is equivalent to advance(docId() + 1)"
                       },
                       {
                         "name": "advance",
-                        "time_in_nanos": 0,
+                        "absTime": 0,
                         "count": 0,
                         "help": "advance is the \"lower level\" version of next_doc: it serves the same purpose of finding the next matching doc, but requires the calling query to perform extra tasks such as identifying and moving past skips, etc. However, not all queries can use next_doc, so advance is also timed for those queries. Conjunctions (e.g. must clauses in a boolean) are typical consumers of advance"
                       },
                       {
                         "name": "match",
-                        "time_in_nanos": 0,
+                        "absTime": 0,
                         "count": 0,
                         "help": "Some queries, such as phrase queries, match documents using a \"two-phase\" process. First, the document is \"approximately\" matched, and if it matches approximately, it is checked a second time with a more rigorous (and expensive) process. The second phase verification is what the matches statistic measures. For example, a phrase query first checks a document approximately by ensuring all terms in the phrase are present in the doc. If all the terms are present, it then executes the second phase verification to ensure the terms are in-order to form the phrase, which is relatively more expensive than just checking for presence of the terms. Because this two-phase process is only used by a handful of queries, the metric statistic will often be zero"
                       },
                       {
                         "name": "score",
-                        "time_in_nanos": 21578,
+                        "absTime": 21578,
                         "count": 16,
                         "help": "This records the time taken to score a particular document via its Scorer"
                       }
@@ -115,37 +115,37 @@
                         "properties": [
                           {
                             "name": "create weight",
-                            "time_in_nanos": 35891,
+                            "absTime": 35891,
                             "count": 1,
                             "help": "A Query in Lucene must be capable of reuse across multiple IndexSearchers (think of it as the engine that executes a search against a specific Lucene Index). This puts Lucene in a tricky spot, since many queries need to accumulate temporary state/statistics associated with the index it is being used against, but the Query contract mandates that it must be immutable. To get around this, Lucene asks each query to generate a Weight object which acts as a temporary context object to hold state associated with this particular (IndexSearcher, Query) tuple. The weight metric shows how long this process takes"
                           },
                           {
                             "name": "build scorer",
-                            "time_in_nanos": 151130,
+                            "absTime": 151130,
                             "count": 2,
                             "help": "This parameter shows how long it takes to build a Scorer for the query. A Scorer is the mechanism that iterates over matching documents and generates a score per-document (e.g. how well does \"foo\" match the document?). Note, this records the time required to generate the Scorer object, not actually score the documents. Some queries have faster or slower initialization of the Scorer, depending on optimizations, complexity, etc. This may also show timing associated with caching, if enabled and/or applicable for the query"
                           },
                           {
                             "name": "next doc",
-                            "time_in_nanos": 51248,
+                            "absTime": 51248,
                             "count": 17,
                             "help": "The Lucene method next_doc returns Doc ID of the next document matching the query. This statistic shows the time it takes to determine which document is the next match, a process that varies considerably depending on the nature of the query. Next_doc is a specialized form of advance() which is more convenient for many queries in Lucene. It is equivalent to advance(docId() + 1)"
                           },
                           {
                             "name": "advance",
-                            "time_in_nanos": 0,
+                            "absTime": 0,
                             "count": 0,
                             "help": "advance is the \"lower level\" version of next_doc: it serves the same purpose of finding the next matching doc, but requires the calling query to perform extra tasks such as identifying and moving past skips, etc. However, not all queries can use next_doc, so advance is also timed for those queries. Conjunctions (e.g. must clauses in a boolean) are typical consumers of advance"
                           },
                           {
                             "name": "match",
-                            "time_in_nanos": 0,
+                            "absTime": 0,
                             "count": 0,
                             "help": "Some queries, such as phrase queries, match documents using a \"two-phase\" process. First, the document is \"approximately\" matched, and if it matches approximately, it is checked a second time with a more rigorous (and expensive) process. The second phase verification is what the matches statistic measures. For example, a phrase query first checks a document approximately by ensuring all terms in the phrase are present in the doc. If all the terms are present, it then executes the second phase verification to ensure the terms are in-order to form the phrase, which is relatively more expensive than just checking for presence of the terms. Because this two-phase process is only used by a handful of queries, the metric statistic will often be zero"
                           },
                           {
                             "name": "score",
-                            "time_in_nanos": 0,
+                            "absTime": 0,
                             "count": 0,
                             "help": "This records the time taken to score a particular document via its Scorer"
                           }
@@ -159,42 +159,44 @@
                             "properties": [
                               {
                                 "name": "create weight",
-                                "time_in_nanos": 10509,
+                                "absTime": 10509,
                                 "count": 1,
                                 "help": "A Query in Lucene must be capable of reuse across multiple IndexSearchers (think of it as the engine that executes a search against a specific Lucene Index). This puts Lucene in a tricky spot, since many queries need to accumulate temporary state/statistics associated with the index it is being used against, but the Query contract mandates that it must be immutable. To get around this, Lucene asks each query to generate a Weight object which acts as a temporary context object to hold state associated with this particular (IndexSearcher, Query) tuple. The weight metric shows how long this process takes"
                               },
                               {
                                 "name": "build scorer",
-                                "time_in_nanos": 17407,
+                                "absTime": 17407,
                                 "count": 3,
                                 "help": "This parameter shows how long it takes to build a Scorer for the query. A Scorer is the mechanism that iterates over matching documents and generates a score per-document (e.g. how well does \"foo\" match the document?). Note, this records the time required to generate the Scorer object, not actually score the documents. Some queries have faster or slower initialization of the Scorer, depending on optimizations, complexity, etc. This may also show timing associated with caching, if enabled and/or applicable for the query"
                               },
                               {
                                 "name": "next doc",
-                                "time_in_nanos": 4537,
+                                "absTime": 4537,
                                 "count": 7,
                                 "help": "The Lucene method next_doc returns Doc ID of the next document matching the query. This statistic shows the time it takes to determine which document is the next match, a process that varies considerably depending on the nature of the query. Next_doc is a specialized form of advance() which is more convenient for many queries in Lucene. It is equivalent to advance(docId() + 1)"
                               },
                               {
                                 "name": "advance",
-                                "time_in_nanos": 0,
+                                "absTime": 0,
                                 "count": 0,
                                 "help": "advance is the \"lower level\" version of next_doc: it serves the same purpose of finding the next matching doc, but requires the calling query to perform extra tasks such as identifying and moving past skips, etc. However, not all queries can use next_doc, so advance is also timed for those queries. Conjunctions (e.g. must clauses in a boolean) are typical consumers of advance"
                               },
                               {
                                 "name": "match",
-                                "time_in_nanos": 0,
+                                "absTime": 0,
                                 "count": 0,
                                 "help": "Some queries, such as phrase queries, match documents using a \"two-phase\" process. First, the document is \"approximately\" matched, and if it matches approximately, it is checked a second time with a more rigorous (and expensive) process. The second phase verification is what the matches statistic measures. For example, a phrase query first checks a document approximately by ensuring all terms in the phrase are present in the doc. If all the terms are present, it then executes the second phase verification to ensure the terms are in-order to form the phrase, which is relatively more expensive than just checking for presence of the terms. Because this two-phase process is only used by a handful of queries, the metric statistic will often be zero"
                               },
                               {
                                 "name": "score",
-                                "time_in_nanos": 0,
+                                "absTime": 0,
                                 "count": 0,
                                 "help": "This records the time taken to score a particular document via its Scorer"
                               }
                             ],
-                            "children": []
+                            "children": [],
+                            "relTime": 32464,
+                            "cost": 0.002666113909026911
                           },
                           {
                             "nodeId": "detailedRootNode-shard-[T8-bTaZZQOm3w7a8AKyykA][plc-elementalmediaconvert-usd-20190320213240][0]-searches-search-(ConstantScore(AddOn Feature:Audio Normalization AddOn Feature:Dolby))^0.0-AddOn Feature:Audio Normalization AddOn Feature:Dolby-AddOn Feature:Dolby",
@@ -204,46 +206,52 @@
                             "properties": [
                               {
                                 "name": "create weight",
-                                "time_in_nanos": 2332,
+                                "absTime": 2332,
                                 "count": 1,
                                 "help": "A Query in Lucene must be capable of reuse across multiple IndexSearchers (think of it as the engine that executes a search against a specific Lucene Index). This puts Lucene in a tricky spot, since many queries need to accumulate temporary state/statistics associated with the index it is being used against, but the Query contract mandates that it must be immutable. To get around this, Lucene asks each query to generate a Weight object which acts as a temporary context object to hold state associated with this particular (IndexSearcher, Query) tuple. The weight metric shows how long this process takes"
                               },
                               {
                                 "name": "build scorer",
-                                "time_in_nanos": 9140,
+                                "absTime": 9140,
                                 "count": 3,
                                 "help": "This parameter shows how long it takes to build a Scorer for the query. A Scorer is the mechanism that iterates over matching documents and generates a score per-document (e.g. how well does \"foo\" match the document?). Note, this records the time required to generate the Scorer object, not actually score the documents. Some queries have faster or slower initialization of the Scorer, depending on optimizations, complexity, etc. This may also show timing associated with caching, if enabled and/or applicable for the query"
                               },
                               {
                                 "name": "next doc",
-                                "time_in_nanos": 6979,
+                                "absTime": 6979,
                                 "count": 11,
                                 "help": "The Lucene method next_doc returns Doc ID of the next document matching the query. This statistic shows the time it takes to determine which document is the next match, a process that varies considerably depending on the nature of the query. Next_doc is a specialized form of advance() which is more convenient for many queries in Lucene. It is equivalent to advance(docId() + 1)"
                               },
                               {
                                 "name": "advance",
-                                "time_in_nanos": 0,
+                                "absTime": 0,
                                 "count": 0,
                                 "help": "advance is the \"lower level\" version of next_doc: it serves the same purpose of finding the next matching doc, but requires the calling query to perform extra tasks such as identifying and moving past skips, etc. However, not all queries can use next_doc, so advance is also timed for those queries. Conjunctions (e.g. must clauses in a boolean) are typical consumers of advance"
                               },
                               {
                                 "name": "match",
-                                "time_in_nanos": 0,
+                                "absTime": 0,
                                 "count": 0,
                                 "help": "Some queries, such as phrase queries, match documents using a \"two-phase\" process. First, the document is \"approximately\" matched, and if it matches approximately, it is checked a second time with a more rigorous (and expensive) process. The second phase verification is what the matches statistic measures. For example, a phrase query first checks a document approximately by ensuring all terms in the phrase are present in the doc. If all the terms are present, it then executes the second phase verification to ensure the terms are in-order to form the phrase, which is relatively more expensive than just checking for presence of the terms. Because this two-phase process is only used by a handful of queries, the metric statistic will often be zero"
                               },
                               {
                                 "name": "score",
-                                "time_in_nanos": 0,
+                                "absTime": 0,
                                 "count": 0,
                                 "help": "This records the time taken to score a particular document via its Scorer"
                               }
                             ],
-                            "children": []
+                            "children": [],
+                            "relTime": 18466,
+                            "cost": 0.0015165247487706672
                           }
-                        ]
+                        ],
+                        "relTime": 187359,
+                        "cost": 0.015386903520249294
                       }
-                    ]
+                    ],
+                    "relTime": 57946,
+                    "cost": 0.0047588293670673175
                   },
                   {
                     "nodeId": "detailedRootNode-shard-[T8-bTaZZQOm3w7a8AKyykA][plc-elementalmediaconvert-usd-20190320213240][0]-searches-search-search_cancelled",
@@ -265,7 +273,9 @@
                             "description": "search_top_hits",
                             "absTime": 46531,
                             "properties": [],
-                            "children": []
+                            "children": [],
+                            "relTime": 46531,
+                            "cost": 0.003821369711093248
                           },
                           {
                             "nodeId": "detailedRootNode-shard-[T8-bTaZZQOm3w7a8AKyykA][plc-elementalmediaconvert-usd-20190320213240][0]-searches-search-search_cancelled-search_multi-aggregation",
@@ -274,16 +284,26 @@
                             "absTime": 129511,
                             "properties": [],
                             "children": [],
-                            "help": "A collector that Elasticsearch uses to run aggregations against the query scope. A single aggregation collector is used to collect documents for all aggregations, so you will see a list of aggregations in the name rather."
+                            "help": "A collector that Elasticsearch uses to run aggregations against the query scope. A single aggregation collector is used to collect documents for all aggregations, so you will see a list of aggregations in the name rather.",
+                            "relTime": 129511,
+                            "cost": 0.01063612242705718
                           }
                         ],
-                        "help": "A collector that wraps several other collectors. This is seen when combinations of search, aggregations, global aggs, and post_filters are combined in a single search."
+                        "help": "A collector that wraps several other collectors. This is seen when combinations of search, aggregations, global aggs, and post_filters are combined in a single search.",
+                        "relTime": 35310,
+                        "cost": 0.0028998423523823383
                       }
-                    ]
+                    ],
+                    "relTime": 20765,
+                    "cost": 0.0017053306838634738
                   }
-                ]
+                ],
+                "relTime": 51396,
+                "cost": 0.004220909021326612
               }
-            ]
+            ],
+            "relTime": 0,
+            "cost": 0
           },
           {
             "type": "AggregationsNode",
@@ -299,24 +319,24 @@
                 "properties": [
                   {
                     "name": "initialize",
-                    "time_in_nanos": 46019,
+                    "absTime": 46019,
                     "count": 1,
                     "help": "This times how long it takes to create and initialise the aggregation before starting to collect documents."
                   },
                   {
                     "name": "collect",
-                    "time_in_nanos": 57897,
+                    "absTime": 57897,
                     "count": 16,
                     "help": "This represents the cumulative time spent in the collect phase of the aggregation. This is where matching documents are passed to the aggregation and the state of the aggregator is updated based on the information contained in the documents."
                   },
                   {
                     "name": "build aggregation",
-                    "time_in_nanos": 1858060,
+                    "absTime": 1858060,
                     "count": 1
                   },
                   {
                     "name": "reduce",
-                    "time_in_nanos": 0,
+                    "absTime": 0,
                     "count": 0,
                     "help": "This is not currently used and will always report 0. Currently aggregation profiling only times the shard level parts of the aggregation execution. Timing of the reduce phase will be added later."
                   }
@@ -330,29 +350,31 @@
                     "properties": [
                       {
                         "name": "initialize",
-                        "time_in_nanos": 10324,
+                        "absTime": 10324,
                         "count": 1,
                         "help": "This times how long it takes to create and initialise the aggregation before starting to collect documents."
                       },
                       {
                         "name": "collect",
-                        "time_in_nanos": 405763,
+                        "absTime": 405763,
                         "count": 16,
                         "help": "This represents the cumulative time spent in the collect phase of the aggregation. This is where matching documents are passed to the aggregation and the state of the aggregator is updated based on the information contained in the documents."
                       },
                       {
                         "name": "build aggregation",
-                        "time_in_nanos": 77505,
+                        "absTime": 77505,
                         "count": 4
                       },
                       {
                         "name": "reduce",
-                        "time_in_nanos": 0,
+                        "absTime": 0,
                         "count": 0,
                         "help": "This is not currently used and will always report 0. Currently aggregation profiling only times the shard level parts of the aggregation execution. Timing of the reduce phase will be added later."
                       }
                     ],
-                    "children": []
+                    "children": [],
+                    "relTime": 493613,
+                    "cost": 0.0405380878812377
                   },
                   {
                     "nodeId": "detailedRootNode-shard-[T8-bTaZZQOm3w7a8AKyykA][plc-elementalmediaconvert-usd-20190320213240][0]-aggrs-MeteredUnitCondition-Name",
@@ -362,36 +384,44 @@
                     "properties": [
                       {
                         "name": "initialize",
-                        "time_in_nanos": 6400,
+                        "absTime": 6400,
                         "count": 1,
                         "help": "This times how long it takes to create and initialise the aggregation before starting to collect documents."
                       },
                       {
                         "name": "collect",
-                        "time_in_nanos": 1174121,
+                        "absTime": 1174121,
                         "count": 16,
                         "help": "This represents the cumulative time spent in the collect phase of the aggregation. This is where matching documents are passed to the aggregation and the state of the aggregator is updated based on the information contained in the documents."
                       },
                       {
                         "name": "build aggregation",
-                        "time_in_nanos": 23092,
+                        "absTime": 23092,
                         "count": 4
                       },
                       {
                         "name": "reduce",
-                        "time_in_nanos": 0,
+                        "absTime": 0,
                         "count": 0,
                         "help": "This is not currently used and will always report 0. Currently aggregation profiling only times the shard level parts of the aggregation execution. Timing of the reduce phase will be added later."
                       }
                     ],
-                    "children": []
+                    "children": [],
+                    "relTime": 1203634,
+                    "cost": 0.09884873548477381
                   }
-                ]
+                ],
+                "relTime": 264747,
+                "cost": 0.021742411873864824
               }
-            ]
+            ],
+            "relTime": 0,
+            "cost": 0
           }
         ],
-        "absTime": 2541742
+        "absTime": 2541742,
+        "relTime": 0,
+        "cost": 0
       },
       {
         "type": "ShardNode",
@@ -418,37 +448,37 @@
                     "properties": [
                       {
                         "name": "create weight",
-                        "time_in_nanos": 44600,
+                        "absTime": 44600,
                         "count": 1,
                         "help": "A Query in Lucene must be capable of reuse across multiple IndexSearchers (think of it as the engine that executes a search against a specific Lucene Index). This puts Lucene in a tricky spot, since many queries need to accumulate temporary state/statistics associated with the index it is being used against, but the Query contract mandates that it must be immutable. To get around this, Lucene asks each query to generate a Weight object which acts as a temporary context object to hold state associated with this particular (IndexSearcher, Query) tuple. The weight metric shows how long this process takes"
                       },
                       {
                         "name": "build scorer",
-                        "time_in_nanos": 148692,
+                        "absTime": 148692,
                         "count": 2,
                         "help": "This parameter shows how long it takes to build a Scorer for the query. A Scorer is the mechanism that iterates over matching documents and generates a score per-document (e.g. how well does \"foo\" match the document?). Note, this records the time required to generate the Scorer object, not actually score the documents. Some queries have faster or slower initialization of the Scorer, depending on optimizations, complexity, etc. This may also show timing associated with caching, if enabled and/or applicable for the query"
                       },
                       {
                         "name": "next doc",
-                        "time_in_nanos": 66604,
+                        "absTime": 66604,
                         "count": 17,
                         "help": "The Lucene method next_doc returns Doc ID of the next document matching the query. This statistic shows the time it takes to determine which document is the next match, a process that varies considerably depending on the nature of the query. Next_doc is a specialized form of advance() which is more convenient for many queries in Lucene. It is equivalent to advance(docId() + 1)"
                       },
                       {
                         "name": "advance",
-                        "time_in_nanos": 0,
+                        "absTime": 0,
                         "count": 0,
                         "help": "advance is the \"lower level\" version of next_doc: it serves the same purpose of finding the next matching doc, but requires the calling query to perform extra tasks such as identifying and moving past skips, etc. However, not all queries can use next_doc, so advance is also timed for those queries. Conjunctions (e.g. must clauses in a boolean) are typical consumers of advance"
                       },
                       {
                         "name": "match",
-                        "time_in_nanos": 0,
+                        "absTime": 0,
                         "count": 0,
                         "help": "Some queries, such as phrase queries, match documents using a \"two-phase\" process. First, the document is \"approximately\" matched, and if it matches approximately, it is checked a second time with a more rigorous (and expensive) process. The second phase verification is what the matches statistic measures. For example, a phrase query first checks a document approximately by ensuring all terms in the phrase are present in the doc. If all the terms are present, it then executes the second phase verification to ensure the terms are in-order to form the phrase, which is relatively more expensive than just checking for presence of the terms. Because this two-phase process is only used by a handful of queries, the metric statistic will often be zero"
                       },
                       {
                         "name": "score",
-                        "time_in_nanos": 10232,
+                        "absTime": 10232,
                         "count": 16,
                         "help": "This records the time taken to score a particular document via its Scorer"
                       }
@@ -462,37 +492,37 @@
                         "properties": [
                           {
                             "name": "create weight",
-                            "time_in_nanos": 35631,
+                            "absTime": 35631,
                             "count": 1,
                             "help": "A Query in Lucene must be capable of reuse across multiple IndexSearchers (think of it as the engine that executes a search against a specific Lucene Index). This puts Lucene in a tricky spot, since many queries need to accumulate temporary state/statistics associated with the index it is being used against, but the Query contract mandates that it must be immutable. To get around this, Lucene asks each query to generate a Weight object which acts as a temporary context object to hold state associated with this particular (IndexSearcher, Query) tuple. The weight metric shows how long this process takes"
                           },
                           {
                             "name": "build scorer",
-                            "time_in_nanos": 139979,
+                            "absTime": 139979,
                             "count": 2,
                             "help": "This parameter shows how long it takes to build a Scorer for the query. A Scorer is the mechanism that iterates over matching documents and generates a score per-document (e.g. how well does \"foo\" match the document?). Note, this records the time required to generate the Scorer object, not actually score the documents. Some queries have faster or slower initialization of the Scorer, depending on optimizations, complexity, etc. This may also show timing associated with caching, if enabled and/or applicable for the query"
                           },
                           {
                             "name": "next doc",
-                            "time_in_nanos": 48927,
+                            "absTime": 48927,
                             "count": 17,
                             "help": "The Lucene method next_doc returns Doc ID of the next document matching the query. This statistic shows the time it takes to determine which document is the next match, a process that varies considerably depending on the nature of the query. Next_doc is a specialized form of advance() which is more convenient for many queries in Lucene. It is equivalent to advance(docId() + 1)"
                           },
                           {
                             "name": "advance",
-                            "time_in_nanos": 0,
+                            "absTime": 0,
                             "count": 0,
                             "help": "advance is the \"lower level\" version of next_doc: it serves the same purpose of finding the next matching doc, but requires the calling query to perform extra tasks such as identifying and moving past skips, etc. However, not all queries can use next_doc, so advance is also timed for those queries. Conjunctions (e.g. must clauses in a boolean) are typical consumers of advance"
                           },
                           {
                             "name": "match",
-                            "time_in_nanos": 0,
+                            "absTime": 0,
                             "count": 0,
                             "help": "Some queries, such as phrase queries, match documents using a \"two-phase\" process. First, the document is \"approximately\" matched, and if it matches approximately, it is checked a second time with a more rigorous (and expensive) process. The second phase verification is what the matches statistic measures. For example, a phrase query first checks a document approximately by ensuring all terms in the phrase are present in the doc. If all the terms are present, it then executes the second phase verification to ensure the terms are in-order to form the phrase, which is relatively more expensive than just checking for presence of the terms. Because this two-phase process is only used by a handful of queries, the metric statistic will often be zero"
                           },
                           {
                             "name": "score",
-                            "time_in_nanos": 0,
+                            "absTime": 0,
                             "count": 0,
                             "help": "This records the time taken to score a particular document via its Scorer"
                           }
@@ -506,42 +536,44 @@
                             "properties": [
                               {
                                 "name": "create weight",
-                                "time_in_nanos": 8156,
+                                "absTime": 8156,
                                 "count": 1,
                                 "help": "A Query in Lucene must be capable of reuse across multiple IndexSearchers (think of it as the engine that executes a search against a specific Lucene Index). This puts Lucene in a tricky spot, since many queries need to accumulate temporary state/statistics associated with the index it is being used against, but the Query contract mandates that it must be immutable. To get around this, Lucene asks each query to generate a Weight object which acts as a temporary context object to hold state associated with this particular (IndexSearcher, Query) tuple. The weight metric shows how long this process takes"
                               },
                               {
                                 "name": "build scorer",
-                                "time_in_nanos": 22254,
+                                "absTime": 22254,
                                 "count": 3,
                                 "help": "This parameter shows how long it takes to build a Scorer for the query. A Scorer is the mechanism that iterates over matching documents and generates a score per-document (e.g. how well does \"foo\" match the document?). Note, this records the time required to generate the Scorer object, not actually score the documents. Some queries have faster or slower initialization of the Scorer, depending on optimizations, complexity, etc. This may also show timing associated with caching, if enabled and/or applicable for the query"
                               },
                               {
                                 "name": "next doc",
-                                "time_in_nanos": 5514,
+                                "absTime": 5514,
                                 "count": 7,
                                 "help": "The Lucene method next_doc returns Doc ID of the next document matching the query. This statistic shows the time it takes to determine which document is the next match, a process that varies considerably depending on the nature of the query. Next_doc is a specialized form of advance() which is more convenient for many queries in Lucene. It is equivalent to advance(docId() + 1)"
                               },
                               {
                                 "name": "advance",
-                                "time_in_nanos": 0,
+                                "absTime": 0,
                                 "count": 0,
                                 "help": "advance is the \"lower level\" version of next_doc: it serves the same purpose of finding the next matching doc, but requires the calling query to perform extra tasks such as identifying and moving past skips, etc. However, not all queries can use next_doc, so advance is also timed for those queries. Conjunctions (e.g. must clauses in a boolean) are typical consumers of advance"
                               },
                               {
                                 "name": "match",
-                                "time_in_nanos": 0,
+                                "absTime": 0,
                                 "count": 0,
                                 "help": "Some queries, such as phrase queries, match documents using a \"two-phase\" process. First, the document is \"approximately\" matched, and if it matches approximately, it is checked a second time with a more rigorous (and expensive) process. The second phase verification is what the matches statistic measures. For example, a phrase query first checks a document approximately by ensuring all terms in the phrase are present in the doc. If all the terms are present, it then executes the second phase verification to ensure the terms are in-order to form the phrase, which is relatively more expensive than just checking for presence of the terms. Because this two-phase process is only used by a handful of queries, the metric statistic will often be zero"
                               },
                               {
                                 "name": "score",
-                                "time_in_nanos": 0,
+                                "absTime": 0,
                                 "count": 0,
                                 "help": "This records the time taken to score a particular document via its Scorer"
                               }
                             ],
-                            "children": []
+                            "children": [],
+                            "relTime": 35935,
+                            "cost": 0.002951170629647673
                           },
                           {
                             "nodeId": "detailedRootNode-shard-[T8-bTaZZQOm3w7a8AKyykA][plc-elementalmediaconvert-usd-20190320213240][4]-searches-search-(ConstantScore(AddOn Feature:Audio Normalization AddOn Feature:Dolby))^0.0-AddOn Feature:Audio Normalization AddOn Feature:Dolby-AddOn Feature:Dolby",
@@ -551,46 +583,52 @@
                             "properties": [
                               {
                                 "name": "create weight",
-                                "time_in_nanos": 2136,
+                                "absTime": 2136,
                                 "count": 1,
                                 "help": "A Query in Lucene must be capable of reuse across multiple IndexSearchers (think of it as the engine that executes a search against a specific Lucene Index). This puts Lucene in a tricky spot, since many queries need to accumulate temporary state/statistics associated with the index it is being used against, but the Query contract mandates that it must be immutable. To get around this, Lucene asks each query to generate a Weight object which acts as a temporary context object to hold state associated with this particular (IndexSearcher, Query) tuple. The weight metric shows how long this process takes"
                               },
                               {
                                 "name": "build scorer",
-                                "time_in_nanos": 7887,
+                                "absTime": 7887,
                                 "count": 3,
                                 "help": "This parameter shows how long it takes to build a Scorer for the query. A Scorer is the mechanism that iterates over matching documents and generates a score per-document (e.g. how well does \"foo\" match the document?). Note, this records the time required to generate the Scorer object, not actually score the documents. Some queries have faster or slower initialization of the Scorer, depending on optimizations, complexity, etc. This may also show timing associated with caching, if enabled and/or applicable for the query"
                               },
                               {
                                 "name": "next doc",
-                                "time_in_nanos": 6572,
+                                "absTime": 6572,
                                 "count": 11,
                                 "help": "The Lucene method next_doc returns Doc ID of the next document matching the query. This statistic shows the time it takes to determine which document is the next match, a process that varies considerably depending on the nature of the query. Next_doc is a specialized form of advance() which is more convenient for many queries in Lucene. It is equivalent to advance(docId() + 1)"
                               },
                               {
                                 "name": "advance",
-                                "time_in_nanos": 0,
+                                "absTime": 0,
                                 "count": 0,
                                 "help": "advance is the \"lower level\" version of next_doc: it serves the same purpose of finding the next matching doc, but requires the calling query to perform extra tasks such as identifying and moving past skips, etc. However, not all queries can use next_doc, so advance is also timed for those queries. Conjunctions (e.g. must clauses in a boolean) are typical consumers of advance"
                               },
                               {
                                 "name": "match",
-                                "time_in_nanos": 0,
+                                "absTime": 0,
                                 "count": 0,
                                 "help": "Some queries, such as phrase queries, match documents using a \"two-phase\" process. First, the document is \"approximately\" matched, and if it matches approximately, it is checked a second time with a more rigorous (and expensive) process. The second phase verification is what the matches statistic measures. For example, a phrase query first checks a document approximately by ensuring all terms in the phrase are present in the doc. If all the terms are present, it then executes the second phase verification to ensure the terms are in-order to form the phrase, which is relatively more expensive than just checking for presence of the terms. Because this two-phase process is only used by a handful of queries, the metric statistic will often be zero"
                               },
                               {
                                 "name": "score",
-                                "time_in_nanos": 0,
+                                "absTime": 0,
                                 "count": 0,
                                 "help": "This records the time taken to score a particular document via its Scorer"
                               }
                             ],
-                            "children": []
+                            "children": [],
+                            "relTime": 16610,
+                            "cost": 0.00136410029660353
                           }
-                        ]
+                        ],
+                        "relTime": 172012,
+                        "cost": 0.01412652740634355
                       }
-                    ]
+                    ],
+                    "relTime": 45607,
+                    "cost": 0.0037454859859841773
                   },
                   {
                     "nodeId": "detailedRootNode-shard-[T8-bTaZZQOm3w7a8AKyykA][plc-elementalmediaconvert-usd-20190320213240][4]-searches-search-search_cancelled",
@@ -612,7 +650,9 @@
                             "description": "search_top_hits",
                             "absTime": 38948,
                             "properties": [],
-                            "children": []
+                            "children": [],
+                            "relTime": 38948,
+                            "cost": 0.0031986139886883975
                           },
                           {
                             "nodeId": "detailedRootNode-shard-[T8-bTaZZQOm3w7a8AKyykA][plc-elementalmediaconvert-usd-20190320213240][4]-searches-search-search_cancelled-search_multi-aggregation",
@@ -621,16 +661,26 @@
                             "absTime": 127576,
                             "properties": [],
                             "children": [],
-                            "help": "A collector that Elasticsearch uses to run aggregations against the query scope. A single aggregation collector is used to collect documents for all aggregations, so you will see a list of aggregations in the name rather."
+                            "help": "A collector that Elasticsearch uses to run aggregations against the query scope. A single aggregation collector is used to collect documents for all aggregations, so you will see a list of aggregations in the name rather.",
+                            "relTime": 127576,
+                            "cost": 0.010477210080643704
                           }
                         ],
-                        "help": "A collector that wraps several other collectors. This is seen when combinations of search, aggregations, global aggs, and post_filters are combined in a single search."
+                        "help": "A collector that wraps several other collectors. This is seen when combinations of search, aggregations, global aggs, and post_filters are combined in a single search.",
+                        "relTime": 35186,
+                        "cost": 0.002889658822172896
                       }
-                    ]
+                    ],
+                    "relTime": 21267,
+                    "cost": 0.0017465575561629904
                   }
-                ]
+                ],
+                "relTime": 52313,
+                "cost": 0.004296217869730311
               }
-            ]
+            ],
+            "relTime": 0,
+            "cost": 0
           },
           {
             "type": "AggregationsNode",
@@ -646,24 +696,24 @@
                 "properties": [
                   {
                     "name": "initialize",
-                    "time_in_nanos": 30761,
+                    "absTime": 30761,
                     "count": 1,
                     "help": "This times how long it takes to create and initialise the aggregation before starting to collect documents."
                   },
                   {
                     "name": "collect",
-                    "time_in_nanos": 57758,
+                    "absTime": 57758,
                     "count": 16,
                     "help": "This represents the cumulative time spent in the collect phase of the aggregation. This is where matching documents are passed to the aggregation and the state of the aggregator is updated based on the information contained in the documents."
                   },
                   {
                     "name": "build aggregation",
-                    "time_in_nanos": 1778300,
+                    "absTime": 1778300,
                     "count": 1
                   },
                   {
                     "name": "reduce",
-                    "time_in_nanos": 0,
+                    "absTime": 0,
                     "count": 0,
                     "help": "This is not currently used and will always report 0. Currently aggregation profiling only times the shard level parts of the aggregation execution. Timing of the reduce phase will be added later."
                   }
@@ -677,29 +727,31 @@
                     "properties": [
                       {
                         "name": "initialize",
-                        "time_in_nanos": 6153,
+                        "absTime": 6153,
                         "count": 1,
                         "help": "This times how long it takes to create and initialise the aggregation before starting to collect documents."
                       },
                       {
                         "name": "collect",
-                        "time_in_nanos": 382814,
+                        "absTime": 382814,
                         "count": 16,
                         "help": "This represents the cumulative time spent in the collect phase of the aggregation. This is where matching documents are passed to the aggregation and the state of the aggregator is updated based on the information contained in the documents."
                       },
                       {
                         "name": "build aggregation",
-                        "time_in_nanos": 96412,
+                        "absTime": 96412,
                         "count": 4
                       },
                       {
                         "name": "reduce",
-                        "time_in_nanos": 0,
+                        "absTime": 0,
                         "count": 0,
                         "help": "This is not currently used and will always report 0. Currently aggregation profiling only times the shard level parts of the aggregation execution. Timing of the reduce phase will be added later."
                       }
                     ],
-                    "children": []
+                    "children": [],
+                    "relTime": 485400,
+                    "cost": 0.03986359325534939
                   },
                   {
                     "nodeId": "detailedRootNode-shard-[T8-bTaZZQOm3w7a8AKyykA][plc-elementalmediaconvert-usd-20190320213240][4]-aggrs-MeteredUnitCondition-Name",
@@ -709,36 +761,44 @@
                     "properties": [
                       {
                         "name": "initialize",
-                        "time_in_nanos": 4197,
+                        "absTime": 4197,
                         "count": 1,
                         "help": "This times how long it takes to create and initialise the aggregation before starting to collect documents."
                       },
                       {
                         "name": "collect",
-                        "time_in_nanos": 1090327,
+                        "absTime": 1090327,
                         "count": 16,
                         "help": "This represents the cumulative time spent in the collect phase of the aggregation. This is where matching documents are passed to the aggregation and the state of the aggregator is updated based on the information contained in the documents."
                       },
                       {
                         "name": "build aggregation",
-                        "time_in_nanos": 26297,
+                        "absTime": 26297,
                         "count": 4
                       },
                       {
                         "name": "reduce",
-                        "time_in_nanos": 0,
+                        "absTime": 0,
                         "count": 0,
                         "help": "This is not currently used and will always report 0. Currently aggregation profiling only times the shard level parts of the aggregation execution. Timing of the reduce phase will be added later."
                       }
                     ],
-                    "children": []
+                    "children": [],
+                    "relTime": 1120842,
+                    "cost": 0.0920494223146113
                   }
-                ]
+                ],
+                "relTime": 260595,
+                "cost": 0.021401427862335752
               }
-            ]
+            ],
+            "relTime": 0,
+            "cost": 0
           }
         ],
-        "absTime": 2412291
+        "absTime": 2412291,
+        "relTime": 0,
+        "cost": 0
       },
       {
         "type": "ShardNode",
@@ -765,37 +825,37 @@
                     "properties": [
                       {
                         "name": "create weight",
-                        "time_in_nanos": 41793,
+                        "absTime": 41793,
                         "count": 1,
                         "help": "A Query in Lucene must be capable of reuse across multiple IndexSearchers (think of it as the engine that executes a search against a specific Lucene Index). This puts Lucene in a tricky spot, since many queries need to accumulate temporary state/statistics associated with the index it is being used against, but the Query contract mandates that it must be immutable. To get around this, Lucene asks each query to generate a Weight object which acts as a temporary context object to hold state associated with this particular (IndexSearcher, Query) tuple. The weight metric shows how long this process takes"
                       },
                       {
                         "name": "build scorer",
-                        "time_in_nanos": 237484,
+                        "absTime": 237484,
                         "count": 2,
                         "help": "This parameter shows how long it takes to build a Scorer for the query. A Scorer is the mechanism that iterates over matching documents and generates a score per-document (e.g. how well does \"foo\" match the document?). Note, this records the time required to generate the Scorer object, not actually score the documents. Some queries have faster or slower initialization of the Scorer, depending on optimizations, complexity, etc. This may also show timing associated with caching, if enabled and/or applicable for the query"
                       },
                       {
                         "name": "next doc",
-                        "time_in_nanos": 38547,
+                        "absTime": 38547,
                         "count": 9,
                         "help": "The Lucene method next_doc returns Doc ID of the next document matching the query. This statistic shows the time it takes to determine which document is the next match, a process that varies considerably depending on the nature of the query. Next_doc is a specialized form of advance() which is more convenient for many queries in Lucene. It is equivalent to advance(docId() + 1)"
                       },
                       {
                         "name": "advance",
-                        "time_in_nanos": 0,
+                        "absTime": 0,
                         "count": 0,
                         "help": "advance is the \"lower level\" version of next_doc: it serves the same purpose of finding the next matching doc, but requires the calling query to perform extra tasks such as identifying and moving past skips, etc. However, not all queries can use next_doc, so advance is also timed for those queries. Conjunctions (e.g. must clauses in a boolean) are typical consumers of advance"
                       },
                       {
                         "name": "match",
-                        "time_in_nanos": 0,
+                        "absTime": 0,
                         "count": 0,
                         "help": "Some queries, such as phrase queries, match documents using a \"two-phase\" process. First, the document is \"approximately\" matched, and if it matches approximately, it is checked a second time with a more rigorous (and expensive) process. The second phase verification is what the matches statistic measures. For example, a phrase query first checks a document approximately by ensuring all terms in the phrase are present in the doc. If all the terms are present, it then executes the second phase verification to ensure the terms are in-order to form the phrase, which is relatively more expensive than just checking for presence of the terms. Because this two-phase process is only used by a handful of queries, the metric statistic will often be zero"
                       },
                       {
                         "name": "score",
-                        "time_in_nanos": 5006,
+                        "absTime": 5006,
                         "count": 8,
                         "help": "This records the time taken to score a particular document via its Scorer"
                       }
@@ -809,37 +869,37 @@
                         "properties": [
                           {
                             "name": "create weight",
-                            "time_in_nanos": 33413,
+                            "absTime": 33413,
                             "count": 1,
                             "help": "A Query in Lucene must be capable of reuse across multiple IndexSearchers (think of it as the engine that executes a search against a specific Lucene Index). This puts Lucene in a tricky spot, since many queries need to accumulate temporary state/statistics associated with the index it is being used against, but the Query contract mandates that it must be immutable. To get around this, Lucene asks each query to generate a Weight object which acts as a temporary context object to hold state associated with this particular (IndexSearcher, Query) tuple. The weight metric shows how long this process takes"
                           },
                           {
                             "name": "build scorer",
-                            "time_in_nanos": 230990,
+                            "absTime": 230990,
                             "count": 2,
                             "help": "This parameter shows how long it takes to build a Scorer for the query. A Scorer is the mechanism that iterates over matching documents and generates a score per-document (e.g. how well does \"foo\" match the document?). Note, this records the time required to generate the Scorer object, not actually score the documents. Some queries have faster or slower initialization of the Scorer, depending on optimizations, complexity, etc. This may also show timing associated with caching, if enabled and/or applicable for the query"
                           },
                           {
                             "name": "next doc",
-                            "time_in_nanos": 28918,
+                            "absTime": 28918,
                             "count": 9,
                             "help": "The Lucene method next_doc returns Doc ID of the next document matching the query. This statistic shows the time it takes to determine which document is the next match, a process that varies considerably depending on the nature of the query. Next_doc is a specialized form of advance() which is more convenient for many queries in Lucene. It is equivalent to advance(docId() + 1)"
                           },
                           {
                             "name": "advance",
-                            "time_in_nanos": 0,
+                            "absTime": 0,
                             "count": 0,
                             "help": "advance is the \"lower level\" version of next_doc: it serves the same purpose of finding the next matching doc, but requires the calling query to perform extra tasks such as identifying and moving past skips, etc. However, not all queries can use next_doc, so advance is also timed for those queries. Conjunctions (e.g. must clauses in a boolean) are typical consumers of advance"
                           },
                           {
                             "name": "match",
-                            "time_in_nanos": 0,
+                            "absTime": 0,
                             "count": 0,
                             "help": "Some queries, such as phrase queries, match documents using a \"two-phase\" process. First, the document is \"approximately\" matched, and if it matches approximately, it is checked a second time with a more rigorous (and expensive) process. The second phase verification is what the matches statistic measures. For example, a phrase query first checks a document approximately by ensuring all terms in the phrase are present in the doc. If all the terms are present, it then executes the second phase verification to ensure the terms are in-order to form the phrase, which is relatively more expensive than just checking for presence of the terms. Because this two-phase process is only used by a handful of queries, the metric statistic will often be zero"
                           },
                           {
                             "name": "score",
-                            "time_in_nanos": 0,
+                            "absTime": 0,
                             "count": 0,
                             "help": "This records the time taken to score a particular document via its Scorer"
                           }
@@ -853,42 +913,44 @@
                             "properties": [
                               {
                                 "name": "create weight",
-                                "time_in_nanos": 10088,
+                                "absTime": 10088,
                                 "count": 1,
                                 "help": "A Query in Lucene must be capable of reuse across multiple IndexSearchers (think of it as the engine that executes a search against a specific Lucene Index). This puts Lucene in a tricky spot, since many queries need to accumulate temporary state/statistics associated with the index it is being used against, but the Query contract mandates that it must be immutable. To get around this, Lucene asks each query to generate a Weight object which acts as a temporary context object to hold state associated with this particular (IndexSearcher, Query) tuple. The weight metric shows how long this process takes"
                               },
                               {
                                 "name": "build scorer",
-                                "time_in_nanos": 19713,
+                                "absTime": 19713,
                                 "count": 3,
                                 "help": "This parameter shows how long it takes to build a Scorer for the query. A Scorer is the mechanism that iterates over matching documents and generates a score per-document (e.g. how well does \"foo\" match the document?). Note, this records the time required to generate the Scorer object, not actually score the documents. Some queries have faster or slower initialization of the Scorer, depending on optimizations, complexity, etc. This may also show timing associated with caching, if enabled and/or applicable for the query"
                               },
                               {
                                 "name": "next doc",
-                                "time_in_nanos": 4666,
+                                "absTime": 4666,
                                 "count": 7,
                                 "help": "The Lucene method next_doc returns Doc ID of the next document matching the query. This statistic shows the time it takes to determine which document is the next match, a process that varies considerably depending on the nature of the query. Next_doc is a specialized form of advance() which is more convenient for many queries in Lucene. It is equivalent to advance(docId() + 1)"
                               },
                               {
                                 "name": "advance",
-                                "time_in_nanos": 0,
+                                "absTime": 0,
                                 "count": 0,
                                 "help": "advance is the \"lower level\" version of next_doc: it serves the same purpose of finding the next matching doc, but requires the calling query to perform extra tasks such as identifying and moving past skips, etc. However, not all queries can use next_doc, so advance is also timed for those queries. Conjunctions (e.g. must clauses in a boolean) are typical consumers of advance"
                               },
                               {
                                 "name": "match",
-                                "time_in_nanos": 0,
+                                "absTime": 0,
                                 "count": 0,
                                 "help": "Some queries, such as phrase queries, match documents using a \"two-phase\" process. First, the document is \"approximately\" matched, and if it matches approximately, it is checked a second time with a more rigorous (and expensive) process. The second phase verification is what the matches statistic measures. For example, a phrase query first checks a document approximately by ensuring all terms in the phrase are present in the doc. If all the terms are present, it then executes the second phase verification to ensure the terms are in-order to form the phrase, which is relatively more expensive than just checking for presence of the terms. Because this two-phase process is only used by a handful of queries, the metric statistic will often be zero"
                               },
                               {
                                 "name": "score",
-                                "time_in_nanos": 0,
+                                "absTime": 0,
                                 "count": 0,
                                 "help": "This records the time taken to score a particular document via its Scorer"
                               }
                             ],
-                            "children": []
+                            "children": [],
+                            "relTime": 34478,
+                            "cost": 0.002831514149686725
                           },
                           {
                             "nodeId": "detailedRootNode-shard-[V1Lm6aKHQ8mO2J-ujky32A][plc-elementalmediaconvert-usd-20190320213240][1]-searches-search-(ConstantScore(AddOn Feature:Audio Normalization AddOn Feature:Dolby))^0.0-AddOn Feature:Audio Normalization AddOn Feature:Dolby-AddOn Feature:Dolby",
@@ -898,46 +960,52 @@
                             "properties": [
                               {
                                 "name": "create weight",
-                                "time_in_nanos": 2288,
+                                "absTime": 2288,
                                 "count": 1,
                                 "help": "A Query in Lucene must be capable of reuse across multiple IndexSearchers (think of it as the engine that executes a search against a specific Lucene Index). This puts Lucene in a tricky spot, since many queries need to accumulate temporary state/statistics associated with the index it is being used against, but the Query contract mandates that it must be immutable. To get around this, Lucene asks each query to generate a Weight object which acts as a temporary context object to hold state associated with this particular (IndexSearcher, Query) tuple. The weight metric shows how long this process takes"
                               },
                               {
                                 "name": "build scorer",
-                                "time_in_nanos": 9123,
+                                "absTime": 9123,
                                 "count": 3,
                                 "help": "This parameter shows how long it takes to build a Scorer for the query. A Scorer is the mechanism that iterates over matching documents and generates a score per-document (e.g. how well does \"foo\" match the document?). Note, this records the time required to generate the Scorer object, not actually score the documents. Some queries have faster or slower initialization of the Scorer, depending on optimizations, complexity, etc. This may also show timing associated with caching, if enabled and/or applicable for the query"
                               },
                               {
                                 "name": "next doc",
-                                "time_in_nanos": 2355,
+                                "absTime": 2355,
                                 "count": 3,
                                 "help": "The Lucene method next_doc returns Doc ID of the next document matching the query. This statistic shows the time it takes to determine which document is the next match, a process that varies considerably depending on the nature of the query. Next_doc is a specialized form of advance() which is more convenient for many queries in Lucene. It is equivalent to advance(docId() + 1)"
                               },
                               {
                                 "name": "advance",
-                                "time_in_nanos": 0,
+                                "absTime": 0,
                                 "count": 0,
                                 "help": "advance is the \"lower level\" version of next_doc: it serves the same purpose of finding the next matching doc, but requires the calling query to perform extra tasks such as identifying and moving past skips, etc. However, not all queries can use next_doc, so advance is also timed for those queries. Conjunctions (e.g. must clauses in a boolean) are typical consumers of advance"
                               },
                               {
                                 "name": "match",
-                                "time_in_nanos": 0,
+                                "absTime": 0,
                                 "count": 0,
                                 "help": "Some queries, such as phrase queries, match documents using a \"two-phase\" process. First, the document is \"approximately\" matched, and if it matches approximately, it is checked a second time with a more rigorous (and expensive) process. The second phase verification is what the matches statistic measures. For example, a phrase query first checks a document approximately by ensuring all terms in the phrase are present in the doc. If all the terms are present, it then executes the second phase verification to ensure the terms are in-order to form the phrase, which is relatively more expensive than just checking for presence of the terms. Because this two-phase process is only used by a handful of queries, the metric statistic will often be zero"
                               },
                               {
                                 "name": "score",
-                                "time_in_nanos": 0,
+                                "absTime": 0,
                                 "count": 0,
                                 "help": "This records the time taken to score a particular document via its Scorer"
                               }
                             ],
-                            "children": []
+                            "children": [],
+                            "relTime": 13773,
+                            "cost": 0.0011311109804407235
                           }
-                        ]
+                        ],
+                        "relTime": 245082,
+                        "cost": 0.02012741895798834
                       }
-                    ]
+                    ],
+                    "relTime": 29517,
+                    "cost": 0.002424090816065406
                   },
                   {
                     "nodeId": "detailedRootNode-shard-[V1Lm6aKHQ8mO2J-ujky32A][plc-elementalmediaconvert-usd-20190320213240][1]-searches-search-search_cancelled",
@@ -959,7 +1027,9 @@
                             "description": "search_top_hits",
                             "absTime": 21349,
                             "properties": [],
-                            "children": []
+                            "children": [],
+                            "relTime": 21349,
+                            "cost": 0.0017532918261402022
                           },
                           {
                             "nodeId": "detailedRootNode-shard-[V1Lm6aKHQ8mO2J-ujky32A][plc-elementalmediaconvert-usd-20190320213240][1]-searches-search-search_cancelled-search_multi-aggregation",
@@ -968,16 +1038,26 @@
                             "absTime": 98721,
                             "properties": [],
                             "children": [],
-                            "help": "A collector that Elasticsearch uses to run aggregations against the query scope. A single aggregation collector is used to collect documents for all aggregations, so you will see a list of aggregations in the name rather."
+                            "help": "A collector that Elasticsearch uses to run aggregations against the query scope. A single aggregation collector is used to collect documents for all aggregations, so you will see a list of aggregations in the name rather.",
+                            "relTime": 98721,
+                            "cost": 0.00810748617585774
                           }
                         ],
-                        "help": "A collector that wraps several other collectors. This is seen when combinations of search, aggregations, global aggs, and post_filters are combined in a single search."
+                        "help": "A collector that wraps several other collectors. This is seen when combinations of search, aggregations, global aggs, and post_filters are combined in a single search.",
+                        "relTime": 23696,
+                        "cost": 0.0019460397729269864
                       }
-                    ]
+                    ],
+                    "relTime": 11977,
+                    "cost": 0.0009836140428910582
                   }
-                ]
+                ],
+                "relTime": 44729,
+                "cost": 0.0036733800220818355
               }
-            ]
+            ],
+            "relTime": 0,
+            "cost": 0
           },
           {
             "type": "AggregationsNode",
@@ -993,24 +1073,24 @@
                 "properties": [
                   {
                     "name": "initialize",
-                    "time_in_nanos": 46537,
+                    "absTime": 46537,
                     "count": 1,
                     "help": "This times how long it takes to create and initialise the aggregation before starting to collect documents."
                   },
                   {
                     "name": "collect",
-                    "time_in_nanos": 38283,
+                    "absTime": 38283,
                     "count": 8,
                     "help": "This represents the cumulative time spent in the collect phase of the aggregation. This is where matching documents are passed to the aggregation and the state of the aggregator is updated based on the information contained in the documents."
                   },
                   {
                     "name": "build aggregation",
-                    "time_in_nanos": 1549371,
+                    "absTime": 1549371,
                     "count": 1
                   },
                   {
                     "name": "reduce",
-                    "time_in_nanos": 0,
+                    "absTime": 0,
                     "count": 0,
                     "help": "This is not currently used and will always report 0. Currently aggregation profiling only times the shard level parts of the aggregation execution. Timing of the reduce phase will be added later."
                   }
@@ -1024,29 +1104,31 @@
                     "properties": [
                       {
                         "name": "initialize",
-                        "time_in_nanos": 5179,
+                        "absTime": 5179,
                         "count": 1,
                         "help": "This times how long it takes to create and initialise the aggregation before starting to collect documents."
                       },
                       {
                         "name": "collect",
-                        "time_in_nanos": 401298,
+                        "absTime": 401298,
                         "count": 8,
                         "help": "This represents the cumulative time spent in the collect phase of the aggregation. This is where matching documents are passed to the aggregation and the state of the aggregator is updated based on the information contained in the documents."
                       },
                       {
                         "name": "build aggregation",
-                        "time_in_nanos": 87405,
+                        "absTime": 87405,
                         "count": 4
                       },
                       {
                         "name": "reduce",
-                        "time_in_nanos": 0,
+                        "absTime": 0,
                         "count": 0,
                         "help": "This is not currently used and will always report 0. Currently aggregation profiling only times the shard level parts of the aggregation execution. Timing of the reduce phase will be added later."
                       }
                     ],
-                    "children": []
+                    "children": [],
+                    "relTime": 493895,
+                    "cost": 0.040561247199939816
                   },
                   {
                     "nodeId": "detailedRootNode-shard-[V1Lm6aKHQ8mO2J-ujky32A][plc-elementalmediaconvert-usd-20190320213240][1]-aggrs-MeteredUnitCondition-Name",
@@ -1056,36 +1138,44 @@
                     "properties": [
                       {
                         "name": "initialize",
-                        "time_in_nanos": 6306,
+                        "absTime": 6306,
                         "count": 1,
                         "help": "This times how long it takes to create and initialise the aggregation before starting to collect documents."
                       },
                       {
                         "name": "collect",
-                        "time_in_nanos": 831314,
+                        "absTime": 831314,
                         "count": 8,
                         "help": "This represents the cumulative time spent in the collect phase of the aggregation. This is where matching documents are passed to the aggregation and the state of the aggregator is updated based on the information contained in the documents."
                       },
                       {
                         "name": "build aggregation",
-                        "time_in_nanos": 46324,
+                        "absTime": 46324,
                         "count": 4
                       },
                       {
                         "name": "reduce",
-                        "time_in_nanos": 0,
+                        "absTime": 0,
                         "count": 0,
                         "help": "This is not currently used and will always report 0. Currently aggregation profiling only times the shard level parts of the aggregation execution. Timing of the reduce phase will be added later."
                       }
                     ],
-                    "children": []
+                    "children": [],
+                    "relTime": 883957,
+                    "cost": 0.07259518397861327
                   }
-                ]
+                ],
+                "relTime": 256349,
+                "cost": 0.02105272407790598
               }
-            ]
+            ],
+            "relTime": 0,
+            "cost": 0
           }
         ],
-        "absTime": 2157523
+        "absTime": 2157523,
+        "relTime": 0,
+        "cost": 0
       },
       {
         "type": "ShardNode",
@@ -1112,37 +1202,37 @@
                     "properties": [
                       {
                         "name": "create weight",
-                        "time_in_nanos": 47169,
+                        "absTime": 47169,
                         "count": 1,
                         "help": "A Query in Lucene must be capable of reuse across multiple IndexSearchers (think of it as the engine that executes a search against a specific Lucene Index). This puts Lucene in a tricky spot, since many queries need to accumulate temporary state/statistics associated with the index it is being used against, but the Query contract mandates that it must be immutable. To get around this, Lucene asks each query to generate a Weight object which acts as a temporary context object to hold state associated with this particular (IndexSearcher, Query) tuple. The weight metric shows how long this process takes"
                       },
                       {
                         "name": "build scorer",
-                        "time_in_nanos": 213581,
+                        "absTime": 213581,
                         "count": 2,
                         "help": "This parameter shows how long it takes to build a Scorer for the query. A Scorer is the mechanism that iterates over matching documents and generates a score per-document (e.g. how well does \"foo\" match the document?). Note, this records the time required to generate the Scorer object, not actually score the documents. Some queries have faster or slower initialization of the Scorer, depending on optimizations, complexity, etc. This may also show timing associated with caching, if enabled and/or applicable for the query"
                       },
                       {
                         "name": "next doc",
-                        "time_in_nanos": 40158,
+                        "absTime": 40158,
                         "count": 7,
                         "help": "The Lucene method next_doc returns Doc ID of the next document matching the query. This statistic shows the time it takes to determine which document is the next match, a process that varies considerably depending on the nature of the query. Next_doc is a specialized form of advance() which is more convenient for many queries in Lucene. It is equivalent to advance(docId() + 1)"
                       },
                       {
                         "name": "advance",
-                        "time_in_nanos": 0,
+                        "absTime": 0,
                         "count": 0,
                         "help": "advance is the \"lower level\" version of next_doc: it serves the same purpose of finding the next matching doc, but requires the calling query to perform extra tasks such as identifying and moving past skips, etc. However, not all queries can use next_doc, so advance is also timed for those queries. Conjunctions (e.g. must clauses in a boolean) are typical consumers of advance"
                       },
                       {
                         "name": "match",
-                        "time_in_nanos": 0,
+                        "absTime": 0,
                         "count": 0,
                         "help": "Some queries, such as phrase queries, match documents using a \"two-phase\" process. First, the document is \"approximately\" matched, and if it matches approximately, it is checked a second time with a more rigorous (and expensive) process. The second phase verification is what the matches statistic measures. For example, a phrase query first checks a document approximately by ensuring all terms in the phrase are present in the doc. If all the terms are present, it then executes the second phase verification to ensure the terms are in-order to form the phrase, which is relatively more expensive than just checking for presence of the terms. Because this two-phase process is only used by a handful of queries, the metric statistic will often be zero"
                       },
                       {
                         "name": "score",
-                        "time_in_nanos": 5552,
+                        "absTime": 5552,
                         "count": 6,
                         "help": "This records the time taken to score a particular document via its Scorer"
                       }
@@ -1156,37 +1246,37 @@
                         "properties": [
                           {
                             "name": "create weight",
-                            "time_in_nanos": 36430,
+                            "absTime": 36430,
                             "count": 1,
                             "help": "A Query in Lucene must be capable of reuse across multiple IndexSearchers (think of it as the engine that executes a search against a specific Lucene Index). This puts Lucene in a tricky spot, since many queries need to accumulate temporary state/statistics associated with the index it is being used against, but the Query contract mandates that it must be immutable. To get around this, Lucene asks each query to generate a Weight object which acts as a temporary context object to hold state associated with this particular (IndexSearcher, Query) tuple. The weight metric shows how long this process takes"
                           },
                           {
                             "name": "build scorer",
-                            "time_in_nanos": 205822,
+                            "absTime": 205822,
                             "count": 2,
                             "help": "This parameter shows how long it takes to build a Scorer for the query. A Scorer is the mechanism that iterates over matching documents and generates a score per-document (e.g. how well does \"foo\" match the document?). Note, this records the time required to generate the Scorer object, not actually score the documents. Some queries have faster or slower initialization of the Scorer, depending on optimizations, complexity, etc. This may also show timing associated with caching, if enabled and/or applicable for the query"
                           },
                           {
                             "name": "next doc",
-                            "time_in_nanos": 29472,
+                            "absTime": 29472,
                             "count": 7,
                             "help": "The Lucene method next_doc returns Doc ID of the next document matching the query. This statistic shows the time it takes to determine which document is the next match, a process that varies considerably depending on the nature of the query. Next_doc is a specialized form of advance() which is more convenient for many queries in Lucene. It is equivalent to advance(docId() + 1)"
                           },
                           {
                             "name": "advance",
-                            "time_in_nanos": 0,
+                            "absTime": 0,
                             "count": 0,
                             "help": "advance is the \"lower level\" version of next_doc: it serves the same purpose of finding the next matching doc, but requires the calling query to perform extra tasks such as identifying and moving past skips, etc. However, not all queries can use next_doc, so advance is also timed for those queries. Conjunctions (e.g. must clauses in a boolean) are typical consumers of advance"
                           },
                           {
                             "name": "match",
-                            "time_in_nanos": 0,
+                            "absTime": 0,
                             "count": 0,
                             "help": "Some queries, such as phrase queries, match documents using a \"two-phase\" process. First, the document is \"approximately\" matched, and if it matches approximately, it is checked a second time with a more rigorous (and expensive) process. The second phase verification is what the matches statistic measures. For example, a phrase query first checks a document approximately by ensuring all terms in the phrase are present in the doc. If all the terms are present, it then executes the second phase verification to ensure the terms are in-order to form the phrase, which is relatively more expensive than just checking for presence of the terms. Because this two-phase process is only used by a handful of queries, the metric statistic will often be zero"
                           },
                           {
                             "name": "score",
-                            "time_in_nanos": 0,
+                            "absTime": 0,
                             "count": 0,
                             "help": "This records the time taken to score a particular document via its Scorer"
                           }
@@ -1200,42 +1290,44 @@
                             "properties": [
                               {
                                 "name": "create weight",
-                                "time_in_nanos": 6963,
+                                "absTime": 6963,
                                 "count": 1,
                                 "help": "A Query in Lucene must be capable of reuse across multiple IndexSearchers (think of it as the engine that executes a search against a specific Lucene Index). This puts Lucene in a tricky spot, since many queries need to accumulate temporary state/statistics associated with the index it is being used against, but the Query contract mandates that it must be immutable. To get around this, Lucene asks each query to generate a Weight object which acts as a temporary context object to hold state associated with this particular (IndexSearcher, Query) tuple. The weight metric shows how long this process takes"
                               },
                               {
                                 "name": "build scorer",
-                                "time_in_nanos": 17967,
+                                "absTime": 17967,
                                 "count": 3,
                                 "help": "This parameter shows how long it takes to build a Scorer for the query. A Scorer is the mechanism that iterates over matching documents and generates a score per-document (e.g. how well does \"foo\" match the document?). Note, this records the time required to generate the Scorer object, not actually score the documents. Some queries have faster or slower initialization of the Scorer, depending on optimizations, complexity, etc. This may also show timing associated with caching, if enabled and/or applicable for the query"
                               },
                               {
                                 "name": "next doc",
-                                "time_in_nanos": 5123,
+                                "absTime": 5123,
                                 "count": 6,
                                 "help": "The Lucene method next_doc returns Doc ID of the next document matching the query. This statistic shows the time it takes to determine which document is the next match, a process that varies considerably depending on the nature of the query. Next_doc is a specialized form of advance() which is more convenient for many queries in Lucene. It is equivalent to advance(docId() + 1)"
                               },
                               {
                                 "name": "advance",
-                                "time_in_nanos": 0,
+                                "absTime": 0,
                                 "count": 0,
                                 "help": "advance is the \"lower level\" version of next_doc: it serves the same purpose of finding the next matching doc, but requires the calling query to perform extra tasks such as identifying and moving past skips, etc. However, not all queries can use next_doc, so advance is also timed for those queries. Conjunctions (e.g. must clauses in a boolean) are typical consumers of advance"
                               },
                               {
                                 "name": "match",
-                                "time_in_nanos": 0,
+                                "absTime": 0,
                                 "count": 0,
                                 "help": "Some queries, such as phrase queries, match documents using a \"two-phase\" process. First, the document is \"approximately\" matched, and if it matches approximately, it is checked a second time with a more rigorous (and expensive) process. The second phase verification is what the matches statistic measures. For example, a phrase query first checks a document approximately by ensuring all terms in the phrase are present in the doc. If all the terms are present, it then executes the second phase verification to ensure the terms are in-order to form the phrase, which is relatively more expensive than just checking for presence of the terms. Because this two-phase process is only used by a handful of queries, the metric statistic will often be zero"
                               },
                               {
                                 "name": "score",
-                                "time_in_nanos": 0,
+                                "absTime": 0,
                                 "count": 0,
                                 "help": "This records the time taken to score a particular document via its Scorer"
                               }
                             ],
-                            "children": []
+                            "children": [],
+                            "relTime": 30063,
+                            "cost": 0.002468931199084402
                           },
                           {
                             "nodeId": "detailedRootNode-shard-[V1Lm6aKHQ8mO2J-ujky32A][plc-elementalmediaconvert-usd-20190320213240][2]-searches-search-(ConstantScore(AddOn Feature:Audio Normalization AddOn Feature:Dolby))^0.0-AddOn Feature:Audio Normalization AddOn Feature:Dolby-AddOn Feature:Dolby",
@@ -1245,46 +1337,52 @@
                             "properties": [
                               {
                                 "name": "create weight",
-                                "time_in_nanos": 2544,
+                                "absTime": 2544,
                                 "count": 1,
                                 "help": "A Query in Lucene must be capable of reuse across multiple IndexSearchers (think of it as the engine that executes a search against a specific Lucene Index). This puts Lucene in a tricky spot, since many queries need to accumulate temporary state/statistics associated with the index it is being used against, but the Query contract mandates that it must be immutable. To get around this, Lucene asks each query to generate a Weight object which acts as a temporary context object to hold state associated with this particular (IndexSearcher, Query) tuple. The weight metric shows how long this process takes"
                               },
                               {
                                 "name": "build scorer",
-                                "time_in_nanos": 10976,
+                                "absTime": 10976,
                                 "count": 3,
                                 "help": "This parameter shows how long it takes to build a Scorer for the query. A Scorer is the mechanism that iterates over matching documents and generates a score per-document (e.g. how well does \"foo\" match the document?). Note, this records the time required to generate the Scorer object, not actually score the documents. Some queries have faster or slower initialization of the Scorer, depending on optimizations, complexity, etc. This may also show timing associated with caching, if enabled and/or applicable for the query"
                               },
                               {
                                 "name": "next doc",
-                                "time_in_nanos": 2022,
+                                "absTime": 2022,
                                 "count": 2,
                                 "help": "The Lucene method next_doc returns Doc ID of the next document matching the query. This statistic shows the time it takes to determine which document is the next match, a process that varies considerably depending on the nature of the query. Next_doc is a specialized form of advance() which is more convenient for many queries in Lucene. It is equivalent to advance(docId() + 1)"
                               },
                               {
                                 "name": "advance",
-                                "time_in_nanos": 0,
+                                "absTime": 0,
                                 "count": 0,
                                 "help": "advance is the \"lower level\" version of next_doc: it serves the same purpose of finding the next matching doc, but requires the calling query to perform extra tasks such as identifying and moving past skips, etc. However, not all queries can use next_doc, so advance is also timed for those queries. Conjunctions (e.g. must clauses in a boolean) are typical consumers of advance"
                               },
                               {
                                 "name": "match",
-                                "time_in_nanos": 0,
+                                "absTime": 0,
                                 "count": 0,
                                 "help": "Some queries, such as phrase queries, match documents using a \"two-phase\" process. First, the document is \"approximately\" matched, and if it matches approximately, it is checked a second time with a more rigorous (and expensive) process. The second phase verification is what the matches statistic measures. For example, a phrase query first checks a document approximately by ensuring all terms in the phrase are present in the doc. If all the terms are present, it then executes the second phase verification to ensure the terms are in-order to form the phrase, which is relatively more expensive than just checking for presence of the terms. Because this two-phase process is only used by a handful of queries, the metric statistic will often be zero"
                               },
                               {
                                 "name": "score",
-                                "time_in_nanos": 0,
+                                "absTime": 0,
                                 "count": 0,
                                 "help": "This records the time taken to score a particular document via its Scorer"
                               }
                             ],
-                            "children": []
+                            "children": [],
+                            "relTime": 15548,
+                            "cost": 0.0012768832878742734
                           }
-                        ]
+                        ],
+                        "relTime": 226123,
+                        "cost": 0.018570406464110775
                       }
-                    ]
+                    ],
+                    "relTime": 34742,
+                    "cost": 0.0028531952140036024
                   },
                   {
                     "nodeId": "detailedRootNode-shard-[V1Lm6aKHQ8mO2J-ujky32A][plc-elementalmediaconvert-usd-20190320213240][2]-searches-search-search_cancelled",
@@ -1306,7 +1404,9 @@
                             "description": "search_top_hits",
                             "absTime": 21592,
                             "properties": [],
-                            "children": []
+                            "children": [],
+                            "relTime": 21592,
+                            "cost": 0.0017732482603409643
                           },
                           {
                             "nodeId": "detailedRootNode-shard-[V1Lm6aKHQ8mO2J-ujky32A][plc-elementalmediaconvert-usd-20190320213240][2]-searches-search-search_cancelled-search_multi-aggregation",
@@ -1315,16 +1415,26 @@
                             "absTime": 89570,
                             "properties": [],
                             "children": [],
-                            "help": "A collector that Elasticsearch uses to run aggregations against the query scope. A single aggregation collector is used to collect documents for all aggregations, so you will see a list of aggregations in the name rather."
+                            "help": "A collector that Elasticsearch uses to run aggregations against the query scope. A single aggregation collector is used to collect documents for all aggregations, so you will see a list of aggregations in the name rather.",
+                            "relTime": 89570,
+                            "cost": 0.007355958071449619
                           }
                         ],
-                        "help": "A collector that wraps several other collectors. This is seen when combinations of search, aggregations, global aggs, and post_filters are combined in a single search."
+                        "help": "A collector that wraps several other collectors. This is seen when combinations of search, aggregations, global aggs, and post_filters are combined in a single search.",
+                        "relTime": 21519,
+                        "cost": 0.0017672531175563732
                       }
-                    ]
+                    ],
+                    "relTime": 13628,
+                    "cost": 0.0011192028201151658
                   }
-                ]
+                ],
+                "relTime": 53119,
+                "cost": 0.004362410816091686
               }
-            ]
+            ],
+            "relTime": 0,
+            "cost": 0
           },
           {
             "type": "AggregationsNode",
@@ -1340,24 +1450,24 @@
                 "properties": [
                   {
                     "name": "initialize",
-                    "time_in_nanos": 30372,
+                    "absTime": 30372,
                     "count": 1,
                     "help": "This times how long it takes to create and initialise the aggregation before starting to collect documents."
                   },
                   {
                     "name": "collect",
-                    "time_in_nanos": 27284,
+                    "absTime": 27284,
                     "count": 6,
                     "help": "This represents the cumulative time spent in the collect phase of the aggregation. This is where matching documents are passed to the aggregation and the state of the aggregator is updated based on the information contained in the documents."
                   },
                   {
                     "name": "build aggregation",
-                    "time_in_nanos": 1494291,
+                    "absTime": 1494291,
                     "count": 1
                   },
                   {
                     "name": "reduce",
-                    "time_in_nanos": 0,
+                    "absTime": 0,
                     "count": 0,
                     "help": "This is not currently used and will always report 0. Currently aggregation profiling only times the shard level parts of the aggregation execution. Timing of the reduce phase will be added later."
                   }
@@ -1371,29 +1481,31 @@
                     "properties": [
                       {
                         "name": "initialize",
-                        "time_in_nanos": 5007,
+                        "absTime": 5007,
                         "count": 1,
                         "help": "This times how long it takes to create and initialise the aggregation before starting to collect documents."
                       },
                       {
                         "name": "collect",
-                        "time_in_nanos": 288502,
+                        "absTime": 288502,
                         "count": 6,
                         "help": "This represents the cumulative time spent in the collect phase of the aggregation. This is where matching documents are passed to the aggregation and the state of the aggregator is updated based on the information contained in the documents."
                       },
                       {
                         "name": "build aggregation",
-                        "time_in_nanos": 74858,
+                        "absTime": 74858,
                         "count": 3
                       },
                       {
                         "name": "reduce",
-                        "time_in_nanos": 0,
+                        "absTime": 0,
                         "count": 0,
                         "help": "This is not currently used and will always report 0. Currently aggregation profiling only times the shard level parts of the aggregation execution. Timing of the reduce phase will be added later."
                       }
                     ],
-                    "children": []
+                    "children": [],
+                    "relTime": 368377,
+                    "cost": 0.030253050870675407
                   },
                   {
                     "nodeId": "detailedRootNode-shard-[V1Lm6aKHQ8mO2J-ujky32A][plc-elementalmediaconvert-usd-20190320213240][2]-aggrs-MeteredUnitCondition-Name",
@@ -1403,36 +1515,44 @@
                     "properties": [
                       {
                         "name": "initialize",
-                        "time_in_nanos": 3843,
+                        "absTime": 3843,
                         "count": 1,
                         "help": "This times how long it takes to create and initialise the aggregation before starting to collect documents."
                       },
                       {
                         "name": "collect",
-                        "time_in_nanos": 945087,
+                        "absTime": 945087,
                         "count": 6,
                         "help": "This represents the cumulative time spent in the collect phase of the aggregation. This is where matching documents are passed to the aggregation and the state of the aggregator is updated based on the information contained in the documents."
                       },
                       {
                         "name": "build aggregation",
-                        "time_in_nanos": 40455,
+                        "absTime": 40455,
                         "count": 3
                       },
                       {
                         "name": "reduce",
-                        "time_in_nanos": 0,
+                        "absTime": 0,
                         "count": 0,
                         "help": "This is not currently used and will always report 0. Currently aggregation profiling only times the shard level parts of the aggregation execution. Timing of the reduce phase will be added later."
                       }
                     ],
-                    "children": []
+                    "children": [],
+                    "relTime": 989395,
+                    "cost": 0.08125430541589701
                   }
-                ]
+                ],
+                "relTime": 194183,
+                "cost": 0.01594732618274312
               }
-            ]
+            ],
+            "relTime": 0,
+            "cost": 0
           }
         ],
-        "absTime": 2057859
+        "absTime": 2057859,
+        "relTime": 0,
+        "cost": 0
       },
       {
         "type": "ShardNode",
@@ -1459,37 +1579,37 @@
                     "properties": [
                       {
                         "name": "create weight",
-                        "time_in_nanos": 47140,
+                        "absTime": 47140,
                         "count": 1,
                         "help": "A Query in Lucene must be capable of reuse across multiple IndexSearchers (think of it as the engine that executes a search against a specific Lucene Index). This puts Lucene in a tricky spot, since many queries need to accumulate temporary state/statistics associated with the index it is being used against, but the Query contract mandates that it must be immutable. To get around this, Lucene asks each query to generate a Weight object which acts as a temporary context object to hold state associated with this particular (IndexSearcher, Query) tuple. The weight metric shows how long this process takes"
                       },
                       {
                         "name": "build scorer",
-                        "time_in_nanos": 214021,
+                        "absTime": 214021,
                         "count": 2,
                         "help": "This parameter shows how long it takes to build a Scorer for the query. A Scorer is the mechanism that iterates over matching documents and generates a score per-document (e.g. how well does \"foo\" match the document?). Note, this records the time required to generate the Scorer object, not actually score the documents. Some queries have faster or slower initialization of the Scorer, depending on optimizations, complexity, etc. This may also show timing associated with caching, if enabled and/or applicable for the query"
                       },
                       {
                         "name": "next doc",
-                        "time_in_nanos": 127521,
+                        "absTime": 127521,
                         "count": 19,
                         "help": "The Lucene method next_doc returns Doc ID of the next document matching the query. This statistic shows the time it takes to determine which document is the next match, a process that varies considerably depending on the nature of the query. Next_doc is a specialized form of advance() which is more convenient for many queries in Lucene. It is equivalent to advance(docId() + 1)"
                       },
                       {
                         "name": "advance",
-                        "time_in_nanos": 0,
+                        "absTime": 0,
                         "count": 0,
                         "help": "advance is the \"lower level\" version of next_doc: it serves the same purpose of finding the next matching doc, but requires the calling query to perform extra tasks such as identifying and moving past skips, etc. However, not all queries can use next_doc, so advance is also timed for those queries. Conjunctions (e.g. must clauses in a boolean) are typical consumers of advance"
                       },
                       {
                         "name": "match",
-                        "time_in_nanos": 0,
+                        "absTime": 0,
                         "count": 0,
                         "help": "Some queries, such as phrase queries, match documents using a \"two-phase\" process. First, the document is \"approximately\" matched, and if it matches approximately, it is checked a second time with a more rigorous (and expensive) process. The second phase verification is what the matches statistic measures. For example, a phrase query first checks a document approximately by ensuring all terms in the phrase are present in the doc. If all the terms are present, it then executes the second phase verification to ensure the terms are in-order to form the phrase, which is relatively more expensive than just checking for presence of the terms. Because this two-phase process is only used by a handful of queries, the metric statistic will often be zero"
                       },
                       {
                         "name": "score",
-                        "time_in_nanos": 14431,
+                        "absTime": 14431,
                         "count": 18,
                         "help": "This records the time taken to score a particular document via its Scorer"
                       }
@@ -1503,37 +1623,37 @@
                         "properties": [
                           {
                             "name": "create weight",
-                            "time_in_nanos": 33338,
+                            "absTime": 33338,
                             "count": 1,
                             "help": "A Query in Lucene must be capable of reuse across multiple IndexSearchers (think of it as the engine that executes a search against a specific Lucene Index). This puts Lucene in a tricky spot, since many queries need to accumulate temporary state/statistics associated with the index it is being used against, but the Query contract mandates that it must be immutable. To get around this, Lucene asks each query to generate a Weight object which acts as a temporary context object to hold state associated with this particular (IndexSearcher, Query) tuple. The weight metric shows how long this process takes"
                           },
                           {
                             "name": "build scorer",
-                            "time_in_nanos": 206944,
+                            "absTime": 206944,
                             "count": 2,
                             "help": "This parameter shows how long it takes to build a Scorer for the query. A Scorer is the mechanism that iterates over matching documents and generates a score per-document (e.g. how well does \"foo\" match the document?). Note, this records the time required to generate the Scorer object, not actually score the documents. Some queries have faster or slower initialization of the Scorer, depending on optimizations, complexity, etc. This may also show timing associated with caching, if enabled and/or applicable for the query"
                           },
                           {
                             "name": "next doc",
-                            "time_in_nanos": 97545,
+                            "absTime": 97545,
                             "count": 19,
                             "help": "The Lucene method next_doc returns Doc ID of the next document matching the query. This statistic shows the time it takes to determine which document is the next match, a process that varies considerably depending on the nature of the query. Next_doc is a specialized form of advance() which is more convenient for many queries in Lucene. It is equivalent to advance(docId() + 1)"
                           },
                           {
                             "name": "advance",
-                            "time_in_nanos": 0,
+                            "absTime": 0,
                             "count": 0,
                             "help": "advance is the \"lower level\" version of next_doc: it serves the same purpose of finding the next matching doc, but requires the calling query to perform extra tasks such as identifying and moving past skips, etc. However, not all queries can use next_doc, so advance is also timed for those queries. Conjunctions (e.g. must clauses in a boolean) are typical consumers of advance"
                           },
                           {
                             "name": "match",
-                            "time_in_nanos": 0,
+                            "absTime": 0,
                             "count": 0,
                             "help": "Some queries, such as phrase queries, match documents using a \"two-phase\" process. First, the document is \"approximately\" matched, and if it matches approximately, it is checked a second time with a more rigorous (and expensive) process. The second phase verification is what the matches statistic measures. For example, a phrase query first checks a document approximately by ensuring all terms in the phrase are present in the doc. If all the terms are present, it then executes the second phase verification to ensure the terms are in-order to form the phrase, which is relatively more expensive than just checking for presence of the terms. Because this two-phase process is only used by a handful of queries, the metric statistic will often be zero"
                           },
                           {
                             "name": "score",
-                            "time_in_nanos": 0,
+                            "absTime": 0,
                             "count": 0,
                             "help": "This records the time taken to score a particular document via its Scorer"
                           }
@@ -1547,42 +1667,44 @@
                             "properties": [
                               {
                                 "name": "create weight",
-                                "time_in_nanos": 7053,
+                                "absTime": 7053,
                                 "count": 1,
                                 "help": "A Query in Lucene must be capable of reuse across multiple IndexSearchers (think of it as the engine that executes a search against a specific Lucene Index). This puts Lucene in a tricky spot, since many queries need to accumulate temporary state/statistics associated with the index it is being used against, but the Query contract mandates that it must be immutable. To get around this, Lucene asks each query to generate a Weight object which acts as a temporary context object to hold state associated with this particular (IndexSearcher, Query) tuple. The weight metric shows how long this process takes"
                               },
                               {
                                 "name": "build scorer",
-                                "time_in_nanos": 17571,
+                                "absTime": 17571,
                                 "count": 3,
                                 "help": "This parameter shows how long it takes to build a Scorer for the query. A Scorer is the mechanism that iterates over matching documents and generates a score per-document (e.g. how well does \"foo\" match the document?). Note, this records the time required to generate the Scorer object, not actually score the documents. Some queries have faster or slower initialization of the Scorer, depending on optimizations, complexity, etc. This may also show timing associated with caching, if enabled and/or applicable for the query"
                               },
                               {
                                 "name": "next doc",
-                                "time_in_nanos": 7807,
+                                "absTime": 7807,
                                 "count": 10,
                                 "help": "The Lucene method next_doc returns Doc ID of the next document matching the query. This statistic shows the time it takes to determine which document is the next match, a process that varies considerably depending on the nature of the query. Next_doc is a specialized form of advance() which is more convenient for many queries in Lucene. It is equivalent to advance(docId() + 1)"
                               },
                               {
                                 "name": "advance",
-                                "time_in_nanos": 0,
+                                "absTime": 0,
                                 "count": 0,
                                 "help": "advance is the \"lower level\" version of next_doc: it serves the same purpose of finding the next matching doc, but requires the calling query to perform extra tasks such as identifying and moving past skips, etc. However, not all queries can use next_doc, so advance is also timed for those queries. Conjunctions (e.g. must clauses in a boolean) are typical consumers of advance"
                               },
                               {
                                 "name": "match",
-                                "time_in_nanos": 0,
+                                "absTime": 0,
                                 "count": 0,
                                 "help": "Some queries, such as phrase queries, match documents using a \"two-phase\" process. First, the document is \"approximately\" matched, and if it matches approximately, it is checked a second time with a more rigorous (and expensive) process. The second phase verification is what the matches statistic measures. For example, a phrase query first checks a document approximately by ensuring all terms in the phrase are present in the doc. If all the terms are present, it then executes the second phase verification to ensure the terms are in-order to form the phrase, which is relatively more expensive than just checking for presence of the terms. Because this two-phase process is only used by a handful of queries, the metric statistic will often be zero"
                               },
                               {
                                 "name": "score",
-                                "time_in_nanos": 0,
+                                "absTime": 0,
                                 "count": 0,
                                 "help": "This records the time taken to score a particular document via its Scorer"
                               }
                             ],
-                            "children": []
+                            "children": [],
+                            "relTime": 32445,
+                            "cost": 0.002664553529398045
                           },
                           {
                             "nodeId": "detailedRootNode-shard-[V1Lm6aKHQ8mO2J-ujky32A][plc-elementalmediaconvert-usd-20190320213240][3]-searches-search-(ConstantScore(AddOn Feature:Audio Normalization AddOn Feature:Dolby))^0.0-AddOn Feature:Audio Normalization AddOn Feature:Dolby-AddOn Feature:Dolby",
@@ -1592,46 +1714,52 @@
                             "properties": [
                               {
                                 "name": "create weight",
-                                "time_in_nanos": 2555,
+                                "absTime": 2555,
                                 "count": 1,
                                 "help": "A Query in Lucene must be capable of reuse across multiple IndexSearchers (think of it as the engine that executes a search against a specific Lucene Index). This puts Lucene in a tricky spot, since many queries need to accumulate temporary state/statistics associated with the index it is being used against, but the Query contract mandates that it must be immutable. To get around this, Lucene asks each query to generate a Weight object which acts as a temporary context object to hold state associated with this particular (IndexSearcher, Query) tuple. The weight metric shows how long this process takes"
                               },
                               {
                                 "name": "build scorer",
-                                "time_in_nanos": 9540,
+                                "absTime": 9540,
                                 "count": 3,
                                 "help": "This parameter shows how long it takes to build a Scorer for the query. A Scorer is the mechanism that iterates over matching documents and generates a score per-document (e.g. how well does \"foo\" match the document?). Note, this records the time required to generate the Scorer object, not actually score the documents. Some queries have faster or slower initialization of the Scorer, depending on optimizations, complexity, etc. This may also show timing associated with caching, if enabled and/or applicable for the query"
                               },
                               {
                                 "name": "next doc",
-                                "time_in_nanos": 34608,
+                                "absTime": 34608,
                                 "count": 10,
                                 "help": "The Lucene method next_doc returns Doc ID of the next document matching the query. This statistic shows the time it takes to determine which document is the next match, a process that varies considerably depending on the nature of the query. Next_doc is a specialized form of advance() which is more convenient for many queries in Lucene. It is equivalent to advance(docId() + 1)"
                               },
                               {
                                 "name": "advance",
-                                "time_in_nanos": 0,
+                                "absTime": 0,
                                 "count": 0,
                                 "help": "advance is the \"lower level\" version of next_doc: it serves the same purpose of finding the next matching doc, but requires the calling query to perform extra tasks such as identifying and moving past skips, etc. However, not all queries can use next_doc, so advance is also timed for those queries. Conjunctions (e.g. must clauses in a boolean) are typical consumers of advance"
                               },
                               {
                                 "name": "match",
-                                "time_in_nanos": 0,
+                                "absTime": 0,
                                 "count": 0,
                                 "help": "Some queries, such as phrase queries, match documents using a \"two-phase\" process. First, the document is \"approximately\" matched, and if it matches approximately, it is checked a second time with a more rigorous (and expensive) process. The second phase verification is what the matches statistic measures. For example, a phrase query first checks a document approximately by ensuring all terms in the phrase are present in the doc. If all the terms are present, it then executes the second phase verification to ensure the terms are in-order to form the phrase, which is relatively more expensive than just checking for presence of the terms. Because this two-phase process is only used by a handful of queries, the metric statistic will often be zero"
                               },
                               {
                                 "name": "score",
-                                "time_in_nanos": 0,
+                                "absTime": 0,
                                 "count": 0,
                                 "help": "This records the time taken to score a particular document via its Scorer"
                               }
                             ],
-                            "children": []
+                            "children": [],
+                            "relTime": 46717,
+                            "cost": 0.0038366450064074116
                           }
-                        ]
+                        ],
+                        "relTime": 258687,
+                        "cost": 0.02124473289750014
                       }
-                    ]
+                    ],
+                    "relTime": 65304,
+                    "cost": 0.005363106909656647
                   },
                   {
                     "nodeId": "detailedRootNode-shard-[V1Lm6aKHQ8mO2J-ujky32A][plc-elementalmediaconvert-usd-20190320213240][3]-searches-search-search_cancelled",
@@ -1653,7 +1781,9 @@
                             "description": "search_top_hits",
                             "absTime": 52408,
                             "properties": [],
-                            "children": []
+                            "children": [],
+                            "relTime": 52408,
+                            "cost": 0.0043040197678746415
                           },
                           {
                             "nodeId": "detailedRootNode-shard-[V1Lm6aKHQ8mO2J-ujky32A][plc-elementalmediaconvert-usd-20190320213240][3]-searches-search-search_cancelled-search_multi-aggregation",
@@ -1662,16 +1792,26 @@
                             "absTime": 155755,
                             "properties": [],
                             "children": [],
-                            "help": "A collector that Elasticsearch uses to run aggregations against the query scope. A single aggregation collector is used to collect documents for all aggregations, so you will see a list of aggregations in the name rather."
+                            "help": "A collector that Elasticsearch uses to run aggregations against the query scope. A single aggregation collector is used to collect documents for all aggregations, so you will see a list of aggregations in the name rather.",
+                            "relTime": 155755,
+                            "cost": 0.012791417320739481
                           }
                         ],
-                        "help": "A collector that wraps several other collectors. This is seen when combinations of search, aggregations, global aggs, and post_filters are combined in a single search."
+                        "help": "A collector that wraps several other collectors. This is seen when combinations of search, aggregations, global aggs, and post_filters are combined in a single search.",
+                        "relTime": 53126,
+                        "cost": 0.004362985692797057
                       }
-                    ]
+                    ],
+                    "relTime": 28299,
+                    "cost": 0.002324062269330722
                   }
-                ]
+                ],
+                "relTime": 54060,
+                "cost": 0.004439690670342373
               }
-            ]
+            ],
+            "relTime": 0,
+            "cost": 0
           },
           {
             "type": "AggregationsNode",
@@ -1687,24 +1827,24 @@
                 "properties": [
                   {
                     "name": "initialize",
-                    "time_in_nanos": 163652,
+                    "absTime": 163652,
                     "count": 1,
                     "help": "This times how long it takes to create and initialise the aggregation before starting to collect documents."
                   },
                   {
                     "name": "collect",
-                    "time_in_nanos": 74693,
+                    "absTime": 74693,
                     "count": 18,
                     "help": "This represents the cumulative time spent in the collect phase of the aggregation. This is where matching documents are passed to the aggregation and the state of the aggregator is updated based on the information contained in the documents."
                   },
                   {
                     "name": "build aggregation",
-                    "time_in_nanos": 2021943,
+                    "absTime": 2021943,
                     "count": 1
                   },
                   {
                     "name": "reduce",
-                    "time_in_nanos": 0,
+                    "absTime": 0,
                     "count": 0,
                     "help": "This is not currently used and will always report 0. Currently aggregation profiling only times the shard level parts of the aggregation execution. Timing of the reduce phase will be added later."
                   }
@@ -1718,29 +1858,31 @@
                     "properties": [
                       {
                         "name": "initialize",
-                        "time_in_nanos": 10005,
+                        "absTime": 10005,
                         "count": 1,
                         "help": "This times how long it takes to create and initialise the aggregation before starting to collect documents."
                       },
                       {
                         "name": "collect",
-                        "time_in_nanos": 492215,
+                        "absTime": 492215,
                         "count": 18,
                         "help": "This represents the cumulative time spent in the collect phase of the aggregation. This is where matching documents are passed to the aggregation and the state of the aggregator is updated based on the information contained in the documents."
                       },
                       {
                         "name": "build aggregation",
-                        "time_in_nanos": 59242,
+                        "absTime": 59242,
                         "count": 4
                       },
                       {
                         "name": "reduce",
-                        "time_in_nanos": 0,
+                        "absTime": 0,
                         "count": 0,
                         "help": "This is not currently used and will always report 0. Currently aggregation profiling only times the shard level parts of the aggregation execution. Timing of the reduce phase will be added later."
                       }
                     ],
-                    "children": []
+                    "children": [],
+                    "relTime": 561485,
+                    "cost": 0.04611209241652215
                   },
                   {
                     "nodeId": "detailedRootNode-shard-[V1Lm6aKHQ8mO2J-ujky32A][plc-elementalmediaconvert-usd-20190320213240][3]-aggrs-MeteredUnitCondition-Name",
@@ -1750,45 +1892,57 @@
                     "properties": [
                       {
                         "name": "initialize",
-                        "time_in_nanos": 5633,
+                        "absTime": 5633,
                         "count": 1,
                         "help": "This times how long it takes to create and initialise the aggregation before starting to collect documents."
                       },
                       {
                         "name": "collect",
-                        "time_in_nanos": 1226283,
+                        "absTime": 1226283,
                         "count": 18,
                         "help": "This represents the cumulative time spent in the collect phase of the aggregation. This is where matching documents are passed to the aggregation and the state of the aggregator is updated based on the information contained in the documents."
                       },
                       {
                         "name": "build aggregation",
-                        "time_in_nanos": 25131,
+                        "absTime": 25131,
                         "count": 4
                       },
                       {
                         "name": "reduce",
-                        "time_in_nanos": 0,
+                        "absTime": 0,
                         "count": 0,
                         "help": "This is not currently used and will always report 0. Currently aggregation profiling only times the shard level parts of the aggregation execution. Timing of the reduce phase will be added later."
                       }
                     ],
-                    "children": []
+                    "children": [],
+                    "relTime": 1257070,
+                    "cost": 0.10323718000309448
                   }
-                ]
+                ],
+                "relTime": 441753,
+                "cost": 0.036279072746869305
               }
-            ]
+            ],
+            "relTime": 0,
+            "cost": 0
           }
         ],
-        "absTime": 3007109
+        "absTime": 3007109,
+        "relTime": 0,
+        "cost": 0
       }
     ],
-    "absTime": 0
+    "absTime": 12176524,
+    "relTime": 0,
+    "cost": 0
   },
   "combinedRootNode": {
     "type": "RootNode",
     "nodeId": "combinedRootNode",
     "properties": [],
     "children": [],
-    "absTime": 0
+    "absTime": 0,
+    "relTime": 0,
+    "cost": 0
   }
 }
