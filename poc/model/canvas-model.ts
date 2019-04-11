@@ -1,4 +1,4 @@
-import { IProfileItem, IProfileShardCollector, IProfileShardSearch, IProfileShardQuery, IProfileShard, IProfile } from "./es-profile";
+import { IProfile, ICanvas, IShardId, IDataNode, IDataIndex, IDataShard, ICanvasNode, IProfileShard, IProfileShardCollector, IProfileItem, ICanvasNodeProperty, IProfileShardSearch, IProfileShardQuery } from "./model";
 
 export function createCanvas(profile: IProfile) {
     const canvas: ICanvas = {
@@ -335,62 +335,3 @@ const nodeHelp: { [name: string]: string } = {
     "collector-global_aggregation": "A collector that executes an aggregation against the global query scope, rather than the specified query. Because the global scope is necessarily different from the executed query, it must execute its own match_all query (which you will see added to the Query section) to collect your entire dataset",
 };
 
-
-
-export interface IShardId {
-
-    name: string;
-    nodeId: string;
-    indexId: string;
-    shardId: string;
-
-}
-
-export interface ICanvas {
-    [name: string]: any;
-
-
-    dataNodes: IDataNode[];
-
-    detailedRootNode?: ICanvasNode;
-    combinedRootNode?: ICanvasNode;
-}
-
-
-export interface IDataNode {
-    id: string;
-
-    indecies: IDataIndex[];
-}
-
-export interface IDataIndex {
-    id: string;
-
-    shards: IDataShard[];
-}
-
-export interface IDataShard {
-    id: string;
-
-    name: string;
-}
-
-
-export interface ICanvasNode {
-    type: string;
-    nodeId: string;
-    description?: string;
-    absTime: number;
-    relTime: number;
-    cost: number;
-    properties: ICanvasNodeProperty[];
-    children: ICanvasNode[];
-    help?: string;
-}
-
-export interface ICanvasNodeProperty {
-    name: string;
-    absTime: number;
-    count: number;
-    help?: string;
-}

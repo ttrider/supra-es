@@ -1,7 +1,7 @@
 import fs from "fs";
 import util from "util";
-import { createCanvas } from "./canvas-model";
-import { IResponse } from "./es-profile";
+import { createCanvas } from "../model/canvas-model";
+import { IResponse } from "../model/model";
 
 
 const readFile = util.promisify(fs.readFile);
