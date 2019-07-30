@@ -1,0 +1,127 @@
+.supra2 {
+    background-image: url('supra2.png');
+    width: 1500px;
+    height: 1500px;
+    position: fixed;
+    left: 100px;
+    top: 100px;
+    background-repeat: no-repeat;
+    background-size: 40%;
+}
+
+.canvas {
+    font-family: "Roboto";
+    width: 30em;
+    padding: 2em;
+}
+
+.canvas text {
+    font-family: "Roboto";
+}
+
+.canvas .node-header {
+    transform: translateX(10px);
+    transform: translateY(80px);
+    font-size: 80px;
+}
+
+.canvas .node-header .link {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.canvas .node-header .link:hover {
+    text-decoration: underline;
+}
+
+.canvas .node-icon {
+    transform: translateX(10px);
+    transform: translateY(150px);
+}
+
+.canvas .node-icon text {
+    font-family: monospace;
+}
+
+.canvas .pi-normal-stroke {
+    stroke: #2a5a7e;
+}
+
+.canvas .pi-default-stroke {
+    stroke-width: 7px;
+}
+
+.canvas .pi-light-fill {
+    fill: #bcdbf3;
+}
+
+.canvas .pi-text-normal {
+    font-size: 50px;
+    fill: #2a5a7e;
+}
+
+.canvas .pi-text-large {
+    font-size: 66px;
+    fill: #2a5a7e;
+}
+
+.canvas .pi-text-smaller {
+    font-size: 43px;
+    fill: #2a5a7e;
+}
+
+.canvas .pi-text-small {
+    font-size: 40px;
+    fill: #2a5a7e;
+}
+
+.canvas .pi-bold {
+    font-weight: bold;
+}
+
+.canvas .pi-right {
+    text-anchor: end;
+}
+
+.canvas .pi-center {
+    text-anchor: middle;
+}
+
+.canvas .outcost-arrow {
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+testtest {
+    color-primary-0: #91C1E6;
+    color-primary-1: #E7F3FD;
+    color-primary-2: #BCDBF3;
+    color-primary-3: #6CA8D6;
+    color-primary-4: #4B8FC3;
+    color-primary-5: #2a5a7e;
+    color-alt-0: #97e691;
+    color-alt-1: #e8fde7;
+    color-alt-2: #c0f3bc;
+    color-alt-3: #73d66c;
+    color-alt-4: #53c34b;
+    color-alt-5: #307e2a;
+    color-alt2-0: #e6d291;
+    color-alt2-1: #fdf8e7;
+    color-alt2-2: #f3e6bc;
+    color-alt2-3: #d6bd6c;
+    color-alt2-4: #c3a74b;
+    color-alt2-5: #7e6a2a;
+    color-alt3-0: #e69196;
+    color-alt3-1: #fde7e8;
+    color-alt3-2: #f3bcc0;
+    color-alt3-3: #d66c73;
+    color-alt3-4: #c34b53;
+    color-alt3-5: #7e2a30;
+    color-light: #fdfeff;
+    color-dark: #1d3e58;
+    color-warning: #91a5e6;
+    color-attention: #c34b53;
+    actionbarColor: #9ba2a7;
+    color-background-light: #ffffff;
+}

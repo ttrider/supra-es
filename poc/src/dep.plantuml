@@ -1,0 +1,89 @@
+@startgantt foo
+
+[Cost W/H] lasts 8 days
+[Metrics W/H] lasts 8 days
+
+[Title W/H] lasts 8 days
+[SubTitle Min W/H] lasts 8 days
+[Properties W/H] lasts 8 days
+
+[Output Panel W] lasts 8 days
+[Output Panel Min H] lasts 8 days
+[Input Panel W] lasts 8 days
+[Input Panel Min H] lasts 8 days
+[Input Cost W/H] lasts 8 days
+
+
+
+
+[Node Panel W] lasts 6 days
+
+
+'Dependant
+
+[Node Panel W] starts at [Cost W/H]'s end
+[Node Panel W] starts at [Metrics W/H]'s end
+[Node Panel W] starts at [Title W/H]'s end
+[Node Panel W] starts at [SubTitle Min W/H]'s end
+[Node Panel W] starts at [Output Panel W]'s end
+[Node Panel W] starts at [Input Panel W]'s end
+[Node Panel W] starts at [Input Cost W/H]'s end
+
+[SubTitle W] lasts 6 days
+[SubTitle W] starts at [Node Panel W]'s end
+[SubTitle H] lasts 6 days
+[SubTitle H] starts at [SubTitle W]'s end
+
+[Flags W] lasts 5 days
+[Flags W] starts at [Node Panel W]'s end
+[Flags H] lasts 5 days
+[Flags H] starts at [Flags W]'s end
+
+[Node Panel H] lasts 6 days
+
+[Node Panel H] starts at [Cost W/H]'s end
+[Node Panel H] starts at [Metrics W/H]'s end
+[Node Panel H] starts at [Title W/H]'s end 
+[Node Panel H] starts at [Properties W/H]'s end 
+[Node Panel H] starts at [SubTitle Min W/H]'s end 
+[Node Panel H] starts at [Output Panel Min H]'s end 
+[Node Panel H] starts at [Input Panel Min H]'s end 
+[Node Panel H] starts at [Input Cost W/H]'s end
+[Node Panel H] starts at [Flags H]'s end
+[Node Panel H] starts at [SubTitle H]'s end
+
+[Attached Nodes W] lasts 8 days
+[Attached Nodes H] lasts 8 days
+[Attached Nodes W] starts at [Node Panel H]'s end
+[Attached Nodes H] starts at [Node Panel H]'s end
+
+[Output Panel H] lasts 7 days
+[Input Panel H] lasts 7 days
+[Output Panel H] starts at [Node Panel H]'s end
+[Input Panel H] starts at [Node Panel H]'s end
+
+
+[Input Cost Panel H] lasts 8 days
+[Input Cost Panel H] starts at [Node Panel H]'s end
+
+
+[Input Cost Panel W] starts at [Input Cost W/H]'s end
+
+
+
+[Node W] lasts 6 days
+[Node W] starts at [Node Panel W]'s end
+[Node W] starts at [Input Cost Panel W]'s end
+[Node W] starts at [Input Panel W]'s end
+[Node W] starts at [Output Panel W]'s end
+[Node W] starts at [Attached Nodes W]'s end
+
+[Node H] lasts 6 days
+[Node H] starts at [Node Panel H]'s end
+[Node H] starts at [Input Cost Panel H]'s end
+[Node H] starts at [Input Panel H]'s end
+[Node H] starts at [Output Panel H]'s end
+[Node H] starts at [Attached Nodes H]'s end
+
+[Input Cost Panel W] lasts 8 days
+@endgantt

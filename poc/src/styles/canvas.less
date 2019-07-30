@@ -1,0 +1,215 @@
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    src: url(f/Roboto-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    src: url(f/Roboto-Bold.ttf);
+}
+
+@font-face {
+    font-family: 'Roboto';
+    font-style: italic;
+    font-weight: 400;
+    src: url(f/Roboto-Italic.ttf);
+}
+
+@font-face {
+    font-family: 'Roboto';
+    font-style: italic;
+    font-weight: 700;
+    src: url(f/Roboto-BoldItalic.ttf);
+}
+
+.supra2 {
+    
+    background-image: url('./supra2.png');
+
+    width: 1500px;
+    height: 1500px;
+    position: fixed;
+    left: 100px;
+    top: 100px;
+    background-repeat: no-repeat;
+    background-size: 40%;
+}
+
+.canvas {
+    font-family: "Roboto";
+
+    width: 30em;
+    padding: 2em;
+
+    text {
+
+        font-family: "Roboto";
+    }
+
+    .node-header {
+
+        transform: translateX(10px);
+        transform: translateY(80px);
+
+        font-size: 80px;
+
+        .link {
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .link:hover {
+            text-decoration: underline;
+        }
+
+    }
+
+    .node-icon {
+        transform: translateX(10px);
+        transform: translateY(150px);
+
+        text {
+
+            font-family: monospace;
+        }
+    }
+
+
+
+
+    .pi-normal-stroke {
+        stroke: #2a5a7e;
+    }
+
+    .pi-default-stroke {
+        stroke-width: 7px;
+    }
+
+    .pi-light-fill {
+        fill: #bcdbf3;
+    }
+
+    .pi-text-normal {
+
+        font-size: 50px;
+        fill: #2a5a7e;
+    }
+
+    .pi-text-large {
+
+        font-size: 66px;
+        fill: #2a5a7e;
+    }
+
+    .pi-text-smaller {
+
+        font-size: 43px;
+        fill: #2a5a7e;
+    }
+
+    .pi-text-small {
+
+        font-size: 40px;
+        fill: #2a5a7e;
+    }
+
+    .pi-bold {
+        font-weight: bold;
+    }
+
+    .pi-right {
+        text-anchor: end;
+    }
+
+    .pi-center {
+        text-anchor: middle;
+    }
+
+    .outcost-arrow {
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
+}
+
+
+@color-primary-0: #91C1E6;
+@color-primary-1: #E7F3FD;
+@color-primary-2: #BCDBF3;
+@color-primary-3: #6CA8D6;
+@color-primary-4: #4B8FC3;
+@color-primary-5: darken(@color-primary-4, 20%);
+@color-alt3-0: spin(@color-primary-0, 150%);
+@color-alt3-1: spin(@color-primary-1, 150%);
+@color-alt3-2: spin(@color-primary-2, 150%);
+@color-alt3-3: spin(@color-primary-3, 150%);
+@color-alt3-4: spin(@color-primary-4, 150%);
+@color-alt3-5: spin(@color-primary-5, 150%);
+@color-alt-0: spin(@color-primary-0, 270%);
+@color-alt-1: spin(@color-primary-1, 270%);
+@color-alt-2: spin(@color-primary-2, 270%);
+@color-alt-3: spin(@color-primary-3, 270%);
+@color-alt-4: spin(@color-primary-4, 270%);
+@color-alt-5: spin(@color-primary-5, 270%);
+@color-alt2-0: spin(@color-primary-0, 200%);
+@color-alt2-1: spin(@color-primary-1, 200%);
+@color-alt2-2: spin(@color-primary-2, 200%);
+@color-alt2-3: spin(@color-primary-3, 200%);
+@color-alt2-4: spin(@color-primary-4, 200%);
+@color-alt2-5: spin(@color-primary-5, 200%);
+@color-light: lighten(@color-primary-1, 4.7%);
+@color-dark: darken(@color-primary-4, 30%);
+@color-warning: spin(@color-primary-0, 20%);
+@color-attention: spin(@color-primary-4, 150%);
+@actionbarColor: desaturate(@color-primary-3, 50%);
+@color-background-light: lighten(@color-primary-1, 10%);
+
+
+testtest {
+
+
+    color-primary-0: @color-primary-0;
+    color-primary-1: @color-primary-1;
+    color-primary-2: @color-primary-2;
+    color-primary-3: @color-primary-3;
+    color-primary-4: @color-primary-4;
+    color-primary-5: @color-primary-5;
+
+    color-alt-0: @color-alt-0;
+    color-alt-1: @color-alt-1;
+    color-alt-2: @color-alt-2;
+    color-alt-3: @color-alt-3;
+    color-alt-4: @color-alt-4;
+    color-alt-5: @color-alt-5;
+
+    color-alt2-0: @color-alt2-0;
+    color-alt2-1: @color-alt2-1;
+    color-alt2-2: @color-alt2-2;
+    color-alt2-3: @color-alt2-3;
+    color-alt2-4: @color-alt2-4;
+    color-alt2-5: @color-alt2-5;
+
+    color-alt3-0: @color-alt3-0;
+    color-alt3-1: @color-alt3-1;
+    color-alt3-2: @color-alt3-2;
+    color-alt3-3: @color-alt3-3;
+    color-alt3-4: @color-alt3-4;
+    color-alt3-5: @color-alt3-5;
+
+    
+
+    color-light: @color-light;
+    color-dark: @color-dark;
+    color-warning: @color-warning;
+    color-attention: @color-attention;
+
+    actionbarColor:@actionbarColor;
+    color-background-light:@color-background-light;
+}
+
+
+

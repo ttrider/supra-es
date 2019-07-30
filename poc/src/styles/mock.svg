@@ -1,0 +1,243 @@
+<svg viewBox="0 0 3000 2200" 
+    xmlns="http://www.w3.org/2000/svg" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" style="background:#f0f0f0">
+
+    <style>
+
+        .panel{
+        
+            fill:none;
+            stroke:#bcdbf3;
+            stroke-width:7px;
+            rx: 15px;
+            ry: 15px;
+            fill: white;
+        }
+
+        .icon{
+        
+            fill:#f8f9f0;
+            stroke:#bcdbf3;
+            stroke-width:2px;
+            
+        }
+
+        .outputPanel{
+        
+            fill:#fcfcfc;
+            stroke:#bcdbf3;
+            stroke-width:7px;
+            
+        }
+
+        .smallerFont {
+            font-family: Roboto; 
+            font-size: 48px;
+            fill: #2a5a7e;
+
+            lineHeight: 55px;
+        }
+
+        .smallerBoldFont {
+            font-family: Roboto; 
+            font-size: 48px;
+            font-weight: bold;
+            fill: #2a5a7e;
+
+            lineHeight: 55px;
+        }
+
+        .smallerBoldFontCenter {
+            font-family: Roboto; 
+            font-size: 48px;
+            font-weight: bold;
+            fill: #2a5a7e;
+            text-anchor: middle;
+
+            lineHeight: 55px;
+        }
+
+        .smallerFontRight {
+            font-family: Roboto; 
+            font-size: 48px;
+            fill: #2a5a7e;
+            text-anchor: end;
+
+            lineHeight: 55px;
+        }
+
+        .normalFont {
+            font-family: Roboto; 
+            font-size: 60px;
+            fill: #2a5a7e;
+
+            lineHeight: 70px;
+        }
+
+        .normalBoldFont {
+            font-family: Roboto; 
+            font-size: 60px;
+            font-weight: bold;
+            fill: #2a5a7e;
+
+            lineHeight: 70px;
+        }
+
+        .normalBoldFontRight {
+            font-family: Roboto; 
+            font-size: 60px;
+            font-weight: bold;
+            fill: #2a5a7e;
+            text-anchor: end;
+
+            lineHeight: 70px;
+        }
+
+        .normalFontRight {
+            font-family: Roboto; 
+            font-size: 60px;
+            
+            fill: #2a5a7e;
+            text-anchor: end;
+
+            lineHeight: 70px;
+        }
+
+        .normalFontCenter {
+            font-family: Roboto; 
+            font-size: 60px;
+            
+            fill: #2a5a7e;
+            text-anchor: middle;
+
+            lineHeight: 70px;
+        }
+
+
+        .largerFontCenter {
+            font-family: Roboto; 
+            font-size: 72px;
+            font-weight: bold;
+            fill: #2a5a7e;
+            text-anchor: middle;
+
+            text-rendering: optimizeLegibility;
+
+            lineHeight: 85px;
+        }
+
+        .smallerFontCenter {
+            font-family: Roboto; 
+            font-size: 48px;
+            font-weight: bold;
+            fill: #2a5a7e;
+            text-anchor: middle;
+
+            text-rendering: optimizeLegibility;
+
+            lineHeight: 55px;
+        }
+
+
+    </style>
+
+
+    <!-- <rect x="0" y="0" width="2500" height="2200" fill="none" stroke="black" stroke-width="1" /> -->
+
+
+
+
+    <g class="nodePanel" transform="translate(700,70)">
+
+        <rect x="65" y="40" width="1355" height="1460" class="panel" />
+        <!-- out cost  -->
+        <text x="100" y="130" class="normalBoldFont">❮ 0.13%</text>
+
+        <!-- icon -->
+        <rect x="100" y="140" width="210" height="210" class="icon" />
+
+        <!-- metrics -->
+        <g transform="translate(335, 190)">
+
+            <text x="0" y="0" class="smallerFont">IO:</text>
+            <text x="300" y="0" class="smallerFontRight">0.00%</text>
+
+            <text x="0" y="55" class="smallerFont">CPU:</text>
+            <text x="300" y="55" class="smallerFontRight">0.29%</text>
+
+            <text x="0" y="110" class="smallerFont">ROWS:</text>
+            <text x="300" y="110" class="smallerFontRight">0</text>
+        </g>
+
+        <!-- title -->
+        <text x="740" y="420" class="largerFontCenter">Compute Scalar</text>
+
+        <g transform="translate(0,505)">
+            <text x="740" y="0" class="normalFontCenter">[ORCA_Clinical_Event]</text>
+            <text x="740" y="70" class="normalFontCenter">[IX_ORCA_Clinical_Event_EID]</text>
+        </g>
+
+        <g transform="translate(0,645)">
+            <text x="740" y="0" class="smallerBoldFontCenter">Lookup, Ordered, FORWARD</text>
+            <text x="740" y="55" class="smallerBoldFontCenter">Row Store, Partitioned</text>
+        </g>
+
+
+        <!-- properties -->
+
+        <g transform="translate(0,780)">
+
+            <text x="740" y="10" class="smallerFontCenter">PROPERTIES</text>
+
+            <!-- properties -->
+            <text x="100" y="75" class="normalBoldFont">General</text>
+            <text x="920" y="75" class="normalBoldFontRight">Estimated</text>
+            <text x="1370" y="75" class="normalBoldFontRight">Actual</text>
+
+            <text x="100" y="145" class="normalFont">Logical Operation</text>
+            <text x="920" y="145" class="normalFontRight">0.00</text>
+            <text x="1370" y="145" class="normalFontRight">Compute Scalar</text>
+
+        </g>
+
+
+        <!-- skipeed nodes -->
+        <g transform="translate(1550,60)">
+            <rect x="0" y="0" width="100" height="100" class="icon" />
+            <rect x="0" y="120" width="100" height="100" class="icon" />
+            <rect x="0" y="240" width="100" height="100" class="icon" />
+            <rect x="0" y="360" width="100" height="100" class="icon" />
+
+            <rect x="120" y="0" width="100" height="100" class="icon" />
+            <rect x="120" y="120" width="100" height="100" class="icon" />
+            <rect x="120" y="240" width="100" height="100" class="icon" />
+            <rect x="120" y="360" width="100" height="100" class="icon" />
+
+            <line x1="240" y1="0" x2="240" y2="1300" class="panel"/>
+
+        </g>
+
+        <!-- incoming -->
+        <text x="2050" y="130" class="normalBoldFontRight">16.98% ❯</text>
+
+
+        <path d="M 65,140 l-45,0 q -45,0,-45,45 l0,1240 q0,45,45,45 l45,0" class="outputPanel"/>
+
+        <path d="M 65,140 l-650,0 q -45,0,-45,45 l0,1240 q0,45,45,45 l650,0" class="outputPanel"/>
+
+        <circle cx="20" cy="185" r="35" class="outputPanel"/>
+
+        <!-- <path d="M40,100 l50,50 l0,-30 l70,0 l0,-40 l-70,0 l0,-30 z" fill="red"/> -->
+
+        <path d="M 1420,70 l45,0 q 45,0,45,45 l0,1300 q0,45,-45,45 l-45,0" class="outputPanel"/>
+
+
+        <text x="25" y="800" class="smallerBoldFont" writing-mode="tb" rotate="-90" textLength="500" text-anchor="middle">OUTPUT</text>
+
+        <text x="1470" y="800" class="smallerBoldFont" writing-mode="tb" rotate="-90" textLength="1100" text-anchor="middle">OUTER REFERENCES</text>
+
+    </g>
+
+
+
+</svg>
