@@ -9,6 +9,7 @@ export const connectorMargin = 50;
 
 export default class GraphPanelLayout extends SurfacePanelLayout {
 
+    
     public nodeLayouts: { [id: string]: IGraphNode } = {};
 
     private nodeProviders: { [id: string]: IGraphNode } = {};
@@ -16,7 +17,8 @@ export default class GraphPanelLayout extends SurfacePanelLayout {
     private rowCount: number;
 
 
-    constructor(title: string, alignment: "left" | "right", public rootNode: IGraphNode) {
+
+    constructor(title: string, alignment: "left" | "right", public rootNode?: IGraphNode) {
         super(null, title, alignment, 0, 0);
 
         if (rootNode) {
@@ -26,6 +28,7 @@ export default class GraphPanelLayout extends SurfacePanelLayout {
             this.rowCount = max.maxRow;
 
             this.applyMatrix(rootNode, max.maxColumn);
+
         }
 
 

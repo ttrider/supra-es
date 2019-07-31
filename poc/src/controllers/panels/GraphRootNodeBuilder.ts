@@ -50,13 +50,18 @@ export class GraphRootNodeBuilder<TSection> {
         };
         return this;
     }
-    public setSubtitle(subtitle: string[]) {
+    public setSubtitle(subtitle?: string[] | string) {
         // TODO
         return this;
     }
-    public setWeights(absolute: number, relative: number) {
-        this.absoluteWeight = absolute;
-        this.relativeWeight = relative;
+    public setWeights(absolute?: number, relative?: number) {
+        if (absolute !== undefined) {
+            this.absoluteWeight = absolute;
+        }
+
+        if (relative !== undefined) {
+            this.relativeWeight = relative;
+        }
         return this;
     }
     public setProperties(properties: PropertiesLayout) {

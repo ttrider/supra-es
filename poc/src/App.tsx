@@ -1,60 +1,34 @@
 import * as React from 'react';
 import './App.css';
 
+import { parse, Plan, PlanStatement } from "supra-sqlplan";
 import Surface from './components/Surface';
 import SurfaceController from './controllers/SurfaceController';
-import { createSections, createSurfaceView, createSurfaceViewCombined, createSurfaceViewCompact } from './es/canvasFactory';
-import createNodeGraph, { NodeGraph } from './es/nodeGraphFactory';
-import example00 from "./examples/example00";
-import createCanvasLayout from './layout/canvas-layout';
-import { ICanvasLayout } from './layout/layout';
-import { createCanvas } from './model/canvas-model';
-import { ICanvas } from './model/model';
+import complexPlan from "./examples/complexPlan";
+import { createDefaultView, createSections } from './sql/graphFactory';
 
 class App extends React.Component {
 
-  public surfaceContext: SurfaceController<NodeGraph>;
-  public canvas: ICanvas;
-  public canvasLayout: ICanvasLayout;
+  public surfaceContext: SurfaceController<Plan, PlanStatement>;
 
   constructor() {
     super({});
 
-    if (example00.profile === undefined) {
-      throw new Error("profile is missing");
-    }
+    const plan = parse("foo", complexPlan);
 
-    this.canvas = createCanvas(example00.profile);
-
-    const nodeG = createNodeGraph(example00.profile);
-    // tslint:disable-next-line:no-console
-    console.info(nodeG);
-
-    this.canvasLayout = createCanvasLayout(this.canvas).getCanvasLayout();
-
-    this.surfaceContext = new SurfaceController<NodeGraph>()
+    this.surfaceContext = new SurfaceController<Plan, PlanStatement>()
 
       .registerSectionFactory((d) => createSections(d))
 
       .registerViewFactory({
         id: "all",
         title: "All",
-        createView: (d) => createSurfaceView(d)
-      })
-      .registerViewFactory({
-        id: "compact",
-        title: "Compact",
-        createView: (d) => createSurfaceViewCompact(d)
-      })
-      .registerViewFactory({
-        id: "combined",
-        title: "Combined",
-        createView: (d) => createSurfaceViewCombined(d)
+        createView: (d) => createDefaultView(d)
       })
       ;
 
 
-    this.surfaceContext.data = nodeG;
+    this.surfaceContext.data = plan;
 
   }
 
