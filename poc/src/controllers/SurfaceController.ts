@@ -7,9 +7,10 @@ import ISize from 'src/models/ISize';
 import ISurfaceViewFactory from "../models/ISurfaceViewFactory";
 import PanelTitleLayout from './panels/PanelTitleLayout';
 import SectionSet from './SectionSet';
-import SurfaceView from './SurfaceView';
+// import SurfaceView from './SurfaceView';
 import SurfaceViewFactory from './SurfaceViewFactory';
 
+// tslint:disable:no-console
 
 
 export default class SurfaceController<T, TSection = T> implements ISurfaceController {
@@ -88,18 +89,33 @@ export default class SurfaceController<T, TSection = T> implements ISurfaceContr
 
     @observable public views: Array<SurfaceViewFactory<T, TSection>> = [];
 
-    @computed public get currentView() {
+    @computed private get currentView() {
+        const selectedViewFactory = this.selectedViewFactory;
+        const selectedSectionsData = this.selectedSectionsData;
 
-        // if (this.dataModel) {
-        //     for (const viewFactory of this.views) {
-        //         if (viewFactory.selected) {
+        if (this.dataModel && selectedViewFactory && selectedSectionsData) {
+            return selectedViewFactory.createView(this.dataModel, selectedSectionsData);
+        }
+        return;
+    }
 
-        //             return viewFactory.createView(this.dataModel);
-        //         }
-        //     }
-        // }
-        // return;
-        return this.currentViewInfo;
+    @computed public get selectedViewFactory() {
+        console.info("selectedViewFactory");
+        for (const viewFactory of this.views) {
+            if (viewFactory.selected) {
+                return viewFactory;
+            }
+        }
+        return;
+    }
+
+    @computed public get selectedSectionsData() {
+        console.info("selectedSectionsData");
+        const selected = this.sections
+            ? this.sections.selectedSections.map(s => s.data)
+            : [];
+
+        return selected;
     }
 
     @computed public get data() {
@@ -118,6 +134,7 @@ export default class SurfaceController<T, TSection = T> implements ISurfaceContr
     }
 
     @computed public get sections() {
+        console.info("sections");
 
         if (this.dataModel) {
             if (!this.sectionSet) {
@@ -131,13 +148,30 @@ export default class SurfaceController<T, TSection = T> implements ISurfaceContr
 
     @observable private dataModel?: T;
     @observable private sectionSet?: SectionSet<TSection>;
-    @observable private currentViewInfo?: SurfaceView;
+    // @observable private currentViewInfo?: SurfaceView;
+
+    
 
     private sectionFactory: (data: T) => SectionSet<TSection>;
 
     constructor() {
 
-        autorun(()=>this.autorunHandler(this.dataModel, ));
+        autorun(() => {
+
+            // const selectedViewFactory = this.selectedViewFactory;
+            // const selectedSectionsData = this.selectedSectionsData;
+
+            // if (this.dataModel && selectedViewFactory && selectedSectionsData) {
+
+
+            //     this.currentViewInfo = selectedViewFactory.createView(this.dataModel, selectedSectionsData);
+            //     // this.autorunHandler(this.dataModel, selectedViewFactory)
+
+            // }
+
+
+
+        });
 
         // autorun(() => {
 
@@ -277,22 +311,13 @@ export default class SurfaceController<T, TSection = T> implements ISurfaceContr
         }
     }
 
-    @action private autorunHandler() {
-        if (this.dataModel) {
-            for (const viewFactory of this.views) {
-                if (viewFactory.selected) {
+    // @action private autorunHandler(dataModel: T, selectedViewFactory: SurfaceViewFactory<T, TSection>) {
 
-                    const selected = this.sections
-                        ? this.sections.selectedSections.map(s => s.data)
-                        : [];
 
-                    this.currentViewInfo = viewFactory.createView(this.dataModel, selected);
-                    return;
-                }
-            }
-        }
 
-    }
+    //     this.currentViewInfo = selectedViewFactory.createView(dataModel, selected);
+
+    // }
 
 }
 

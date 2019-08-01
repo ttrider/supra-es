@@ -7,16 +7,18 @@ export default class InputCostLayout extends Layout {
     public connectors: TextLayout[];
     constructor(public children: SurfaceGraphNode[]) {
         super({}, { top: styles.nodeInputCostPanel.margin.top });
+
+        let width = 0;
+
         this.connectors = this.children.map((child, index) => {
             const title = new TextLayout(formatCost(child.cost) + "%", styles.nodeInputCost);
             title.id = child.id;
             title.y = index * styles.nodeInputCost.lineHeight;
-            this.width = Math.max(this.width, title.outerWidth);
+            width = Math.max(width, title.outerWidth);
             return title;
         });
-        for (const item of this.connectors) {
-            item.width = this.width;
-        }
+        
         this.height = this.children.length * styles.nodeInputCost.lineHeight;
+        this.width = width;
     }
 }
