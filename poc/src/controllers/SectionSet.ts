@@ -10,14 +10,14 @@ export default class SectionSet<TSection> implements ISectionSetInfo {
     // #region Properties (2)
 
     @observable public sectionGroups: Array<SectionGroup<TSection>>;
-    
+
 
     // #endregion Properties (2)
 
     // #region Constructors (1)
 
     constructor(sectionGroups: Array<SectionGroup<TSection>>) {
-        
+
         this.sectionGroups = sectionGroups.map(item => {
             item.sectionSet = this;
             return item;
@@ -26,7 +26,7 @@ export default class SectionSet<TSection> implements ISectionSetInfo {
         // ensure that we have at least one section selected
 
         autorun(() => {
-            
+
             let hasSelected = false;
             let top = 0;
 
@@ -113,7 +113,7 @@ export default class SectionSet<TSection> implements ISectionSetInfo {
     @action public selectFirstSection() {
         for (const group of this.sectionGroups) {
             if (group.sections.length > 0) {
-                 group.sections[0].selected = true;
+                group.sections[0].selected = true;
                 return;
             }
         }

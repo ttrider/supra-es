@@ -8,6 +8,8 @@ import SectionGroup from './SectionGroup';
 
 export default class Section<TSection> implements ISectionInfo {
 
+
+
     @observable public rootNode: SurfaceGraphRootNode<TSection>;
 
     public surfaceGroup: SectionGroup<TSection>;
@@ -26,10 +28,13 @@ export default class Section<TSection> implements ISectionInfo {
         return formatCost(this.relativeWeight);
     }
 
+    @computed public get data() {
+        return this.rootNode.data;
+    }
+
     @computed public get selectorHeight() {
         return this.rootNode.height;
     }
-
 
     @observable public selectorTop: number = 0;
 

@@ -151,7 +151,7 @@ export function createSurfaceView(nodeGraph: NodeGraph) {
 
     const graph = buildRootNode(nodeGraph);
 
-    const graphPanel = new GraphPanelLayout("Plan", "left", graph);
+    const graphPanel = new GraphPanelLayout("Plan", "left", [graph]);
     const storagePanel = new StoragePanelLayout(graphPanel);
     const statementPanel = new TextPanelLayout(storagePanel, "Statement");
     const indexPanel = new TextPanelLayout(statementPanel, "Index");
@@ -167,7 +167,7 @@ export function createSurfaceViewCompact(nodeGraph: NodeGraph) {
 
     const view = new SurfaceView(nodeGraph);
 
-    const graphPanel = new GraphPanelLayout("Plan", "left", graph);
+    const graphPanel = new GraphPanelLayout("Plan", "left", [graph]);
     const storagePanel = new StoragePanelLayout(graphPanel);
     const statementPanel = new TextPanelLayout(storagePanel, "Statement");
 
@@ -180,11 +180,11 @@ export function createSurfaceViewCompact(nodeGraph: NodeGraph) {
 
 export function createSurfaceViewCombined(nodeGraph: NodeGraph) {
 
-    const view = new SurfaceView(nodeGraph);
+    const view = new SurfaceView(nodeGraph); 
 
     const graph = buildRootNode(nodeGraph);
 
-    const graphPanel = new GraphPanelLayout("Plan", "left", graph);
+    const graphPanel = new GraphPanelLayout("Plan", "left", [graph]);
     const storagePanel = new StoragePanelLayout(graphPanel);
     const indexPanel = new TextPanelLayout(storagePanel, "Index");
 

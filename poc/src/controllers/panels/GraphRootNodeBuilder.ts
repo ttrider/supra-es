@@ -41,7 +41,7 @@ export class GraphRootNodeBuilder<TSection> {
         this.panelLayout = new Layout();
         this.panelLayout.marginBottom = styles.node.padding.bottom;
     }
-    public setTitle(title: string) {
+    public setTitle(title: string = "") {
         this.title = new TextLayout(title, styles.nodeTitle);
         this.title.marginLeft = styles.node.padding.left;
         this.title.marginRight = styles.node.padding.right;

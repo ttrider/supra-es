@@ -2,9 +2,9 @@ import { action, observable } from 'mobx';
 import ISelectable from "src/models/ISelectable";
 import ISurfaceViewFactory from '../models/ISurfaceViewFactory';
 import SurfaceController from './SurfaceController';
-import SurfaceView from './SurfaceView';
+// import SurfaceView from './SurfaceView';
 
-export default class SurfaceViewFactory<T, TSection> implements ISurfaceViewFactory<T>, ISelectable {
+export default class SurfaceViewFactory<T, TSection> implements ISurfaceViewFactory<T, TSection>, ISelectable {
 
     public get id() {
         return this.properties.id;
@@ -16,24 +16,26 @@ export default class SurfaceViewFactory<T, TSection> implements ISurfaceViewFact
     @observable public selected: boolean = false;
 
 
-    private view?: SurfaceView;
+    // private view?: SurfaceView;
 
-    constructor(private owner: SurfaceController<T, TSection>, private properties: ISurfaceViewFactory<T>) {
+    constructor(private owner: SurfaceController<T, TSection>, private properties: ISurfaceViewFactory<T, TSection>) {
     }
 
-    public createView(data: T) {
+    public createView(data: T, selected: TSection[]) {
 
-        if (this.view !== undefined) {
-            return this.view;
-        }
-        this.view = this.properties.createView(data);
+        // if (this.view !== undefined) {
+        //     return this.view;
+        // }
+        // this.view = this.properties.createView(data, selected);
 
-        // add additional properties here
+        // // add additional properties here
 
-        return this.view;
+        // return this.view;
+
+        return this.properties.createView(data, selected);
     }
     public resetView() {
-        this.view = undefined;
+        // this.view = undefined;
     }
 
     public select = (e?: React.MouseEvent) => {

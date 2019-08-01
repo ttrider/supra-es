@@ -4,7 +4,7 @@ import './App.css';
 import { parse, Plan, PlanStatement } from "supra-sqlplan";
 import Surface from './components/Surface';
 import SurfaceController from './controllers/SurfaceController';
-import complexPlan from "./examples/complexPlan";
+import complexPlan from "./examples/sql";
 import { createDefaultView, createSections } from './sql/graphFactory';
 
 class App extends React.Component {
@@ -23,7 +23,12 @@ class App extends React.Component {
       .registerViewFactory({
         id: "all",
         title: "All",
-        createView: (d) => createDefaultView(d)
+        createView: (d, selected) => createDefaultView(d, selected)
+      })
+      .registerViewFactory({
+        id: "all2",
+        title: "All2",
+        createView: (d, selected) => createDefaultView(d, selected)
       })
       ;
 

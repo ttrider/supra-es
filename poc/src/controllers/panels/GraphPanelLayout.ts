@@ -18,17 +18,26 @@ export default class GraphPanelLayout extends SurfacePanelLayout {
 
 
 
-    constructor(title: string, alignment: "left" | "right", public rootNode?: IGraphNode) {
+    constructor(title: string, alignment: "left" | "right", public sections: IGraphNode[]) {
         super(null, title, alignment, 0, 0);
 
-        if (rootNode) {
+        let maxRow = 0;
+        let maxColumn = 0;
 
-            const max = this.calculateMatrix(rootNode, 0, 0);
-            this.columnCount = max.maxColumn + 1;
-            this.rowCount = max.maxRow;
+        for (const childNode of sections) {
+            const max = this.calculateMatrix(childNode, 0, maxRow);
 
-            this.applyMatrix(rootNode, max.maxColumn);
+            if (max.maxColumn > maxColumn) {
+                maxColumn = max.maxColumn;
+            }
+            maxRow = max.maxRow;
+        }
 
+        this.columnCount = maxColumn + 1;
+        this.rowCount = maxRow;
+
+        for (const childNode of sections) {
+            this.applyMatrix(childNode, maxColumn);
         }
 
 

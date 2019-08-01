@@ -137,25 +137,50 @@ export default class SurfaceController<T, TSection = T> implements ISurfaceContr
 
     constructor() {
 
-        autorun(() => {
+        autorun(()=>this.autorunHandler(this.dataModel, ));
 
-            let cv: SurfaceView | undefined;
+        // autorun(() => {
 
-            if (this.dataModel) {
-                for (const viewFactory of this.views) {
-                    if (viewFactory.selected) {
+        //     // let cv: SurfaceView | undefined;
 
-                        cv = viewFactory.createView(this.dataModel);
-                    }
-                }
-            }
-            this.currentViewInfo = cv;
+        //     // if (this.dataModel) {
+        //     //     for (const viewFactory of this.views) {
+        //     //         if (viewFactory.selected) {
 
-        });
+        //     //             const selected = this.sections
+        //     //                 ? this.sections.selectedSections.map(s => s.data)
+        //     //                 : [];
+
+        //     //             cv = viewFactory.createView(this.dataModel, selected);
+        //     //             break;
+        //     //         }
+        //     //     }
+        //     // }
+        //     // this.currentViewInfo = cv;
+
+
+
+
+        //     if (this.dataModel) {
+        //         for (const viewFactory of this.views) {
+        //             if (viewFactory.selected) {
+
+        //                 const selected = this.sections
+        //                     ? this.sections.selectedSections.map(s => s.data)
+        //                     : [];
+
+        //                 this.currentViewInfo = viewFactory.createView(this.dataModel, selected);
+        //                 return;
+        //             }
+        //         }
+        //     }
+
+        // });
 
 
 
     }
+
 
 
 
@@ -164,7 +189,7 @@ export default class SurfaceController<T, TSection = T> implements ISurfaceContr
         return this;
     }
 
-    @action public registerViewFactory(factory: ISurfaceViewFactory<T>) {
+    @action public registerViewFactory(factory: ISurfaceViewFactory<T, TSection>) {
 
         const vf = new SurfaceViewFactory(this, factory)
         this.views.push(vf);
@@ -251,6 +276,24 @@ export default class SurfaceController<T, TSection = T> implements ISurfaceContr
             }
         }
     }
+
+    @action private autorunHandler() {
+        if (this.dataModel) {
+            for (const viewFactory of this.views) {
+                if (viewFactory.selected) {
+
+                    const selected = this.sections
+                        ? this.sections.selectedSections.map(s => s.data)
+                        : [];
+
+                    this.currentViewInfo = viewFactory.createView(this.dataModel, selected);
+                    return;
+                }
+            }
+        }
+
+    }
+
 }
 
 
