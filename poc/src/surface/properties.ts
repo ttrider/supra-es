@@ -1,7 +1,7 @@
 import { action, computed } from 'mobx';
 import Layout from 'src/controllers/layout/Layout';
 import { measureText } from '../helpers/measure-text';
-import { ISurfacePropertyRow } from './ISurfacePropertyRow';
+import { ISurfacePropertyRow } from '../models/ISurfacePropertyRow';
 import styles from './styles';
 
 // tslint:disable:max-classes-per-file

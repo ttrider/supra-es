@@ -36,7 +36,7 @@ export default class SectionSelector extends SurfaceComponent {
                                             <g key={subindex} transform={`translate(0, ${subitem.selectorTop})`} className="selectorItem" onClick={subitem.select}>
 
                                                 <SelectorCheckbox state={subitem.selected} onClick={subitem.toggle} />
-                                                <text x="0" y="0">{index.toString() + " - " + subitem.cost}%</text>
+                                                <text x="0" y="0">{subitem.cost}%</text>
                                             </g>);
                                     })}
 
