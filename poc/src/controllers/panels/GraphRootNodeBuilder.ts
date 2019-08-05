@@ -2,7 +2,7 @@ import AttachedNodesLayout from "src/controllers/layout/AttachedNodesLayout";
 import InputCostLayout from "src/controllers/layout/InputCostLayout";
 import Layout from 'src/controllers/layout/Layout';
 import PropertiesLayout from 'src/controllers/layout/PropertiesLayout';
-import styles from 'src/surface/styles';
+import styles from 'src/controllers/styles';
 import TextLayout from '../layout/TextLayout';
 import SurfaceGraphNode from './GraphNode';
 import SurfaceGraphRootNode from './GraphRootNode';

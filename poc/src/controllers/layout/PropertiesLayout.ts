@@ -1,5 +1,5 @@
+import styles from 'src/controllers/styles';
 import { forEachItem, ItemSet } from 'src/helpers';
-import styles from 'src/surface/styles';
 import Layout from './Layout';
 import TextLayout from './TextLayout';
 

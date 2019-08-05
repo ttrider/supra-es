@@ -1,5 +1,5 @@
 import SurfaceGraphNode from 'src/controllers/panels/GraphNode';
-import styles from 'src/surface/styles';
+import styles from 'src/controllers/styles';
 import Layout from './Layout';
 
 export default class AttachedNodeLayout extends Layout {

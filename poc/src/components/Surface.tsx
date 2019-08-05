@@ -4,7 +4,7 @@ import React from 'react';
 import injectSheet from 'react-jss';
 import IScrollController from 'src/models/IScrollController';
 import ISurfaceController from 'src/models/ISurfaceController';
-import styles from "../surface/styles";
+import styles from "../controllers/styles";
 import ActionBar from './actionbar/ActionBar';
 import SurfacePanel from './panels/SurfacePanel';
 import ScrollComponent from './ScrollContainer';

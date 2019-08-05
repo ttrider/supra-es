@@ -1,7 +1,7 @@
 import { action, autorun, computed, observable } from 'mobx';
 
+import styles from 'src/controllers/styles';
 import ISectionSetInfo from 'src/models/ISectionSetInfo';
-import styles from 'src/surface/styles';
 import SurfaceGraphRootNode from './panels/GraphRootNode';
 import Section from './Section';
 import SectionGroup from './SectionGroup';

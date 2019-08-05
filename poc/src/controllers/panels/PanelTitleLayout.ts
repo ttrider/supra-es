@@ -1,6 +1,6 @@
 import { autorun } from 'mobx';
+import styles from 'src/controllers/styles';
 import ISurfaceController from 'src/models/ISurfaceController';
-import styles from 'src/surface/styles';
 import TextLayout from '../layout/TextLayout';
 import SurfacePanelLayout from './SurfacePanelLayout';
 

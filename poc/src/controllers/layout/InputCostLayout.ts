@@ -1,6 +1,6 @@
 import SurfaceGraphNode from 'src/controllers/panels/GraphNode';
+import styles from 'src/controllers/styles';
 import { formatCost } from 'src/helpers/formatter';
-import styles from 'src/surface/styles';
 import Layout from './Layout';
 import TextLayout from './TextLayout';
 export default class InputCostLayout extends Layout {

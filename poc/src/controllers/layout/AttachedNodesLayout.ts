@@ -1,7 +1,7 @@
 import { action } from 'mobx';
 import SurfaceGraphNode from 'src/controllers/panels/GraphNode';
+import styles from 'src/controllers/styles';
 import { forEachItem } from 'src/helpers';
-import styles from 'src/surface/styles';
 import AttachedNodeLayout from "./AttachedNodeLayout";
 import Layout from './Layout';
 export default class AttachedNodesLayout extends Layout {

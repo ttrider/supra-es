@@ -1,6 +1,6 @@
 import React from 'react';
 import ISurfaceController from 'src/models/ISurfaceController';
-import styles from "../surface/styles";
+import styles from "../controllers/styles";
 
 export declare type Classes = { [name in keyof typeof styles]: string };
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import ISurfaceController from 'src/models/ISurfaceController';
-import NoiseWhite from '../surface/noise.white.png';
+import NoiseWhite from './noise.white.png';
 import SurfaceComponent from './SurfaceComponent';
 import { Classes } from './SurfaceContext';
 
