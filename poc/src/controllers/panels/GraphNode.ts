@@ -82,10 +82,10 @@ export default class SurfaceGraphNode<T = any> extends Layout implements IGraphN
         this.properties.y = this.propertiesTitle.outerBottom;
 
         this.panelLayout.width = Math.max(
-            this.iconLayout.outerRight,
-            this.title.outerRight,
-            this.propertiesTitle.outerRight,
-            (propertiesExpanded ? this.properties.outerRight : 0)
+            this.iconLayout.outerWidth,
+            this.title.outerWidth,
+            this.propertiesTitle.outerWidth,
+            (propertiesExpanded ? this.properties.outerWidth : 0)
         );
 
         this.panelLayout.height =

@@ -5,7 +5,6 @@ import canvasStyles from "../styles/canvas";
 import { IConnector, IConnectorsLayout, ILayoutItemProvider } from './layout';
 
 
-
 export class ConnectorsLayout implements ILayoutItemProvider<IConnectorsLayout> {
 
     public height: number;
