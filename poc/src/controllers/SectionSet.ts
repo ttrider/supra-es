@@ -1,12 +1,14 @@
 import { action, autorun, computed, observable } from 'mobx';
 
 import styles from 'src/controllers/styles';
+import IPanelLocation from 'src/models/IPanelRect';
 import ISectionSetInfo from 'src/models/ISectionSetInfo';
 import SurfaceGraphRootNode from './panels/GraphRootNode';
 import Section from './Section';
 import SectionGroup from './SectionGroup';
 
-export default class SectionSet<TSection> implements ISectionSetInfo {
+export default class SectionSet<TSection> implements ISectionSetInfo, IPanelLocation {
+
     // #region Properties (2)
 
     @observable public sectionGroups: Array<SectionGroup<TSection>>;
@@ -59,7 +61,7 @@ export default class SectionSet<TSection> implements ISectionSetInfo {
         }, 0);
     }
 
-    @computed public get sectionPanelWidth() {
+    @computed public get panelRight() {
         let width = 0;
         for (const sectionGroup of this.sectionGroups) {
             for (const section of sectionGroup.sections) {
@@ -67,6 +69,16 @@ export default class SectionSet<TSection> implements ISectionSetInfo {
             }
         }
         return width;
+    }
+    @computed public get panelLeft() {
+        return 0;
+    }
+    @computed public get panelTop() {
+        return 0;
+    }
+
+    @computed public get panelBottom() {
+        return this.panelHeight;
     }
 
     @computed public get selectedAbsoluteWeight() {
@@ -94,7 +106,7 @@ export default class SectionSet<TSection> implements ISectionSetInfo {
         }
     }
 
-    @computed public get selectorHeight() {
+    @computed public get panelHeight() {
         let height = 0;
 
         for (const sectionGroup of this.sectionGroups) {

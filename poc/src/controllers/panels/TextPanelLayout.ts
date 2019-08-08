@@ -2,9 +2,9 @@ import SurfacePanelLayout from './SurfacePanelLayout';
 
 export default class TextPanelLayout extends SurfacePanelLayout {
 
-    constructor(prevPanel: SurfacePanelLayout | null, title:string) {
+    constructor(title:string) {
 
-        super(prevPanel, title, "left", 1500, 4000);
+        super(title, "left", 1500, 4000);
 
     }
 }

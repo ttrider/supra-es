@@ -30,7 +30,7 @@ export default class SectionPanel extends SurfaceComponent {
                                     return (<SectionNode key={"node_" + subitem.id} section={subitem} />);
                                 })}
 
-                                <rect key={"rect" + index.toString()} x="0" y={item.selectorHeight} width={sectionSet.sectionPanelWidth} className="separator" />
+                                <rect key={"rect" + index.toString()} x="0" y={item.selectorHeight} width={sectionSet.panelRight} className="separator" />
 
                             </g>);
 

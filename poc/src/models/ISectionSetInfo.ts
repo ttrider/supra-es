@@ -4,7 +4,7 @@ export default interface ISectionSetInfo {
     // #region Properties (5)
 
     sectionGroups: ISectionGroupInfo[];
-    sectionPanelWidth: number;
+    panelRight: number;
     selectAll: (e?: React.MouseEvent) => void;
     selectorHeaderTitle: string;
     selectorWidth: number;

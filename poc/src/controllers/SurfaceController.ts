@@ -70,7 +70,7 @@ export default class SurfaceController<T, TSection = T> implements ISurfaceContr
             size.width += item.width;
 
             return size;
-        }, { width: 0, height: this.sections ? this.sections.selectorHeight : 0 } as ISize);
+        }, { width: 0, height: this.sections ? this.sections.panelHeight : 0 } as ISize);
 
         return sz;
     }
@@ -92,15 +92,20 @@ export default class SurfaceController<T, TSection = T> implements ISurfaceContr
     @computed private get currentView() {
         const selectedViewFactory = this.selectedViewFactory;
         const selectedSectionsData = this.selectedSectionsData;
+        const sections = this.sections;
 
-        if (this.dataModel && selectedViewFactory && selectedSectionsData) {
-            return selectedViewFactory.createView(this.dataModel, selectedSectionsData);
+        if (this.dataModel && selectedViewFactory && selectedSectionsData && sections) {
+            const view = selectedViewFactory.createView(this.dataModel, selectedSectionsData);
+
+            view.panels[0].initialize(0, sections);
+
+            return view;
         }
         return;
     }
 
     @computed public get selectedViewFactory() {
-        console.info("selectedViewFactory");
+        
         for (const viewFactory of this.views) {
             if (viewFactory.selected) {
                 return viewFactory;
@@ -110,7 +115,7 @@ export default class SurfaceController<T, TSection = T> implements ISurfaceContr
     }
 
     @computed public get selectedSectionsData() {
-        console.info("selectedSectionsData");
+        
         const selected = this.sections
             ? this.sections.selectedSections.map(s => s.data)
             : [];

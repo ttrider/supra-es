@@ -1,4 +1,3 @@
-
 import { propertiesBuilder } from 'src/controllers/layout/PropertiesLayout';
 import SurfaceGraphNode from 'src/controllers/panels/GraphNode';
 import GraphPanelLayout from 'src/controllers/panels/GraphPanelLayout';
@@ -14,7 +13,7 @@ import { NodeGraph } from "./nodeGraphFactory";
 // function createSurfaceSection(nodeGraph: NodeGraph, surface?: s.Surface) {
 
 //     surface = surface ? surface : new s.Surface();
-
+ 
 //     if (nodeGraph === undefined) { return surface; }
 
 //     const sectionGroup = surface.createSectionGroup();
@@ -151,14 +150,11 @@ export function createSurfaceView(nodeGraph: NodeGraph) {
 
     const graph = buildRootNode(nodeGraph);
 
-    const graphPanel = new GraphPanelLayout("Plan", "left", [graph]);
-    const storagePanel = new StoragePanelLayout(graphPanel);
-    const statementPanel = new TextPanelLayout(storagePanel, "Statement");
-    const indexPanel = new TextPanelLayout(statementPanel, "Index");
-
-    view.panels.push(graphPanel, storagePanel, statementPanel,indexPanel);
-
-    return view;
+    return view.addPanel(
+        new GraphPanelLayout("Plan", "left", [graph]),
+        new StoragePanelLayout(),
+        new TextPanelLayout("Statement"),
+        new TextPanelLayout("Index"));
 }
 
 export function createSurfaceViewCompact(nodeGraph: NodeGraph) {
@@ -167,14 +163,10 @@ export function createSurfaceViewCompact(nodeGraph: NodeGraph) {
 
     const view = new SurfaceView(nodeGraph);
 
-    const graphPanel = new GraphPanelLayout("Plan", "left", [graph]);
-    const storagePanel = new StoragePanelLayout(graphPanel);
-    const statementPanel = new TextPanelLayout(storagePanel, "Statement");
-
-    view.panels.push(graphPanel, storagePanel, statementPanel);
-
-
-    return view;
+    return view.addPanel(
+        new GraphPanelLayout("Plan", "left", [graph]),
+        new StoragePanelLayout(),
+        new TextPanelLayout("Statement"));
 }
 
 
@@ -184,13 +176,10 @@ export function createSurfaceViewCombined(nodeGraph: NodeGraph) {
 
     const graph = buildRootNode(nodeGraph);
 
-    const graphPanel = new GraphPanelLayout("Plan", "left", [graph]);
-    const storagePanel = new StoragePanelLayout(graphPanel);
-    const indexPanel = new TextPanelLayout(storagePanel, "Index");
-
-    view.panels.push(graphPanel, storagePanel, indexPanel);
-
-    return view;
+    return view.addPanel(
+        new GraphPanelLayout("Plan", "left", [graph]),
+        new StoragePanelLayout(),
+        new TextPanelLayout("Index"));
 }
 
 export function createSections(nodeGraph: NodeGraph) {

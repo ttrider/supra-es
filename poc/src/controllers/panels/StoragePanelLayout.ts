@@ -3,9 +3,9 @@ import SurfacePanelLayout from './SurfacePanelLayout';
 export default class StoragePanelLayout extends SurfacePanelLayout {
 
 
-    constructor(prevPanel: SurfacePanelLayout | null) {
+    constructor() {
 
-        super(prevPanel, "Storage", "right", 1500, 4000);
+        super("Storage", "right", 1500, 4000);
 
     }
 

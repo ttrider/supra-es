@@ -19,7 +19,7 @@ export default class GraphPanelLayout extends SurfacePanelLayout {
 
 
     constructor(title: string, alignment: "left" | "right", public sections: IGraphNode[]) {
-        super(null, title, alignment, 0, 0);
+        super(title, alignment, 0, 0);
 
         let maxRow = 0;
         let maxColumn = 0;

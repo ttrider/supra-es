@@ -41,16 +41,11 @@ export function createDefaultView(plan: Plan, selected: PlanStatement[]) {
         return nodes;
     }, []);
 
-    const graphPanel = new GraphPanelLayout("Plan", "left", nodeSet);
-    const storagePanel = new StoragePanelLayout(graphPanel);
-    const statementPanel = new TextPanelLayout(storagePanel, "Statement");
-    const indexPanel = new TextPanelLayout(statementPanel, "Index");
-
-    view.panels.push(graphPanel, storagePanel, statementPanel, indexPanel);
-
-    return view;
-
-
+    return view.addPanel(
+        new GraphPanelLayout("Plan", "left", nodeSet),
+        new StoragePanelLayout(),
+        new TextPanelLayout("Statement"),
+        new TextPanelLayout("Index"));
 }
 
 function buildNode(node: PlanNode): SurfaceGraphNode<PlanNode> {
