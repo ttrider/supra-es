@@ -6,7 +6,7 @@ import PropertiesLayout from 'src/controllers/layout/PropertiesLayout';
 import styles from 'src/controllers/styles';
 import IGraphNode from 'src/models/IGraphNode';
 import TextLayout from '../layout/TextLayout';
-import { GraphRootNodeBuilder } from './GraphRootNodeBuilder';
+import { GraphNodeBuilder } from './GraphNodeBuilder';
 
 
 
@@ -39,7 +39,7 @@ export default class SurfaceGraphNode<T = any> extends Layout implements IGraphN
 
     @observable public propertiesExpanded: boolean = false;
 
-    constructor(builder: GraphRootNodeBuilder<T>) {
+    constructor(builder: GraphNodeBuilder<T>) {
         super();
         this.id = `node-${SurfaceGraphNode.lastNodeId++}`;
 

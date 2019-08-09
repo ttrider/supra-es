@@ -72,6 +72,17 @@ export default class Layout {
 
     public style: React.CSSProperties | undefined;
 
+    public get outline() {
+        return {
+            x: this.outerLeft,
+            y: this.outerTop,
+            width: this.outerWidth,
+            height: this.outerHeight,
+            style: this.style
+        }
+    }
+
+
     public get client() {
         return {
             x: this.clientLeft,

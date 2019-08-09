@@ -1,7 +1,7 @@
 import { propertiesBuilder } from 'src/controllers/layout/PropertiesLayout';
 import SurfaceGraphNode from 'src/controllers/panels/GraphNode';
+import { graphRootNodeBuilder } from 'src/controllers/panels/GraphNodeBuilder';
 import GraphPanelLayout from 'src/controllers/panels/GraphPanelLayout';
-import { graphRootNodeBuilder } from 'src/controllers/panels/GraphRootNodeBuilder';
 import StoragePanelLayout from 'src/controllers/panels/StoragePanelLayout';
 import TextPanelLayout from 'src/controllers/panels/TextPanelLayout';
 import { createSectionSet } from 'src/controllers/SectionSet';

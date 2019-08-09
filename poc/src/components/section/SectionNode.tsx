@@ -16,7 +16,7 @@ import { NodeAttached, NodeIcon, NodeInputCost, NodeProperties, NodeTitle } from
         return (
             <g key={node.id} transform={`translate(0, ${section.selectorTop})`} className={section.selected ? "sectionNodeSelected" : "sectionNode"} >
 
-                <rect {...node.panelLayout.client} className="frame" onClick={section.select} />
+                <rect {...node.panelLayout.outline} className="frame" onClick={section.select} />
 
                 <NodeIcon node={node} />
                 <NodeTitle node={node} />

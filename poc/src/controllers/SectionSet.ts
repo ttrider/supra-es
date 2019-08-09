@@ -68,10 +68,10 @@ export default class SectionSet<TSection> implements ISectionSetInfo, IPanelLoca
                 width = Math.max(section.rootNode.width);
             }
         }
-        return width;
+        return width + styles.selector.width;
     }
     @computed public get panelLeft() {
-        return 0;
+        return styles.selector.width;
     }
     @computed public get panelTop() {
         return 0;

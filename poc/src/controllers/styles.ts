@@ -1,3 +1,8 @@
+// import RobotoBold from "./Roboto-Bold.ttf";
+// import RobotoBoldItalic from "./Roboto-BoldItalic.ttf";
+// import RobotoItalic from "./Roboto-Italic.ttf";
+ import RobotoRegular from "./Roboto-Regular";
+
 
 const colors = {
     "primary0": "#91C1E6",
@@ -37,6 +42,7 @@ const colors = {
 }
 
 const fontFamily = "Roboto";
+// const fontFamily = "helvetica";
 
 const dimentions = {
     smallText: {
@@ -94,7 +100,47 @@ const dimentions = {
 
 }
 
+
+
+// "@font-face": {
+//     fontFamily: "'Roboto'",
+//     fontStyle: "normal",
+//     fontWeight: 400,
+//     src: `url(${RobotoRegular})`
+// },
+
+//     , "@font-face": {
+//     font - family: 'Roboto';
+//     font - style: normal;
+//     font - weight: 700;
+//     src: url(f / Roboto - Bold.ttf);
+// }
+
+//     , "@font-face": {
+//     font - family: 'Roboto';
+//     font - style: italic;
+//     font - weight: 400;
+//     src: url(f / Roboto - Italic.ttf);
+// }
+
+//     , "@font-face": {
+//     font - family: 'Roboto';
+//     font - style: italic;
+//     font - weight: 700;
+//     src: url(f / Roboto - BoldItalic.ttf);
+// }
+
+
+
 const styles = {
+
+    "@font-face": {
+        fontFamily: "'Roboto'",
+        src: RobotoRegular,
+        fontWeight: "normal",
+        fontStyle: "normal"
+    },
+
 
     // #region actionbar
 
@@ -116,7 +162,7 @@ const styles = {
         },
         textTransform: "uppercase",
         color: colors.actionbarColor,
-        boxShadow: `${colors.actionbarColor} 0,0.25em 1em`,
+        boxShadow: `${colors.actionbarColor} 0, 0.25em 1em`,
 
         "&:hover": {
             color: colors.dark,
@@ -476,7 +522,7 @@ const styles = {
     // #region panel
 
     panelTitle: {
-        fontFamily: "Roboto",
+        fontFamily,
         fontSize: dimentions.extraLargeText.fontSize,
         lineHeight: dimentions.extraLargeText.lineHeight,
 
@@ -488,7 +534,7 @@ const styles = {
         },
 
         "& g": {
-            transform: `translate(${dimentions.padding.large}px, ${-(dimentions.extraLargeText.lineHeight + dimentions.padding.extraLarge)}px)`,
+            transform: `translate(${dimentions.padding.large}px, ${- (dimentions.extraLargeText.lineHeight + dimentions.padding.extraLarge)}px)`,
             opacity: 0.7,
 
             "& rect": {
@@ -527,7 +573,7 @@ const styles = {
                 fontWeight: "bold",
                 fill: colors.alt15,
                 stroke: "none",
-                transform: `translate(${dimentions.padding.small}px,${dimentions.smallText.lineHeight + dimentions.padding.small}px)`
+                transform: `translate(${dimentions.padding.small}px, ${dimentions.smallText.lineHeight + dimentions.padding.small}px)`
 
             }
 
@@ -625,7 +671,7 @@ const styles = {
                 fontSize: dimentions.normalText.fontSize,
                 lineHeight: dimentions.normalText.lineHeight,
                 fontWeight: "bold",
-                transform: `rotate(-90deg) translate(${-(dimentions.checkbox.outerSize + dimentions.padding.large)}px,${dimentions.normalText.lineHeight}px)`,
+                transform: `rotate(-90deg) translate(${- (dimentions.checkbox.outerSize + dimentions.padding.large)}px, ${dimentions.normalText.lineHeight}px)`,
                 textAnchor: "end",
                 cursor: "pointer",
                 userSelect: "none",
@@ -641,7 +687,7 @@ const styles = {
         "& .checkbox": {
             width: dimentions.checkbox.outerSize,
             height: dimentions.checkbox.outerSize,
-            transform: `translate(${dimentions.padding.extraSmall}px,${dimentions.padding.extraSmall}px)`,
+            transform: `translate(${dimentions.padding.extraSmall}px, ${dimentions.padding.extraSmall}px)`,
             cursor: "pointer",
 
             "& .outer": {
@@ -701,7 +747,7 @@ const styles = {
         display: "flex",
         flexDirection: "column",
         width: "auto",
-        fontFamily: "Roboto",
+        fontFamily,
         fontSize: "14px"
     },
 

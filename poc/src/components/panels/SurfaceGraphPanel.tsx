@@ -21,7 +21,7 @@ export default class SurfaceGraphPanel extends SurfaceComponent<{ panel: GraphPa
 
                     return (
                         <g key={node.id + "-node"} transform={node.transform} className={classes.node}>
-                            <rect {...node.panelLayout.client} className={classes.nodeBorder} />
+                            <rect {...node.panelLayout.outline} className={classes.nodeBorder} />
 
                             <NodeIcon node={node} />
                             <NodeTitle node={node} />

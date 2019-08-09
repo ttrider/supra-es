@@ -6,8 +6,8 @@ import styles from 'src/controllers/styles';
 import TextLayout from '../layout/TextLayout';
 import SurfaceGraphNode from './GraphNode';
 import SurfaceGraphRootNode from './GraphRootNode';
-// tslint:disable-next-line:max-classes-per-file
-export class GraphRootNodeBuilder<TSection> {
+
+export class GraphNodeBuilder<TSection> {
     public iconLayout: Layout;
     public title: TextLayout;
     public subTitle: TextLayout;
@@ -92,6 +92,6 @@ export class GraphRootNodeBuilder<TSection> {
 }
 
 export function graphRootNodeBuilder<TSection = any>() {
-    return new GraphRootNodeBuilder<TSection>();
+    return new GraphNodeBuilder<TSection>();
 }
 

@@ -7,7 +7,7 @@ import styles from 'src/controllers/styles';
 import IGraphNode from 'src/models/IGraphNode';
 import TextLayout from '../layout/TextLayout';
 import SurfaceGraphNode from './GraphNode';
-import { GraphRootNodeBuilder } from './GraphRootNodeBuilder';
+import { GraphNodeBuilder } from './GraphNodeBuilder';
 
 export default class SurfaceGraphRootNode<T = any> extends Layout implements IGraphNode {
 
@@ -30,7 +30,7 @@ export default class SurfaceGraphRootNode<T = any> extends Layout implements IGr
 
     @observable public propertiesExpanded: boolean = false;
 
-    constructor(builder: GraphRootNodeBuilder<T>) {
+    constructor(builder: GraphNodeBuilder<T>) {
         super();
         this.id = `node-${SurfaceGraphNode.lastNodeId++}`;
 
@@ -73,9 +73,9 @@ export default class SurfaceGraphRootNode<T = any> extends Layout implements IGr
         this.properties.y = this.propertiesTitle.outerBottom;
 
         this.panelLayout.width = Math.max(
-            this.iconLayout.outerRight,
-            this.title.outerRight,
-            this.propertiesTitle.outerRight,
+            this.iconLayout.outerWidth,
+            this.title.outerWidth,
+            this.propertiesTitle.outerWidth,
             (propertiesExpanded ? this.properties.outerRight : 0)
         );
 

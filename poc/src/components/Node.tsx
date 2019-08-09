@@ -88,7 +88,7 @@ export function Properties(props: { properties: PropertiesLayout }) {
 
         return (
             <g transform={`translate(${properties.clientLeft}, ${properties.clientTop})`}>
-                {headers.map((header) => <text key={"header-" + header} {...header.textClient} className={context.classes.nodePropertiesHeader} />)}
+                {headers.map((header) => <text key={"header-" + header.value} {...header.textClient} className={context.classes.nodePropertiesHeader} />)}
                 {groups.map((group, index) =>
                     (<g key={"group-" + index}>
 
@@ -96,13 +96,13 @@ export function Properties(props: { properties: PropertiesLayout }) {
 
                         {group.rows.map((row, ri) => (
 
-                            <g key={"row-" + index.toString() + ri.toString} >
+                            <g key={`row-${index}${ri}`} >
 
                                 <rect {...row.rowLayout.client} className={context.classes.nodePropertiesBack} />
 
                                 {row.columns.map((c, ci) => {
 
-                                    return <text key={"row-" + index.toString() + ri.toString + index.toString()}{...c.textClient} className={context.classes.nodePropertiesValue} />;
+                                    return <text key={`row-${index}${ri}${ci}`}{...c.textClient} className={context.classes.nodePropertiesValue} />;
                                 })}
 
                                 {row.description ? <text {...row.description.textClient} className={context.classes.nodePropertiesValue} /> : undefined}
