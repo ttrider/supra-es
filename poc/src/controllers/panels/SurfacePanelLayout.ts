@@ -58,6 +58,9 @@ export default class SurfacePanelLayout extends Layout implements IPanelLocation
             }
 
             this.autoHandler = autorun(() => {
+
+                // tslint:disable-next-line:no-console
+                console.log("right autorun");
                 this.x = prevPanel.panelRight;
             })
         }

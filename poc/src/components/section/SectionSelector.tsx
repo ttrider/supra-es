@@ -1,6 +1,6 @@
 
 import React from 'react';
-import  ISurfaceController  from 'src/models/ISurfaceController';
+import ISurfaceController from 'src/models/ISurfaceController';
 import SurfaceComponent from '../SurfaceComponent';
 import { Classes } from '../SurfaceContext';
 import SelectorCheckbox from './SelectorCheckbox';
@@ -19,7 +19,7 @@ export default class SectionSelector extends SurfaceComponent {
 
                 <g className="selectorPanel" transform={`translate(${controller.viewportLeft},0)`} >
 
-                    <rect x="0" y="0" width={sections.selectorWidth} height={controller.surfacesize.height} fill="url(#noisewhite)" />
+                    <rect x="0" y="0" width={sections.selectorWidth - 20} height={controller.surfacesize.height} fill="url(#noisewhite)" />
 
                     <g className="selectorHeader">
                         <SelectorCheckbox state={false} onClick={sections.selectAll} />

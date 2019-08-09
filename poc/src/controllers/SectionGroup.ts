@@ -28,7 +28,7 @@ export default class SectionGroup<TSection> implements ISectionGroupInfo {
         // when the number or the size of the sections changes
         // we need to reposition them
         autorun((r) => {
-            let top = 0;
+            let top = styles.selector.margin.bottom/2;
 
             for (const section of this.sections) {
                 section.selectorTop = top;

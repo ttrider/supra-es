@@ -89,43 +89,37 @@ const dimentions = {
 
 
     checkbox: {
-        outerSize: 50,
-        innerSize: 20
+        outerSize: 60,
+        innerSize: 30
     }
 
 
 }
 
+function opacity(color: string, value: number) {
 
+    if (color) {
 
-// "@font-face": {
-//     fontFamily: "'Roboto'",
-//     fontStyle: "normal",
-//     fontWeight: 400,
-//     src: `url(${RobotoRegular})`
-// },
+        // rgba(253, 254, 255, 0.2);
+        const parseparts = /#([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})/gim.exec(color)
 
-//     , "@font-face": {
-//     font - family: 'Roboto';
-//     font - style: normal;
-//     font - weight: 700;
-//     src: url(f / Roboto - Bold.ttf);
-// }
+        if (!parseparts || parseparts.length < 4) {
+            return color;
+        }
 
-//     , "@font-face": {
-//     font - family: 'Roboto';
-//     font - style: italic;
-//     font - weight: 400;
-//     src: url(f / Roboto - Italic.ttf);
-// }
+        return "rgba(" + parseparts.reduce<string[]>((parts, part, index) => {
 
-//     , "@font-face": {
-//     font - family: 'Roboto';
-//     font - style: italic;
-//     font - weight: 700;
-//     src: url(f / Roboto - BoldItalic.ttf);
-// }
+            if (index > 0 && index <= 3) {
+                parts.push(parseInt(part, 16).toString());
+            }
 
+            return parts;
+        }, []).join(",") + "," + value + ")";
+
+    }
+
+    return color;
+}
 
 
 const styles = {
@@ -259,16 +253,16 @@ const styles = {
     },
 
     nodeBorder: {
-        fill: colors.light,
+        fill: opacity(colors.light, 0.2),
         rx: dimentions.padding.normal / 2,
-        strokeWidth: dimentions.stroke.normalWidth,
+        strokeWidth: dimentions.stroke.thinWidth,
         stroke: colors.primary2
     },
 
     nodeIcon: {
         width: dimentions.nodeSize.width,
         height: dimentions.nodeSize.height,
-        stroke: colors.primary5,
+        stroke: colors.dark,
         strokeWidth: dimentions.stroke.thinWidth,
 
         margin: {
@@ -279,7 +273,7 @@ const styles = {
     smallNodeIcon: {
         width: dimentions.smallNodeSize.width,
         height: dimentions.smallNodeSize.height,
-        stroke: colors.primary5,
+        stroke: colors.dark,
         strokeWidth: dimentions.stroke.thinWidth,
 
         margin: {
@@ -311,7 +305,7 @@ const styles = {
         lineHeight: dimentions.normalText.lineHeight,
 
         fontWeight: "bold",
-        fill: colors.primary5,
+        fill: colors.dark,
         textAnchor: "end",
         margin: {
             left: dimentions.padding.small
@@ -344,7 +338,7 @@ const styles = {
         fontSize: dimentions.normalText.fontSize,
         lineHeight: dimentions.normalText.lineHeight,
 
-        fill: colors.primary5,
+        fill: colors.dark,
         marginRight: dimentions.padding.normal
     },
     nodeMetricsTitleMarked: {
@@ -362,7 +356,7 @@ const styles = {
         fontSize: dimentions.normalText.fontSize,
         lineHeight: dimentions.normalText.lineHeight,
 
-        fill: colors.primary5,
+        fill: colors.dark,
         textAnchor: "end",
         marginRight: dimentions.padding.normal
     },
@@ -384,7 +378,7 @@ const styles = {
 
         fontWeight: "bold",
 
-        fill: colors.primary5,
+        fill: colors.dark,
         textAnchor: "middle",
 
         padding: {
@@ -397,7 +391,7 @@ const styles = {
         fontSize: dimentions.normalText.fontSize,
         lineHeight: dimentions.normalText.lineHeight,
 
-        fill: colors.primary5,
+        fill: colors.dark,
         textAnchor: "middle",
 
         padding: {
@@ -410,7 +404,7 @@ const styles = {
         fontSize: dimentions.smallText.fontSize,
         lineHeight: dimentions.smallText.lineHeight,
 
-        fill: colors.primary5,
+        fill: colors.dark,
         textAnchor: "middle",
 
         padding: {
@@ -429,7 +423,7 @@ const styles = {
 
         textTransform: "uppercase",
         fontWeight: "bold",
-        fill: colors.primary5,
+        fill: colors.dark,
         textAnchor: "middle",
 
         cursor: "pointer",
@@ -447,7 +441,7 @@ const styles = {
 
         fontWeight: "bold",
 
-        fill: colors.primary5,
+        fill: colors.dark,
     },
 
     nodePropertiesHeader: {
@@ -457,7 +451,7 @@ const styles = {
 
         fontWeight: "bold",
 
-        fill: colors.primary5,
+        fill: colors.dark,
 
         margin: {
             right: dimentions.padding.normal
@@ -472,7 +466,7 @@ const styles = {
 
         fontWeight: "bold",
 
-        fill: colors.primary5,
+        fill: colors.dark,
         textAnchor: "end"
     },
 
@@ -490,7 +484,7 @@ const styles = {
         fontSize: dimentions.normalText.fontSize,
         lineHeight: dimentions.normalText.lineHeight,
 
-        fill: colors.primary5,
+        fill: colors.dark,
         margin: {
             left: dimentions.padding.normal,
         }
@@ -501,7 +495,7 @@ const styles = {
         fontSize: dimentions.normalText.fontSize,
         lineHeight: dimentions.normalText.lineHeight,
 
-        fill: colors.primary5,
+        fill: colors.dark,
         textAnchor: "end"
     },
 
@@ -577,7 +571,7 @@ const styles = {
 
             "& .separator": {
                 fill: "url(#greenGrad)",
-                height: 7,
+                height: 10,
             }
 
         },
@@ -619,7 +613,7 @@ const styles = {
     selector: {
 
         margin: {
-            bottom: dimentions.padding.small
+            bottom: dimentions.padding.normal
         },
 
         width: dimentions.padding.large + dimentions.checkbox.outerSize,
@@ -645,7 +639,7 @@ const styles = {
 
             "& rect": {
                 fill: colors.alt15,
-                height: 7,
+                height: 10,
                 padding: {
                     left: dimentions.padding.small
                 }
@@ -663,6 +657,7 @@ const styles = {
                 textAnchor: "end",
                 cursor: "pointer",
                 userSelect: "none",
+                fill: colors.dark,
 
 
                 "&:hover": {
@@ -675,7 +670,7 @@ const styles = {
         "& .checkbox": {
             width: dimentions.checkbox.outerSize,
             height: dimentions.checkbox.outerSize,
-            transform: `translate(${dimentions.padding.extraSmall}px, ${dimentions.padding.extraSmall}px)`,
+            transform: `translate(${dimentions.padding.extraSmall / 2}px, ${dimentions.padding.extraSmall}px)`,
             cursor: "pointer",
 
             "& .outer": {
