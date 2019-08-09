@@ -572,6 +572,29 @@ const styles = {
             "& .separator": {
                 fill: "url(#greenGrad)",
                 height: 10,
+            },
+
+            "& .separatorLabel": {
+                textTransform: "uppercase",
+                fontSize: dimentions.smallText.fontSize,
+                lineHeight: dimentions.smallText.lineHeight,
+                fontWeight: "bold",
+                fill: colors.alt15,
+                stroke: "none",
+                transform: `translate(${dimentions.padding.small}px, ${dimentions.smallText.lineHeight - dimentions.smallText.lineHeight / 2 - dimentions.padding.extraSmall}px)`
+
+            },
+
+            "& .separatorLabelBack": {
+                textTransform: "uppercase",
+                fontSize: dimentions.smallText.fontSize,
+                lineHeight: dimentions.smallText.lineHeight,
+                fontWeight: "bold",
+                fill: colors.light,
+                stroke: colors.light,
+                strokeWidth: dimentions.padding.small,
+                transform: `translate(${dimentions.padding.small}px, ${dimentions.smallText.lineHeight - dimentions.smallText.lineHeight / 2 - dimentions.padding.extraSmall}px)`
+
             }
 
         },

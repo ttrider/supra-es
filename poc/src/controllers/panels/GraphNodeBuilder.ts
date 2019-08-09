@@ -3,6 +3,7 @@ import InputCostLayout from "src/controllers/layout/InputCostLayout";
 import Layout from 'src/controllers/layout/Layout';
 import PropertiesLayout from 'src/controllers/layout/PropertiesLayout';
 import styles from 'src/controllers/styles';
+import IInputCost from 'src/models/IInputCost';
 import TextLayout from '../layout/TextLayout';
 import SurfaceGraphNode from './GraphNode';
 import SurfaceGraphRootNode from './GraphRootNode';
@@ -20,6 +21,7 @@ export class GraphNodeBuilder<TSection> {
     public data: TSection;
     public inputCostLayout: InputCostLayout;
     public readonly children: SurfaceGraphNode[] = [];
+    public readonly childrenCost: IInputCost[] = [];
     constructor() {
         this.propertiesTitle = new TextLayout("PROPERTIES", styles.nodePropertiesTitle);
         this.propertiesTitle.marginLeft = styles.node.padding.left;
@@ -76,12 +78,20 @@ export class GraphNodeBuilder<TSection> {
         this.children.push(...nodes);
         return this;
     }
+    public setChildrenCosts(children?: IInputCost[]) {
+        if (children) {
+            this.childrenCost.push(...children);
+        }
+
+        return this;
+    }
+
     public setData(data: TSection) {
         this.data = data;
         return this;
     }
     public buildRoot() {
-        this.inputCostLayout = new InputCostLayout(this.children);
+        this.inputCostLayout = new InputCostLayout(this.childrenCost);
         return new SurfaceGraphRootNode<TSection>(this);
     }
 

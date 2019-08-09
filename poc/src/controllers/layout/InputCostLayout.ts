@@ -1,11 +1,11 @@
-import SurfaceGraphNode from 'src/controllers/panels/GraphNode';
 import styles from 'src/controllers/styles';
 import { formatCost } from 'src/helpers/formatter';
+import IInputCost from 'src/models/IInputCost';
 import Layout from './Layout';
 import TextLayout from './TextLayout';
 export default class InputCostLayout extends Layout {
     public connectors: TextLayout[];
-    constructor(public children: SurfaceGraphNode[]) {
+    constructor(public children: IInputCost[]) {
         super({}, { top: styles.nodeInputCostPanel.margin.top });
 
         let width = 0;

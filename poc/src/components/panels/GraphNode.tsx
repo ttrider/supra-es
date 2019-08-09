@@ -1,6 +1,6 @@
 
 import React from 'react';
-import IGraphNode from 'src/models/IGraphNode';
+import IGraphNode from "src/models/IGraphNode";
 import ISurfaceController from 'src/models/ISurfaceController';
 import { NodeAttached, NodeIcon, NodeInputCost, NodeProperties, NodeTitle } from '../Node';
 import SufraceComponent from "../SurfaceComponent";

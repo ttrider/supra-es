@@ -62,20 +62,14 @@ export default class SectionSet<TSection> implements ISectionSetInfo, IPanelLoca
     }
 
     @computed public get panelRight() {
-        try {
-            let width = 0;
-            for (const sectionGroup of this.sectionGroups) {
-                for (const section of sectionGroup.sections) {
-                    width = Math.max(width, section.rootNode.width);
-                }
-            }
-            return width + styles.selector.width;
-        }
-        finally {
 
-            // tslint:disable-next-line:no-console
-            console.log("panelRight");
+        let width = 0;
+        for (const sectionGroup of this.sectionGroups) {
+            for (const section of sectionGroup.sections) {
+                width = Math.max(width, section.rootNode.width);
+            }
         }
+        return width + styles.selector.width;
     }
     @computed public get panelLeft() {
         return styles.selector.width;

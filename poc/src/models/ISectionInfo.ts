@@ -1,5 +1,5 @@
 
-import IGraphNode  from './IGraphNode';
+import IGraphNode from "./IGraphNode";
 import ISelectable from './ISelectable';
 export default interface ISectionInfo extends ISelectable {
     // #region Properties (6)

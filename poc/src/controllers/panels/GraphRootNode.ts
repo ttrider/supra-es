@@ -4,7 +4,7 @@ import InputCostLayout from "src/controllers/layout/InputCostLayout";
 import Layout from 'src/controllers/layout/Layout';
 import PropertiesLayout from 'src/controllers/layout/PropertiesLayout';
 import styles from 'src/controllers/styles';
-import IGraphNode from 'src/models/IGraphNode';
+import IGraphNode from "src/models/IGraphNode";
 import TextLayout from '../layout/TextLayout';
 import SurfaceGraphNode from './GraphNode';
 import { GraphNodeBuilder } from './GraphNodeBuilder';

@@ -4,7 +4,7 @@ import Layout from 'src/controllers/layout/Layout';
 import PropertiesLayout from 'src/controllers/layout/PropertiesLayout';
 import TextLayout from 'src/controllers/layout/TextLayout';
 
-export default interface IGraphNode extends Layout{
+export default interface IGraphNode extends Layout {
     id: string;
     iconLayout: Layout;
     title: TextLayout;
@@ -19,5 +19,5 @@ export default interface IGraphNode extends Layout{
     children: IGraphNode[];
 
     rowIndex: number;
-    columnIndex:number;
+    columnIndex: number;
 }

@@ -1,5 +1,5 @@
 import { autorun } from 'mobx';
-import IGraphNode from 'src/models/IGraphNode';
+import IGraphNode from "src/models/IGraphNode";
 import SurfacePanelLayout from './SurfacePanelLayout';
 
 const layoutPadding = 50;

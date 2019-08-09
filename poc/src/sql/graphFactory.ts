@@ -6,6 +6,7 @@ import StoragePanelLayout from 'src/controllers/panels/StoragePanelLayout';
 import TextPanelLayout from 'src/controllers/panels/TextPanelLayout';
 import SectionSet, { createSectionSet } from 'src/controllers/SectionSet';
 import SurfaceView from 'src/controllers/SurfaceView';
+import IInputCost from 'src/models/IInputCost';
 import { Plan, PlanNode, PlanStatement } from 'supra-sqlplan';
 import { Metrics } from 'supra-sqlplan/lib/metrics';
 
@@ -20,12 +21,28 @@ export function createSections(plan: Plan): SectionSet<PlanStatement> {
                 .setSubtitle(statement.statementText)
                 .setWeights(statement.relativeStatementCost, statement.relativeStatementCost)
                 .setProperties(buildProperties(statement.root ? statement.root.metrics : undefined))
+                .setChildrenCosts(buildChildrenCost(statement))
                 .setData(statement)
                 .buildRoot();
         });
     })
 
     return createSectionSet<PlanStatement>(sections);
+
+
+    function buildChildrenCost(statement: PlanStatement) {
+
+        if (!statement) { return; }
+        if (!statement.root) { return; }
+
+        return statement.root.children.map<IInputCost>(child => {
+
+            return {
+                id: child.nodeId.toString(),
+                cost: child.metrics.absSubtreeCost
+            };
+        });
+    }
 }
 
 export function createDefaultView(plan: Plan, selected: PlanStatement[]) {

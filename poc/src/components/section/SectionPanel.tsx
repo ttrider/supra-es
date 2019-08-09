@@ -31,7 +31,8 @@ export default class SectionPanel extends SurfaceComponent {
                                 })}
 
                                 <rect key={"rect" + index.toString()} x="0" y={item.selectorHeight} width={sectionSet.panelRight-sectionSet.panelLeft} className="separator" />
-
+                                <text key={"recttextb" + index.toString()} x="0" y={item.selectorHeight} className="separatorLabelBack">GO</text>
+                                <text key={"recttext" + index.toString()} x="0" y={item.selectorHeight} className="separatorLabel">GO</text>
                             </g>);
 
                     })};
