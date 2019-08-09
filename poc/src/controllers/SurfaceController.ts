@@ -2,7 +2,6 @@ import anime from 'animejs';
 import { action, computed, observable } from 'mobx';
 import ISurfaceController from 'src/models/ISurfaceController';
 
-import { autorun } from 'mobx';
 import ISize from 'src/models/ISize';
 import ISurfaceViewFactory from "../models/ISurfaceViewFactory";
 import PanelTitleLayout from './panels/PanelTitleLayout';
@@ -105,7 +104,7 @@ export default class SurfaceController<T, TSection = T> implements ISurfaceContr
     }
 
     @computed public get selectedViewFactory() {
-        
+
         for (const viewFactory of this.views) {
             if (viewFactory.selected) {
                 return viewFactory;
@@ -115,7 +114,7 @@ export default class SurfaceController<T, TSection = T> implements ISurfaceContr
     }
 
     @computed public get selectedSectionsData() {
-        
+
         const selected = this.sections
             ? this.sections.selectedSections.map(s => s.data)
             : [];
@@ -129,13 +128,30 @@ export default class SurfaceController<T, TSection = T> implements ISurfaceContr
 
     public set data(newValue: T | undefined) {
 
-        for (const viewFactory of this.views) {
-            viewFactory.resetView();
+        // detect fonts using document.fonts
+        // when it is not available, (IE/Edge) - continue without checks :(
+        const fonts = (document as any).fonts;
+        if (fonts) {
+
+            fonts.ready.then(() => {
+                setData(this);
+            }).catch(() => {
+                setData(this);
+            });
+
+        } else {
+            setData(this);
         }
 
-        this.sectionSet = undefined;
+        function setData(controller: SurfaceController<T, TSection>) {
+            for (const viewFactory of controller.views) {
+                viewFactory.resetView();
+            }
 
-        this.dataModel = newValue;
+            controller.sectionSet = undefined;
+
+            controller.dataModel = newValue;
+        }
     }
 
     @computed public get sections() {
@@ -153,75 +169,8 @@ export default class SurfaceController<T, TSection = T> implements ISurfaceContr
 
     @observable private dataModel?: T;
     @observable private sectionSet?: SectionSet<TSection>;
-    // @observable private currentViewInfo?: SurfaceView;
-
-    
 
     private sectionFactory: (data: T) => SectionSet<TSection>;
-
-    constructor() {
-
-        autorun(() => {
-
-            // const selectedViewFactory = this.selectedViewFactory;
-            // const selectedSectionsData = this.selectedSectionsData;
-
-            // if (this.dataModel && selectedViewFactory && selectedSectionsData) {
-
-
-            //     this.currentViewInfo = selectedViewFactory.createView(this.dataModel, selectedSectionsData);
-            //     // this.autorunHandler(this.dataModel, selectedViewFactory)
-
-            // }
-
-
-
-        });
-
-        // autorun(() => {
-
-        //     // let cv: SurfaceView | undefined;
-
-        //     // if (this.dataModel) {
-        //     //     for (const viewFactory of this.views) {
-        //     //         if (viewFactory.selected) {
-
-        //     //             const selected = this.sections
-        //     //                 ? this.sections.selectedSections.map(s => s.data)
-        //     //                 : [];
-
-        //     //             cv = viewFactory.createView(this.dataModel, selected);
-        //     //             break;
-        //     //         }
-        //     //     }
-        //     // }
-        //     // this.currentViewInfo = cv;
-
-
-
-
-        //     if (this.dataModel) {
-        //         for (const viewFactory of this.views) {
-        //             if (viewFactory.selected) {
-
-        //                 const selected = this.sections
-        //                     ? this.sections.selectedSections.map(s => s.data)
-        //                     : [];
-
-        //                 this.currentViewInfo = viewFactory.createView(this.dataModel, selected);
-        //                 return;
-        //             }
-        //         }
-        //     }
-
-        // });
-
-
-
-    }
-
-
-
 
     @action public registerSectionFactory(factory: (data: T) => SectionSet<TSection>) {
         this.sectionFactory = factory;

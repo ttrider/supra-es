@@ -1,3 +1,4 @@
+import "./fonts.css";
 
 const colors = {
     "primary0": "#91C1E6",

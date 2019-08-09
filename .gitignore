@@ -63,3 +63,5 @@ typings/
 
 *.js.map
 *.js
+
+poc/build/
