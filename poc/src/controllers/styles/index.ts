@@ -1,8 +1,3 @@
-// import RobotoBold from "./Roboto-Bold.ttf";
-// import RobotoBoldItalic from "./Roboto-BoldItalic.ttf";
-// import RobotoItalic from "./Roboto-Italic.ttf";
- import RobotoRegular from "./Roboto-Regular";
-
 
 const colors = {
     "primary0": "#91C1E6",
@@ -133,14 +128,6 @@ const dimentions = {
 
 
 const styles = {
-
-    "@font-face": {
-        fontFamily: "'Roboto'",
-        src: RobotoRegular,
-        fontWeight: "normal",
-        fontStyle: "normal"
-    },
-
 
     // #region actionbar
 
