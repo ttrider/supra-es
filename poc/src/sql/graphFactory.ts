@@ -85,6 +85,17 @@ function buildNode(node: PlanNode): SurfaceGraphNode<PlanNode> {
         }
     }
 
+    const t = node.dataInfo.rowSetObject;
+    if (t) {
+
+        if (t.Table) {
+            subtitle.push(t.Table);
+        }
+        if (t.Index) {
+            subtitle.push(t.Index);
+        }
+    }
+
     return graphRootNodeBuilder<PlanNode>()
         .setTitle(title)
         .setSubtitle(subtitle)
@@ -94,6 +105,8 @@ function buildNode(node: PlanNode): SurfaceGraphNode<PlanNode> {
         .setChildNodes(node.children.map(n => buildNode(n)))
         .build();
 }
+
+
 
 function buildProperties(metrics?: Metrics) {
 

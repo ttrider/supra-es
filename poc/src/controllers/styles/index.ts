@@ -256,7 +256,11 @@ const styles = {
         fill: opacity(colors.light, 0.2),
         rx: dimentions.padding.normal / 2,
         strokeWidth: dimentions.stroke.thinWidth,
-        stroke: colors.primary2
+        stroke: colors.primary2,
+
+        "&:hover": {
+            fill: colors.light
+        }
     },
 
     nodeIcon: {
