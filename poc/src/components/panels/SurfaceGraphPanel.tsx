@@ -1,14 +1,14 @@
 import React from 'react';
 import GraphPanelLayout from 'src/controllers/panels/GraphPanelLayout';
 import ISurfaceController from 'src/models/ISurfaceController';
-import { NodeAttached, NodeIcon, NodeInputCost, NodeProperties, NodeTitle } from '../Node';
+import { NodeAttached, NodeIcon, NodeInputCost, NodeProperties } from '../Node';
 import SurfaceComponent from '../SurfaceComponent';
 import { Classes } from '../SurfaceContext';
+import { SurfaceText, SurfaceTextBox } from '../SurfaceParts';
 
 
 
 export default class SurfaceGraphPanel extends SurfaceComponent<{ panel: GraphPanelLayout }>{
-
 
     public renderInContext(controller: ISurfaceController, classes: Classes) {
 
@@ -24,7 +24,8 @@ export default class SurfaceGraphPanel extends SurfaceComponent<{ panel: GraphPa
                             <rect {...node.panelLayout.outline} className={classes.nodeBorder} />
 
                             <NodeIcon node={node} />
-                            <NodeTitle node={node} />
+                            <SurfaceText layout={node.title} context={{ controller, classes }} className="nodeTitle" />
+                            <SurfaceTextBox layout={node.subTitle} context={{ controller, classes }} className="nodeSubtitle" />
                             <NodeProperties node={node} />
                             <NodeAttached node={node} />
                             <NodeInputCost node={node} />

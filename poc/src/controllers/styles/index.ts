@@ -306,7 +306,7 @@ const styles = {
 
         fontWeight: "bold",
         fill: colors.dark,
-        textAnchor: "end",
+        textAnchor: "end" as "end",
         margin: {
             left: dimentions.padding.small
         }
@@ -379,7 +379,7 @@ const styles = {
         fontWeight: "bold",
 
         fill: colors.dark,
-        textAnchor: "middle",
+        textAnchor: "middle" as "middle",
 
         padding: {
             bottom: dimentions.padding.normal
@@ -392,11 +392,20 @@ const styles = {
         lineHeight: dimentions.normalText.lineHeight,
 
         fill: colors.dark,
-        textAnchor: "middle",
-
+        textAnchor: "middle" as "middle",
+        cursor: "pointer",
         padding: {
             bottom: dimentions.padding.normal
+        },
+
+        "&:hover": {
+            textDecoration: "underline",
+            stroked: {
+                stroke: colors.actionbarColor,
+                strokeWidth: "10px"
+            }
         }
+
     },
 
     nodeFlags: {
@@ -424,7 +433,7 @@ const styles = {
         textTransform: "uppercase",
         fontWeight: "bold",
         fill: colors.dark,
-        textAnchor: "middle",
+        textAnchor: "middle" as "middle",
 
         cursor: "pointer",
         userSelect: "none",

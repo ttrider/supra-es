@@ -1,9 +1,11 @@
+import { action } from 'mobx';
 import AttachedNodesLayout from "src/controllers/layout/AttachedNodesLayout";
 import InputCostLayout from "src/controllers/layout/InputCostLayout";
 import Layout from 'src/controllers/layout/Layout';
 import PropertiesLayout from 'src/controllers/layout/PropertiesLayout';
 import styles from 'src/controllers/styles';
 import IInputCost from 'src/models/IInputCost';
+import TextBoxLayout from '../layout/TextBoxLayout';
 import TextLayout from '../layout/TextLayout';
 import SurfaceGraphNode from './GraphNode';
 import SurfaceGraphRootNode from './GraphRootNode';
@@ -11,7 +13,7 @@ import SurfaceGraphRootNode from './GraphRootNode';
 export class GraphNodeBuilder<TSection> {
     public iconLayout: Layout;
     public title: TextLayout;
-    public subTitle: TextLayout;
+    public subTitle: TextBoxLayout;
     public absoluteWeight: number;
     public relativeWeight: number;
     public propertiesTitle: TextLayout;
@@ -26,9 +28,7 @@ export class GraphNodeBuilder<TSection> {
         this.propertiesTitle = new TextLayout("PROPERTIES", styles.nodePropertiesTitle);
         this.propertiesTitle.marginLeft = styles.node.padding.left;
         this.propertiesTitle.marginRight = styles.node.padding.right;
-        this.propertiesTitle.style = {
-            textAnchor: "start"
-        };
+
         this.iconLayout = new Layout({
             x: 0,
             y: 0,
@@ -43,16 +43,25 @@ export class GraphNodeBuilder<TSection> {
         this.panelLayout = new Layout();
         this.panelLayout.marginBottom = styles.node.padding.bottom;
     }
-    public setTitle(title: string = "") {
+    @action public setTitle(title: string = "") {
         this.title = new TextLayout(title, styles.nodeTitle);
         this.title.marginLeft = styles.node.padding.left;
         this.title.marginRight = styles.node.padding.right;
-        this.title.style = {
-            textAnchor: "start"
-        };
+
         return this;
     }
-    public setSubtitle(subtitle?: string[] | string) {
+    @action public setSubtitle(subtitle?: string[] | string) {
+        if (subtitle) {
+            if (!this.subTitle) {
+                this.subTitle = new TextBoxLayout(subtitle, styles.nodeSubtitle);
+                this.subTitle.marginLeft = styles.node.padding.left;
+                this.subTitle.marginRight = styles.node.padding.right;
+                this.subTitle.textOverflowMode = "mid-ellipsis";
+            } else {
+                this.subTitle.add(subtitle);
+            }
+        }
+
         // TODO
         return this;
     }

@@ -31,17 +31,6 @@ export function NodeIcon(props: { node: IGraphNode }) {
     );
 }
 
-export function NodeTitle(props: { node: IGraphNode }) {
-
-    return (
-        <SurfaceContext.Consumer>
-            {({ classes }) => (<text {...props.node.title.textClient} className={classes.nodeTitle} />)}
-
-        </SurfaceContext.Consumer>
-
-    );
-}
-
 export function NodeProperties(props: { node: IGraphNode }) {
 
     const node = props.node;

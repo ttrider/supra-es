@@ -1,44 +1,17 @@
-
-import { computed } from 'mobx';
+import { computed, observable } from 'mobx';
 import { measureText } from 'src/helpers/measure-text';
+import { ITextLayoutStyle } from '../../models/ITextLayoutStyle';
 import Layout from './Layout';
 
-export interface ITextLayoutStyle {
-    fontFamily: string,
-    fontSize: number,
-    fontWeight?: string,
-    lineHeight: number,
-
-    textAnchor?: string,// "end" | "start" | "middle",
-
-    margin?: {
-        left?: number,
-        right?: number,
-        top?: number,
-        bottom?: number,
-    }
-};
-
 export default class TextLayout extends Layout {
-    private static getNumber(value?: string | number | object) {
 
-        if (value === undefined) {
-            return 0;
-        }
-
-        if (typeof value === "number") {
-            return value;
-        }
-        if (typeof value === "string") {
-            return parseInt(value, 10);
-        }
-
-        return 0;
-
-    }
+    @observable public textAnchor: "start" | "middle" | "end";
+    
     private textValue?: string;
 
     private fontStyle: ITextLayoutStyle;
+
+    
 
     @computed public get value() {
         return this.textValue;
@@ -47,17 +20,6 @@ export default class TextLayout extends Layout {
     public set value(textValue: string | undefined) {
         this.textValue = textValue;
         this.width = measureText(textValue, this.fontStyle);
-    }
-
-    public get textAnchor() {
-        if (!this.fontStyle.textAnchor) {
-            return "start";
-        }
-        return this.fontStyle.textAnchor;
-    }
-
-    public set textAnchor(value: string) {
-        this.fontStyle.textAnchor = value;
     }
 
     public get textClient() {
@@ -79,25 +41,29 @@ export default class TextLayout extends Layout {
     }
 
     constructor(text: string, fontStyle: ITextLayoutStyle) {
-        super();
+        super({}, fontStyle.margin);
         this.fontStyle = fontStyle;
-        this.height = TextLayout.getNumber(fontStyle.lineHeight);
-        this.value = text;
+        this.height = fontStyle.lineHeight;
+        this.textAnchor = this.fontStyle.textAnchor ? this.fontStyle.textAnchor : "start";
 
-        if (fontStyle.margin) {
-            if (fontStyle.margin.left !== undefined) {
-                this.marginLeft = fontStyle.margin.left;
-            }
-            if (fontStyle.margin.right !== undefined) {
-                this.marginRight = fontStyle.margin.right;
-            }
-            if (fontStyle.margin.top !== undefined) {
-                this.marginTop = fontStyle.margin.top;
-            }
-            if (fontStyle.margin.bottom !== undefined) {
-                this.marginBottom = fontStyle.margin.bottom;
-            }
-        }
+
+
+        // if (fontStyle.margin) {
+        //     if (fontStyle.margin.left !== undefined) {
+        //         this.marginLeft = fontStyle.margin.left;
+        //     }
+        //     if (fontStyle.margin.right !== undefined) {
+        //         this.marginRight = fontStyle.margin.right;
+        //     }
+        //     if (fontStyle.margin.top !== undefined) {
+        //         this.marginTop = fontStyle.margin.top;
+        //     }
+        //     if (fontStyle.margin.bottom !== undefined) {
+        //         this.marginBottom = fontStyle.margin.bottom;
+        //     }
+        // }
+
+        this.value = text;
     }
 
 

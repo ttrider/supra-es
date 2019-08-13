@@ -5,6 +5,7 @@ import Layout from 'src/controllers/layout/Layout';
 import PropertiesLayout from 'src/controllers/layout/PropertiesLayout';
 import styles from 'src/controllers/styles';
 import IGraphNode from "src/models/IInputCost";
+import TextBoxLayout from '../layout/TextBoxLayout';
 import TextLayout from '../layout/TextLayout';
 import { GraphNodeBuilder } from './GraphNodeBuilder';
 
@@ -19,7 +20,7 @@ export default class SurfaceGraphNode<T = any> extends Layout implements IGraphN
 
     public readonly iconLayout: Layout;
     public readonly title: TextLayout;
-    public readonly subTitle: TextLayout;
+    public readonly subTitle: TextBoxLayout;
     public readonly absoluteWeight: number;
     public readonly relativeWeight: number;
     public readonly propertiesTitle: TextLayout;
@@ -30,7 +31,7 @@ export default class SurfaceGraphNode<T = any> extends Layout implements IGraphN
     public readonly inputCostLayout: InputCostLayout;
     public readonly data: T;
     public readonly rowIndex: number;
-    public readonly columnIndex:number;
+    public readonly columnIndex: number;
 
     @computed public get cost() {
         return 0.999;
@@ -57,8 +58,6 @@ export default class SurfaceGraphNode<T = any> extends Layout implements IGraphN
         this.children = builder.children;
         this.inputCostLayout = builder.inputCostLayout;
 
-        this.title.textAnchor = "start";
-        this.propertiesTitle.textAnchor = "start";
 
         autorun(() => {
             this.updateLayout(this.propertiesExpanded);
@@ -77,9 +76,6 @@ export default class SurfaceGraphNode<T = any> extends Layout implements IGraphN
         // subtitle    | A |
         // properties  | A |
 
-        this.title.y = this.iconLayout.outerBottom;
-        this.propertiesTitle.y = this.title.outerBottom;
-        this.properties.y = this.propertiesTitle.outerBottom;
 
         this.panelLayout.width = Math.max(
             this.iconLayout.outerWidth,
@@ -87,6 +83,16 @@ export default class SurfaceGraphNode<T = any> extends Layout implements IGraphN
             this.propertiesTitle.outerWidth,
             (propertiesExpanded ? this.properties.outerWidth : 0)
         );
+
+        this.subTitle.maxWidth = this.panelLayout.width;
+
+        this.title.x = (this.panelLayout.width - this.title.outerWidth) / 2;
+        this.propertiesTitle.x = (this.panelLayout.width - this.propertiesTitle.outerWidth) / 2;
+
+        this.title.y = this.iconLayout.outerBottom;
+        this.subTitle.y = this.title.outerBottom;
+        this.propertiesTitle.y = this.subTitle.outerBottom;
+        this.properties.y = this.propertiesTitle.outerBottom;
 
         this.panelLayout.height =
             this.propertiesTitle.outerBottom +

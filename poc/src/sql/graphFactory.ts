@@ -17,7 +17,7 @@ export function createSections(plan: Plan): SectionSet<PlanStatement> {
         return batch.statements.map(statement => {
 
             return graphRootNodeBuilder<PlanStatement>()
-                .setTitle(statement.id)
+                // .setTitle(statement.id)
                 .setSubtitle(statement.statementText)
                 .setWeights(statement.relativeStatementCost, statement.relativeStatementCost)
                 .setProperties(buildProperties(statement.root ? statement.root.metrics : undefined))

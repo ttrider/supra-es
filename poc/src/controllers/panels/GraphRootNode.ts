@@ -5,6 +5,7 @@ import Layout from 'src/controllers/layout/Layout';
 import PropertiesLayout from 'src/controllers/layout/PropertiesLayout';
 import styles from 'src/controllers/styles';
 import IGraphNode from "src/models/IGraphNode";
+import TextBoxLayout from '../layout/TextBoxLayout';
 import TextLayout from '../layout/TextLayout';
 import SurfaceGraphNode from './GraphNode';
 import { GraphNodeBuilder } from './GraphNodeBuilder';
@@ -15,7 +16,7 @@ export default class SurfaceGraphRootNode<T = any> extends Layout implements IGr
 
     public readonly iconLayout: Layout;
     public readonly title: TextLayout;
-    public readonly subTitle: TextLayout;
+    public readonly subTitle: TextBoxLayout;
     public readonly absoluteWeight: number;
     public readonly relativeWeight: number;
     public readonly propertiesTitle: TextLayout;
@@ -48,7 +49,8 @@ export default class SurfaceGraphRootNode<T = any> extends Layout implements IGr
         this.children = builder.children;
         this.inputCostLayout = builder.inputCostLayout;
 
-        this.title.textAnchor = "start";
+        this.subTitle.textAnchor = "start";
+        this.subTitle.textOverflowMode = "end-ellipsis";
         this.propertiesTitle.textAnchor = "start";
 
         autorun(() => {
@@ -68,19 +70,24 @@ export default class SurfaceGraphRootNode<T = any> extends Layout implements IGr
         // subtitle    | A |
         // properties  | A |
 
-        this.title.y = this.iconLayout.outerBottom;
-        this.propertiesTitle.y = this.title.outerBottom;
-        this.properties.y = this.propertiesTitle.outerBottom;
+        
 
         this.panelLayout.width = Math.max(
             this.iconLayout.outerWidth,
-            this.title.outerWidth,
             this.propertiesTitle.outerWidth,
             (propertiesExpanded ? this.properties.outerRight : 0)
         );
 
+        this.subTitle.maxWidth = this.panelLayout.width;
+
+        this.subTitle.y = this.iconLayout.outerBottom;
+        this.propertiesTitle.y = this.subTitle.outerBottom;
+        this.properties.y = this.propertiesTitle.outerBottom;
+
         this.panelLayout.height =
+
             this.propertiesTitle.outerBottom +
+
             (propertiesExpanded ? this.properties.outerHeight : 0)
             + styles.node.padding.bottom;
 
