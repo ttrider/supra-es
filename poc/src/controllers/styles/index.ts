@@ -399,13 +399,8 @@ const styles = {
         },
 
         "&:hover": {
-            textDecoration: "underline",
-            stroked: {
-                stroke: colors.actionbarColor,
-                strokeWidth: "10px"
-            }
+            textDecoration: "underline"
         }
-
     },
 
     nodeFlags: {

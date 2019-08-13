@@ -155,7 +155,6 @@ export default class SurfaceController<T, TSection = T> implements ISurfaceContr
     }
 
     @computed public get sections() {
-        console.info("sections");
 
         if (this.dataModel) {
             if (!this.sectionSet) {
@@ -206,7 +205,12 @@ export default class SurfaceController<T, TSection = T> implements ISurfaceContr
         if (panelItem) {
 
             const left =
-                (panelItem.alignment === "right") ? (panelItem.x + panelItem.width) - this.viewportWidth : panelItem.x;
+                (panelItem.index === 0)
+                    ? 0
+                    : (
+                        (panelItem.alignment === "right")
+                            ? (panelItem.x + panelItem.width) - this.viewportWidth
+                            : panelItem.x);
 
             this.scrollView(left, null, 750);
         }
@@ -264,15 +268,6 @@ export default class SurfaceController<T, TSection = T> implements ISurfaceContr
             }
         }
     }
-
-    // @action private autorunHandler(dataModel: T, selectedViewFactory: SurfaceViewFactory<T, TSection>) {
-
-
-
-    //     this.currentViewInfo = selectedViewFactory.createView(dataModel, selected);
-
-    // }
-
 }
 
 
