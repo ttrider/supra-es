@@ -1,23 +1,21 @@
 import { action, autorun, computed, observable } from 'mobx';
 import AttachedNodesLayout from "src/controllers/layout/AttachedNodesLayout";
-import InputCostLayout from "src/controllers/layout/InputCostLayout";
+
 import Layout from 'src/controllers/layout/Layout';
 import PropertiesLayout from 'src/controllers/layout/PropertiesLayout';
 import styles from 'src/controllers/styles';
+import { formatCost } from 'src/helpers/formatter';
 import IGraphNode from "src/models/IInputCost";
 import TextBoxLayout from '../layout/TextBoxLayout';
 import TextLayout from '../layout/TextLayout';
 import { GraphNodeBuilder } from './GraphNodeBuilder';
-
-
-
-
 
 export default class SurfaceGraphNode<T = any> extends Layout implements IGraphNode {
 
     public static lastNodeId = 1;
     public id: string;
 
+    public readonly costLabel: TextLayout;
     public readonly iconLayout: Layout;
     public readonly title: TextLayout;
     public readonly subTitle: TextBoxLayout;
@@ -28,13 +26,13 @@ export default class SurfaceGraphNode<T = any> extends Layout implements IGraphN
     public readonly attachedNodesLayout: AttachedNodesLayout;
     public readonly panelLayout: Layout;
     public readonly children: Array<SurfaceGraphNode<T>> = [];
-    public readonly inputCostLayout: InputCostLayout;
+    public readonly inputCostLayout: TextBoxLayout;
     public readonly data: T;
     public readonly rowIndex: number;
     public readonly columnIndex: number;
 
     @computed public get cost() {
-        return 0.999;
+        return this.relativeWeight;
     }
 
 
@@ -58,6 +56,7 @@ export default class SurfaceGraphNode<T = any> extends Layout implements IGraphN
         this.children = builder.children;
         this.inputCostLayout = builder.inputCostLayout;
 
+        this.costLabel = new TextLayout("❮ "+formatCost(this.cost)+"%", styles.nodeOutputCost);
 
         autorun(() => {
             this.updateLayout(this.propertiesExpanded);
@@ -71,6 +70,7 @@ export default class SurfaceGraphNode<T = any> extends Layout implements IGraphN
 
     @action private updateLayout(propertiesExpanded: boolean) {
 
+        // cost 9999
         // icon        | A | 100% >
         // title       | A |
         // subtitle    | A |
@@ -78,6 +78,7 @@ export default class SurfaceGraphNode<T = any> extends Layout implements IGraphN
 
 
         this.panelLayout.width = Math.max(
+            this.costLabel.outerWidth,
             this.iconLayout.outerWidth,
             this.title.outerWidth,
             this.propertiesTitle.outerWidth,
@@ -89,6 +90,7 @@ export default class SurfaceGraphNode<T = any> extends Layout implements IGraphN
         this.title.x = (this.panelLayout.width - this.title.outerWidth) / 2;
         this.propertiesTitle.x = (this.panelLayout.width - this.propertiesTitle.outerWidth) / 2;
 
+        this.iconLayout.y = this.costLabel.outerBottom;
         this.title.y = this.iconLayout.outerBottom;
         this.subTitle.y = this.title.outerBottom;
         this.propertiesTitle.y = this.subTitle.outerBottom;

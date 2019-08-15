@@ -1,7 +1,7 @@
 import React from 'react';
 import GraphPanelLayout from 'src/controllers/panels/GraphPanelLayout';
 import ISurfaceController from 'src/models/ISurfaceController';
-import { NodeAttached, NodeIcon, NodeInputCost, NodeProperties } from '../Node';
+import { NodeAttached, NodeIcon, NodeProperties } from '../Node';
 import SurfaceComponent from '../SurfaceComponent';
 import { Classes } from '../SurfaceContext';
 import { SurfaceText, SurfaceTextBox } from '../SurfaceParts';
@@ -21,14 +21,17 @@ export default class SurfaceGraphPanel extends SurfaceComponent<{ panel: GraphPa
 
                     return (
                         <g key={node.id + "-node"} transform={node.transform} className={classes.node}>
-                            <rect {...node.panelLayout.outline} className={classes.nodeBorder} />
+                            <rect {...node.panelLayout.outline} className={classes.nodeBorder + " nodeFill"} />
 
+                            <SurfaceText layout={node.costLabel} context={{ controller, classes }} className="nodeOutputCost" />
                             <NodeIcon node={node} />
                             <SurfaceText layout={node.title} context={{ controller, classes }} className="nodeTitle" />
                             <SurfaceTextBox layout={node.subTitle} context={{ controller, classes }} className="nodeSubtitle" />
                             <NodeProperties node={node} />
                             <NodeAttached node={node} />
-                            <NodeInputCost node={node} />
+
+                            <SurfaceTextBox layout={node.inputCostLayout} context={{ controller, classes }} className={"nodeInputCost"} />
+
 
                         </g>
                     );

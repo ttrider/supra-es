@@ -2,6 +2,7 @@ import React from 'react';
 import PropertiesLayout from 'src/controllers/layout/PropertiesLayout';
 import IGraphNode from "src/models/IGraphNode";
 import { SurfaceContext, SurfaceContextProvider } from './SurfaceContext';
+import { SurfaceTextBox } from './SurfaceParts';
 
 export function NodeAttached(props: { node: IGraphNode }) {
 
@@ -54,11 +55,9 @@ export function NodeInputCost(props: { node: IGraphNode }) {
     return (
         <SurfaceContext.Consumer>
             {({ classes }) => (
-                <g transform={inputCostLayout.transform} className={classes.nodeInputCostPanel}>
-                    {inputCostLayout.connectors.map(item => <text key={item.id} {...item.textClient} className={classes.nodeInputCost} />)}
-                </g>
+                <SurfaceTextBox layout={inputCostLayout} className={classes.nodeInputCost} />
             )}
-        </SurfaceContext.Consumer>
+        </SurfaceContext.Consumer> 
     );
 }
 

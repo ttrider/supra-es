@@ -53,7 +53,7 @@ export function fitText(text: string | undefined, fontStyle: IFontStyle, maxWidt
     let transformedText = originalText;
     let transformedWidth = originalWidth;
 
-    if (originalWidth > maxWidth) {
+    if (maxWidth && originalWidth > maxWidth) {
 
         const elWidth = measureText(ellipsis, fontStyle);
         const mWidth = maxWidth - elWidth;

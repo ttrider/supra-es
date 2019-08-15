@@ -99,7 +99,7 @@ function buildNode(node: PlanNode): SurfaceGraphNode<PlanNode> {
     return graphRootNodeBuilder<PlanNode>()
         .setTitle(title)
         .setSubtitle(subtitle)
-        .setWeights(node.metrics.absCost, node.metrics.relCost)
+        .setWeights(node.metrics.absCost, node.metrics.relativeCost)
         .setProperties(buildProperties(node.metrics))
         .setData(node)
         .setChildNodes(node.children.map(n => buildNode(n)))

@@ -1,8 +1,8 @@
 import { observer } from 'mobx-react';
 import React from 'react';
 
-import  ISectionInfo  from "src/models/ISectionInfo";
-import { NodeAttached, NodeIcon, NodeInputCost, NodeProperties } from '../Node';
+import ISectionInfo from "src/models/ISectionInfo";
+import { NodeAttached, NodeIcon, NodeProperties } from '../Node';
 import { SurfaceText, SurfaceTextBox } from '../SurfaceParts';
 
 @observer export default class SectionNode extends React.Component<{ section: ISectionInfo }> {
@@ -21,10 +21,11 @@ import { SurfaceText, SurfaceTextBox } from '../SurfaceParts';
 
                 <NodeIcon node={node} />
                 <SurfaceText layout={node.title} className="nodeTitle" />
-                <SurfaceTextBox layout={node.subTitle}  className="nodeSubtitle"/>
+                <SurfaceTextBox layout={node.subTitle} className="nodeSubtitle" />
                 <NodeProperties node={node} />
                 <NodeAttached node={node} />
-                <NodeInputCost node={node} />
+                <SurfaceTextBox layout={node.inputCostLayout} className="nodeInputCost" />
+
 
             </g>
 

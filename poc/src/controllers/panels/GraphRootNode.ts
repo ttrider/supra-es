@@ -1,6 +1,5 @@
 import { action, autorun, observable } from 'mobx';
 import AttachedNodesLayout from "src/controllers/layout/AttachedNodesLayout";
-import InputCostLayout from "src/controllers/layout/InputCostLayout";
 import Layout from 'src/controllers/layout/Layout';
 import PropertiesLayout from 'src/controllers/layout/PropertiesLayout';
 import styles from 'src/controllers/styles';
@@ -23,7 +22,7 @@ export default class SurfaceGraphRootNode<T = any> extends Layout implements IGr
     public readonly properties: PropertiesLayout;
     public readonly attachedNodesLayout: AttachedNodesLayout;
     public readonly panelLayout: Layout;
-    public readonly inputCostLayout: InputCostLayout;
+    public readonly inputCostLayout: TextBoxLayout;
     public readonly data: T;
     public readonly children: Array<SurfaceGraphNode<T>> = [];
     public readonly rowIndex: number;

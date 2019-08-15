@@ -1,9 +1,9 @@
 import { action } from 'mobx';
 import AttachedNodesLayout from "src/controllers/layout/AttachedNodesLayout";
-import InputCostLayout from "src/controllers/layout/InputCostLayout";
 import Layout from 'src/controllers/layout/Layout';
 import PropertiesLayout from 'src/controllers/layout/PropertiesLayout';
 import styles from 'src/controllers/styles';
+import { formatCost } from 'src/helpers/formatter';
 import IInputCost from 'src/models/IInputCost';
 import TextBoxLayout from '../layout/TextBoxLayout';
 import TextLayout from '../layout/TextLayout';
@@ -21,7 +21,7 @@ export class GraphNodeBuilder<TSection> {
     public attachedNodesLayout: AttachedNodesLayout;
     public panelLayout: Layout;
     public data: TSection;
-    public inputCostLayout: InputCostLayout;
+    public inputCostLayout: TextBoxLayout;
     public readonly children: SurfaceGraphNode[] = [];
     public readonly childrenCost: IInputCost[] = [];
     constructor() {
@@ -85,6 +85,7 @@ export class GraphNodeBuilder<TSection> {
     }
     public setChildNodes(nodes: SurfaceGraphNode[]) {
         this.children.push(...nodes);
+        this.childrenCost.push(...nodes);
         return this;
     }
     public setChildrenCosts(children?: IInputCost[]) {
@@ -100,14 +101,15 @@ export class GraphNodeBuilder<TSection> {
         return this;
     }
     public buildRoot() {
-        this.inputCostLayout = new InputCostLayout(this.childrenCost);
+        this.inputCostLayout = new TextBoxLayout(this.childrenCost.map(item=>formatCost(item.cost) + "% ❯"), styles.nodeInputCost)
         return new SurfaceGraphRootNode<TSection>(this);
     }
 
     public build(): SurfaceGraphNode<TSection> {
-        this.inputCostLayout = new InputCostLayout(this.children);
+        this.inputCostLayout = new TextBoxLayout(this.childrenCost.map(item=>formatCost(item.cost) + "% ❯"), styles.nodeInputCost)
         return new SurfaceGraphNode<TSection>(this);
     }
+
 }
 
 export function graphRootNodeBuilder<TSection = any>() {

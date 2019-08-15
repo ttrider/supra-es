@@ -239,28 +239,32 @@ const styles = {
 
     // #region node
     node: {
-
-
-
-
-
         padding: {
             left: dimentions.padding.normal,
             top: dimentions.padding.normal,
             right: dimentions.padding.normal,
             bottom: dimentions.padding.normal
+        },
+
+        "& .nodeFill": {
+            fill: opacity(colors.light, 0.2),
+        },
+
+        "&:hover": {
+
+            "& .nodeFill": {
+                fill: colors.light
+            }
         }
     },
 
     nodeBorder: {
-        fill: opacity(colors.light, 0.2),
+
         rx: dimentions.padding.normal / 2,
         strokeWidth: dimentions.stroke.thinWidth,
         stroke: colors.primary2,
 
-        "&:hover": {
-            fill: colors.light
-        }
+
     },
 
     nodeIcon: {
@@ -298,11 +302,11 @@ const styles = {
         }
     },
 
-    nodeInputCostPanel: {
-        margin: {
-            top: dimentions.padding.normal
-        }
-    },
+    // nodeInputCostPanel: {
+    //     margin: {
+    //         top: dimentions.padding.normal
+    //     }
+    // },
     nodeInputCost: {
         fontFamily,
         fontSize: dimentions.normalText.fontSize,
@@ -321,6 +325,11 @@ const styles = {
         lineHeight: dimentions.normalText.lineHeight,
 
         fontWeight: "bold",
+
+        margin: {
+            left: dimentions.padding.normal,
+            right: dimentions.padding.normal
+        }
     },
     nodeOutputCostMarked: {
         fontFamily,
